@@ -130,6 +130,19 @@ body { font-family: 'Noto Sans TC', 'Zen Maru Gothic', -apple-system, sans-serif
 .clear-btn { font-size: 11px; color: var(--ink-faint); background: none; border: none; font-family: inherit; cursor: pointer; padding: 4px 10px; border-radius: 20px; transition: all 0.15s; }
 .clear-btn:active { background: var(--red-50); color: var(--red-600); }
 
+.verify-row { display: flex; gap: 6px; margin-top: 8px; align-items: center; }
+.verify-btn { height: 32px; padding: 0 14px; font-size: 12px; font-weight: 500; font-family: inherit; border-radius: 20px; cursor: pointer; transition: all 0.15s; border: 1.5px solid var(--warm-200); background: var(--card-bg); color: var(--text-secondary); letter-spacing: 0.3px; }
+.verify-btn:active { transform: scale(0.96); }
+.verify-btn.yes { border-color: var(--sage); color: var(--sage-dark); }
+.verify-btn.yes:active, .verify-btn.yes:hover { background: var(--sage-light); }
+.verify-btn.no { border-color: var(--terracotta); color: var(--terracotta-dark); }
+.verify-btn.no:active, .verify-btn.no:hover { background: var(--terracotta-light); }
+.verify-result { font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 20px; display: inline-block; margin-top: 6px; }
+.verify-result.accurate { background: var(--sage-light); color: var(--sage-dark); }
+.verify-result.inaccurate { background: var(--terracotta-light); color: var(--terracotta-dark); }
+.verify-label { font-size: 11px; color: var(--ink-faint); }
+.accuracy-highlight { color: var(--sage-dark); }
+
 .toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--cloud-light); padding: 12px 24px; border-radius: 28px; font-size: 13px; font-weight: 500; z-index: 100; opacity: 0; transition: opacity 0.3s; pointer-events: none; box-shadow: var(--shadow-md); letter-spacing: 0.3px; }
 .toast.show { opacity: 1; }
 
@@ -149,7 +162,7 @@ body { font-family: 'Noto Sans TC', 'Zen Maru Gothic', -apple-system, sans-serif
     <div class="header-icon">&#x1F426;</div>
     <h1>鳥類通報系統</h1>
     <p>楊媽媽通靈研究所 x 宇宙情報局</p>
-    <div class="ver">v3.1 — 三重鳥類圖鑑版（20鳥種）</div>
+    <div class="ver">v3.2 — Pantone Cloud Dancer + KPI 考核版</div>
   </div>
 
   <div class="status-bar">
@@ -251,6 +264,7 @@ body { font-family: 'Noto Sans TC', 'Zen Maru Gothic', -apple-system, sans-serif
 
 <script>
 const STORAGE_KEY='bird-report-v3';
+const VERIFY_KEY='bird-verify-v1';
 const birdData={
 eagle:{name:'老鷹',emoji:'\u{1F985}',fortune:95,rank:'SSS',rankClass:'rank-sss',desc:'極為罕見的頂級吉兆，代表重大突破即將降臨。建議立刻準備面試服裝。',mama:'楊媽媽判讀：天大的好運！準備上班了！'},
 heron:{name:'黑冠麻鷺',emoji:'\u{1F9A9}',fortune:80,rank:'SS',rankClass:'rank-ss',desc:'稀有大型鳥類現身，運勢加倍buff。出現即為強烈正面訊號。',mama:'楊媽媽判讀：好運要來了！（大聲版）'},
@@ -288,8 +302,10 @@ const quotes=[
 ];
 
 let allSightings=[];
-function loadData(){try{const d=localStorage.getItem(STORAGE_KEY);if(d)allSightings=JSON.parse(d);}catch(e){allSightings=[];}}
+let verifyData={};
+function loadData(){try{const d=localStorage.getItem(STORAGE_KEY);if(d)allSightings=JSON.parse(d);}catch(e){allSightings=[];}try{const v=localStorage.getItem(VERIFY_KEY);if(v)verifyData=JSON.parse(v);}catch(e){verifyData={};}}
 function saveData(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(allSightings));}catch(e){}}
+function saveVerify(){try{localStorage.setItem(VERIFY_KEY,JSON.stringify(verifyData));}catch(e){}}
 function getToday(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 function formatDate(ds){const p=ds.split('-');return p[0]+'/'+p[1]+'/'+p[2];}
 function getTodaySightings(){return allSightings.filter(s=>s.date===getToday());}
@@ -325,7 +341,13 @@ showToast('今日紀錄已清除');
 }
 function clearAll(){
 if(!confirm('確定要清除所有歷史紀錄嗎？此操作無法復原。'))return;
-allSightings=[];saveData();renderAll();showToast('所有紀錄已清除');
+allSightings=[];verifyData={};saveData();saveVerify();renderAll();showToast('所有紀錄已清除');
+}
+function verifyDay(date,result){
+verifyData[date]=result;
+saveVerify();
+renderAll();
+showToast(result==='yes'?'楊媽媽準了！✅':'這次沒準 😅');
 }
 function renderAll(){renderTodayLog();renderHistory();renderRanking();renderStats();}
 
@@ -345,12 +367,25 @@ if(!allSightings.length){c.innerHTML='<div class="empty-log">尚無歷史紀錄<
 const byDate={};allSightings.forEach(s=>{if(!byDate[s.date])byDate[s.date]=[];byDate[s.date].push(s);});
 const dates=Object.keys(byDate).sort().reverse();let h='';
 dates.forEach(date=>{const entries=byDate[date],fortune=calcFortune(entries);
-h+='<div class="log-date-header">'+formatDate(date)+' — '+entries.length+'筆，運勢 '+fortune+'</div>';
+const v=verifyData[date];
+const isToday=date===getToday();
+h+='<div class="log-date-header">'+formatDate(date)+' — '+entries.length+'筆，運勢 '+fortune;
+if(v==='yes')h+=' <span class="verify-result accurate">準了！</span>';
+else if(v==='no')h+=' <span class="verify-result inaccurate">沒準</span>';
+h+='</div>';
 entries.slice().reverse().forEach(s=>{const b=birdData[s.bird];if(!b)return;
 h+='<div class="log-entry"><div class="log-time">'+s.time+'</div><div class="log-content"><span class="log-bird">'+b.emoji+' '+b.name+'</span>';
 if(s.note)h+='<br><span class="log-note">'+s.note+'</span>';
 h+='<br><span class="log-verdict">'+b.mama+'</span></div>';
-h+='<button class="log-delete" onclick="deleteSighting(\''+s.id+'\')">&#x2715;</button></div>';});});
+h+='<button class="log-delete" onclick="deleteSighting(\''+s.id+'\')">&#x2715;</button></div>';});
+if(!isToday && !v){
+h+='<div class="verify-row"><span class="verify-label">這天有好事發生嗎？</span>';
+h+='<button class="verify-btn yes" onclick="verifyDay(\''+date+'\',\'yes\')">準了 &#x2714;</button>';
+h+='<button class="verify-btn no" onclick="verifyDay(\''+date+'\',\'no\')">沒準 &#x2718;</button></div>';
+} else if(isToday && !v){
+h+='<div class="verify-row"><span class="verify-label">今天的結果明天再來驗證</span></div>';
+}
+});
 c.innerHTML=h;
 }
 function renderRanking(){
@@ -382,6 +417,16 @@ if(fortune>=80)bar.classList.add('fortune-max');
 else if(fortune>=50)bar.classList.add('fortune-high');
 else if(fortune>=20)bar.classList.add('fortune-mid');
 else bar.classList.add('fortune-low');
+const vDates=Object.keys(verifyData);
+const totalV=vDates.length;
+const correctV=vDates.filter(d=>verifyData[d]==='yes').length;
+if(totalV>0){
+document.getElementById('stat-accuracy').textContent=Math.round(correctV/totalV*100)+'%';
+document.getElementById('stat-accuracy').classList.add('accuracy-highlight');
+}else{
+document.getElementById('stat-accuracy').textContent='?%';
+document.getElementById('stat-accuracy').classList.remove('accuracy-highlight');
+}
 }
 function switchTab(name,el){
 document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
