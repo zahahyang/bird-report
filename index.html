@@ -13,127 +13,124 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap');
 :root {
-  --green-50: #E1F5EE; --green-100: #9FE1CB; --green-400: #1D9E75;
-  --green-600: #0F6E56; --green-800: #085041; --green-900: #04342C;
-  --amber-50: #FAEEDA; --amber-800: #633806;
-  --pink-50: #FBEAF0; --pink-800: #72243E;
-  --blue-50: #E6F1FB; --blue-800: #0C447C;
-  --gray-50: #F5F5F0; --gray-100: #EBEBDF; --gray-200: #D3D1C7;
-  --gray-400: #888780; --gray-600: #5F5E5A; --gray-800: #2C2C2A;
-  --red-50: #FCEBEB; --red-600: #A32D2D; --red-800: #791F1F;
-  --bg: #FAFAF7; --card-bg: #FFFFFF; --text: #2C2C2A; --text-secondary: #888780;
-  --text-tertiary: #B4B2A9; --border: rgba(0,0,0,0.08); --radius: 12px; --radius-sm: 8px;
+  --cloud: #F4F1EC; --cloud-light: #FAF9F6; --cloud-white: #FFFFFF;
+  --warm-50: #F9F6F1; --warm-100: #F0EBE3; --warm-200: #E2DAD0; --warm-300: #C8BFB3;
+  --sage: #7A9E7E; --sage-light: #E8F0E9; --sage-dark: #5B7E5F; --sage-deep: #3D5940;
+  --terracotta: #C08B6E; --terracotta-light: #F5EBE4; --terracotta-dark: #8B5E44;
+  --ink: #3A3632; --ink-light: #6B6560; --ink-lighter: #9E9890; --ink-faint: #C8C3BC;
+  --gold-50: #FDF6E8; --gold-400: #D4A855; --gold-800: #7A5C1F;
+  --rose-50: #FBF0F0; --rose-400: #C87B7B; --rose-800: #7A3D3D;
+  --sky-50: #EEF4FA; --sky-400: #6B9DC7; --sky-800: #2E5470;
+  --red-50: #FBF0EE; --red-600: #B85450; --red-800: #6B2E2C;
+  --bg: var(--cloud); --card-bg: var(--cloud-white); --text: var(--ink); --text-secondary: var(--ink-light);
+  --text-tertiary: var(--ink-lighter); --border: rgba(58,54,50,0.08); --radius: 16px; --radius-sm: 10px;
+  --shadow-sm: 0 1px 3px rgba(58,54,50,0.04), 0 1px 2px rgba(58,54,50,0.03);
+  --shadow-md: 0 4px 12px rgba(58,54,50,0.06), 0 1px 4px rgba(58,54,50,0.04);
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #1A1A18; --card-bg: #262624; --text: #E8E6DF; --text-secondary: #9E9D97;
-    --text-tertiary: #6B6A65; --border: rgba(255,255,255,0.1);
-    --green-50: #0A2E22; --green-800: #9FE1CB; --green-900: #E1F5EE;
-    --amber-50: #2E2010; --amber-800: #FAC775;
-    --pink-50: #2E1520; --pink-800: #F4C0D1;
-    --blue-50: #0C1E2E; --blue-800: #85B7EB;
-    --gray-50: #2C2C2A; --gray-100: #3A3A37; --gray-200: #4A4A46;
-    --red-50: #2E1313; --red-800: #F09595;
+    --cloud: #1C1B19; --cloud-light: #232220; --cloud-white: #2A2927;
+    --warm-50: #252321; --warm-100: #302E2B; --warm-200: #3D3A36; --warm-300: #5A5650;
+    --sage: #7A9E7E; --sage-light: #1E2E20; --sage-dark: #9ECBA2; --sage-deep: #C8E5CA;
+    --terracotta: #D4A080; --terracotta-light: #2E2420; --terracotta-dark: #E8C0A8;
+    --ink: #E8E4DE; --ink-light: #B8B2AA; --ink-lighter: #888078; --ink-faint: #504B46;
+    --gold-50: #2E2818; --gold-400: #D4A855; --gold-800: #F0D090;
+    --rose-50: #2E2020; --rose-400: #D89090; --rose-800: #F0C0C0;
+    --sky-50: #1A2430; --sky-400: #88B8E0; --sky-800: #B8D8F0;
+    --red-50: #2E1E1C; --red-600: #E08080; --red-800: #F0B0AE;
+    --bg: var(--cloud); --card-bg: var(--cloud-white); --text: var(--ink); --text-secondary: var(--ink-light);
+    --text-tertiary: var(--ink-lighter); --border: rgba(232,228,222,0.08);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.12); --shadow-md: 0 4px 12px rgba(0,0,0,0.16);
   }
 }
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-body { font-family: 'Noto Sans TC', -apple-system, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; min-height: 100dvh; }
+body { font-family: 'Noto Sans TC', 'Zen Maru Gothic', -apple-system, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; min-height: 100dvh; }
 .container { max-width: 480px; margin: 0 auto; padding: 0 16px; padding-bottom: 80px; }
 
-/* Header */
-.header { text-align: center; padding: 24px 0 16px; }
-.header-icon { font-size: 32px; margin-bottom: 4px; }
-.header h1 { font-size: 20px; font-weight: 700; letter-spacing: 3px; color: var(--text); }
-.header p { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
-.header .ver { font-size: 10px; color: var(--text-tertiary); margin-top: 2px; }
+.header { text-align: center; padding: 32px 0 20px; }
+.header-icon { font-size: 36px; margin-bottom: 8px; filter: drop-shadow(0 2px 4px rgba(122,158,126,0.2)); }
+.header h1 { font-size: 22px; font-weight: 700; letter-spacing: 4px; color: var(--text); }
+.header p { font-size: 12px; color: var(--ink-lighter); margin-top: 6px; letter-spacing: 1px; }
+.header .ver { font-size: 10px; color: var(--ink-faint); margin-top: 4px; letter-spacing: 0.5px; }
 
-/* Status */
-.status-bar { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; background: var(--green-50); border-radius: var(--radius-sm); font-size: 12px; color: var(--green-800); margin-bottom: 16px; }
-.status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-400); animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.status-bar { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 16px; background: var(--sage-light); border-radius: 24px; font-size: 12px; color: var(--sage-dark); margin-bottom: 20px; letter-spacing: 0.3px; }
+.status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--sage); animation: pulse 2.5s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.85)} }
 
-/* Tabs */
-.tab-bar { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 16px; position: sticky; top: 0; background: var(--bg); z-index: 10; }
-.tab { flex: 1; padding: 10px 0; font-size: 13px; font-weight: 500; color: var(--text-secondary); text-align: center; border: none; background: none; border-bottom: 2px solid transparent; font-family: inherit; cursor: pointer; transition: all 0.2s; }
-.tab.active { color: var(--green-400); border-bottom-color: var(--green-400); }
+.tab-bar { display: flex; gap: 4px; margin-bottom: 20px; position: sticky; top: 0; background: var(--bg); z-index: 10; padding: 8px 0; }
+.tab { flex: 1; padding: 10px 0; font-size: 13px; font-weight: 500; color: var(--text-tertiary); text-align: center; border: none; background: var(--warm-50); border-radius: 24px; font-family: inherit; cursor: pointer; transition: all 0.25s ease; letter-spacing: 0.5px; }
+.tab.active { color: var(--cloud-white); background: var(--sage); }
+.tab:active { transform: scale(0.97); }
 
 .tab-content { display: none; }
 .tab-content.active { display: block; }
 
-/* Section labels */
-.section-label { font-size: 12px; font-weight: 500; color: var(--text-secondary); margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+.section-label { font-size: 11px; font-weight: 500; color: var(--ink-lighter); margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase; letter-spacing: 1.5px; }
 
-/* Add form */
-.add-form { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+.add-form { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
 .add-row { display: flex; gap: 8px; }
-.add-form select, .add-form input { height: 44px; font-size: 14px; font-family: inherit; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0 12px; background: var(--card-bg); color: var(--text); flex: 1; appearance: none; -webkit-appearance: none; }
-.add-form select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M2 4l4 4 4-4'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
-.btn-report { height: 44px; font-size: 14px; font-weight: 500; font-family: inherit; border: none; border-radius: var(--radius-sm); background: var(--green-400); color: #fff; cursor: pointer; padding: 0 20px; white-space: nowrap; transition: transform 0.1s, opacity 0.2s; }
-.btn-report:active { transform: scale(0.96); opacity: 0.9; }
+.add-form select, .add-form input { height: 48px; font-size: 14px; font-family: inherit; border: 1.5px solid var(--warm-200); border-radius: var(--radius-sm); padding: 0 14px; background: var(--card-bg); color: var(--text); flex: 1; appearance: none; -webkit-appearance: none; transition: border-color 0.2s; }
+.add-form select:focus, .add-form input:focus { outline: none; border-color: var(--sage); }
+.add-form select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239E9890' d='M2 4l4 4 4-4'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+.btn-report { height: 48px; font-size: 14px; font-weight: 700; font-family: inherit; border: none; border-radius: var(--radius-sm); background: var(--sage); color: #fff; cursor: pointer; padding: 0 24px; white-space: nowrap; transition: all 0.15s; letter-spacing: 1px; }
+.btn-report:active { transform: scale(0.96); background: var(--sage-dark); }
 
-/* Result panel */
-.result-panel { padding: 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); text-align: center; margin-bottom: 20px; display: none; animation: slideIn 0.3s ease; }
+.result-panel { padding: 20px; background: var(--card-bg); border: 1.5px solid var(--warm-200); border-radius: var(--radius); text-align: center; margin-bottom: 24px; display: none; animation: slideIn 0.35s ease; box-shadow: var(--shadow-md); }
 .result-panel.show { display: block; }
-@keyframes slideIn { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
-.result-icon { font-size: 28px; margin-bottom: 6px; }
-.result-title { font-size: 16px; font-weight: 700; }
-.result-desc { font-size: 13px; color: var(--text-secondary); margin-top: 6px; line-height: 1.6; }
-.result-mama { font-size: 14px; color: var(--green-400); font-weight: 500; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+@keyframes slideIn { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:translateY(0)} }
+.result-icon { font-size: 32px; margin-bottom: 8px; }
+.result-title { font-size: 17px; font-weight: 700; color: var(--text); }
+.result-desc { font-size: 13px; color: var(--text-secondary); margin-top: 8px; line-height: 1.7; }
+.result-mama { font-size: 14px; color: var(--sage-dark); font-weight: 700; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--warm-100); }
 
-/* Log entries */
-.log-entry { display: flex; align-items: flex-start; gap: 10px; padding: 12px; background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 8px; position: relative; }
-.log-time { font-size: 11px; color: var(--text-tertiary); min-width: 40px; padding-top: 2px; }
-.log-content { font-size: 13px; line-height: 1.6; flex: 1; }
-.log-bird { font-weight: 500; }
-.log-verdict { color: var(--green-400); font-weight: 500; }
+.log-entry { display: flex; align-items: flex-start; gap: 10px; padding: 14px; background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 8px; position: relative; box-shadow: var(--shadow-sm); transition: transform 0.1s; }
+.log-time { font-size: 11px; color: var(--ink-faint); min-width: 40px; padding-top: 2px; font-weight: 500; }
+.log-content { font-size: 13px; line-height: 1.7; flex: 1; }
+.log-bird { font-weight: 700; color: var(--text); }
+.log-verdict { color: var(--sage-dark); font-weight: 500; }
 .log-note { color: var(--text-secondary); font-style: italic; }
-.log-delete { position: absolute; top: 10px; right: 10px; width: 28px; height: 28px; border-radius: 50%; border: none; background: none; font-size: 16px; color: var(--text-tertiary); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.log-delete { position: absolute; top: 10px; right: 10px; width: 28px; height: 28px; border-radius: 50%; border: none; background: none; font-size: 14px; color: var(--ink-faint); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
 .log-delete:active { background: var(--red-50); color: var(--red-600); }
-.log-date-header { font-size: 12px; font-weight: 500; color: var(--text-secondary); padding: 10px 0 6px; border-bottom: 1px solid var(--border); margin-bottom: 8px; }
-.empty-log { text-align: center; padding: 32px 16px; color: var(--text-tertiary); font-size: 13px; line-height: 1.8; }
+.log-date-header { font-size: 12px; font-weight: 700; color: var(--text-secondary); padding: 12px 0 6px; border-bottom: 1px solid var(--warm-100); margin-bottom: 8px; letter-spacing: 0.5px; }
+.empty-log { text-align: center; padding: 40px 16px; color: var(--ink-faint); font-size: 13px; line-height: 2; }
 
-/* Stats */
-.stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 16px 0; }
-.stat-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px; text-align: center; }
-.stat-label { font-size: 11px; color: var(--text-secondary); }
-.stat-value { font-size: 22px; font-weight: 700; margin-top: 2px; }
+.stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 20px 0; }
+.stat-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; text-align: center; box-shadow: var(--shadow-sm); }
+.stat-label { font-size: 10px; color: var(--ink-lighter); text-transform: uppercase; letter-spacing: 1px; }
+.stat-value { font-size: 24px; font-weight: 700; margin-top: 4px; color: var(--sage-dark); }
 
-/* Fortune bar */
-.fortune-bar { height: 6px; background: var(--gray-100); border-radius: 3px; margin: 4px 0 16px; overflow: hidden; }
+.fortune-bar { height: 6px; background: var(--warm-100); border-radius: 3px; margin: 6px 0 20px; overflow: hidden; }
 .fortune-fill { height: 100%; border-radius: 3px; transition: width 0.6s ease; }
-.fortune-low { background: var(--gray-200); }
-.fortune-mid { background: #5DCAA5; }
-.fortune-high { background: var(--green-400); }
-.fortune-max { background: #639922; }
+.fortune-low { background: var(--warm-300); }
+.fortune-mid { background: #8BC49E; }
+.fortune-high { background: var(--sage); }
+.fortune-max { background: var(--sage-dark); }
 
-/* Mama quote */
-.mama-quote { padding: 12px 16px; border-left: 3px solid var(--green-400); background: var(--green-50); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 13px; color: var(--green-800); line-height: 1.6; margin-top: 16px; }
+.mama-quote { padding: 14px 18px; border-left: 3px solid var(--sage); background: var(--sage-light); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 13px; color: var(--sage-dark); line-height: 1.7; margin-top: 20px; font-style: italic; }
 
-/* Bird grid */
-.bird-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
-.bird-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 12px; text-align: center; cursor: pointer; transition: transform 0.1s; }
-.bird-card:active { transform: scale(0.97); }
-.bird-emoji { font-size: 28px; margin-bottom: 4px; }
-.bird-name { font-size: 14px; font-weight: 500; }
-.bird-desc { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
-.bird-rank { display: inline-block; margin-top: 6px; font-size: 11px; font-weight: 500; padding: 2px 10px; border-radius: 20px; }
-.bird-count { font-size: 11px; color: var(--text-tertiary); margin-top: 4px; }
-.rank-sss { background: var(--amber-50); color: var(--amber-800); }
-.rank-ss { background: var(--pink-50); color: var(--pink-800); }
-.rank-s { background: var(--blue-50); color: var(--blue-800); }
-.rank-a { background: var(--green-50); color: var(--green-800); }
-.rank-b { background: var(--gray-50); color: var(--gray-600); }
-.rank-c { background: var(--gray-50); color: var(--gray-400); }
-.rank-d { background: var(--red-50); color: var(--red-800); }
-.new-badge { display: inline-block; font-size: 9px; padding: 1px 5px; background: var(--red-50); color: var(--red-800); border-radius: 4px; margin-left: 2px; vertical-align: middle; }
+.bird-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.bird-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 12px; text-align: center; cursor: pointer; transition: all 0.15s; box-shadow: var(--shadow-sm); }
+.bird-card:active { transform: scale(0.97); box-shadow: var(--shadow-md); }
+.bird-emoji { font-size: 30px; margin-bottom: 6px; }
+.bird-name { font-size: 14px; font-weight: 700; }
+.bird-desc { font-size: 11px; color: var(--text-secondary); margin-top: 3px; line-height: 1.4; }
+.bird-rank { display: inline-block; margin-top: 8px; font-size: 10px; font-weight: 700; padding: 3px 12px; border-radius: 20px; letter-spacing: 1px; }
+.bird-count { font-size: 11px; color: var(--ink-faint); margin-top: 4px; }
+.rank-sss { background: var(--gold-50); color: var(--gold-800); border: 1px solid rgba(212,168,85,0.2); }
+.rank-ss { background: var(--rose-50); color: var(--rose-800); border: 1px solid rgba(200,123,123,0.15); }
+.rank-s { background: var(--sky-50); color: var(--sky-800); border: 1px solid rgba(107,157,199,0.15); }
+.rank-a { background: var(--sage-light); color: var(--sage-deep); border: 1px solid rgba(122,158,126,0.15); }
+.rank-b { background: var(--warm-50); color: var(--ink-light); border: 1px solid var(--warm-200); }
+.rank-c { background: var(--warm-50); color: var(--ink-lighter); border: 1px solid var(--warm-200); }
+.rank-d { background: var(--red-50); color: var(--red-800); border: 1px solid rgba(184,84,80,0.12); }
+.new-badge { display: inline-block; font-size: 9px; font-weight: 700; padding: 1px 6px; background: var(--terracotta-light); color: var(--terracotta-dark); border-radius: 4px; margin-left: 3px; vertical-align: middle; letter-spacing: 0.5px; }
 
-/* Clear button */
-.clear-btn { font-size: 11px; color: var(--text-tertiary); background: none; border: none; font-family: inherit; cursor: pointer; padding: 4px 8px; border-radius: 4px; }
+.clear-btn { font-size: 11px; color: var(--ink-faint); background: none; border: none; font-family: inherit; cursor: pointer; padding: 4px 10px; border-radius: 20px; transition: all 0.15s; }
 .clear-btn:active { background: var(--red-50); color: var(--red-600); }
 
-/* Toast */
-.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--gray-800); color: #fff; padding: 10px 20px; border-radius: 24px; font-size: 13px; font-weight: 500; z-index: 100; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+.toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--cloud-light); padding: 12px 24px; border-radius: 28px; font-size: 13px; font-weight: 500; z-index: 100; opacity: 0; transition: opacity 0.3s; pointer-events: none; box-shadow: var(--shadow-md); letter-spacing: 0.3px; }
 .toast.show { opacity: 1; }
 
 @media (min-width: 481px) {
@@ -152,7 +149,7 @@ body { font-family: 'Noto Sans TC', -apple-system, sans-serif; background: var(-
     <div class="header-icon">&#x1F426;</div>
     <h1>鳥類通報系統</h1>
     <p>楊媽媽通靈研究所 x 宇宙情報局</p>
-    <div class="ver">v3.0 — 手機獨立版</div>
+    <div class="ver">v3.1 — 三重鳥類圖鑑版（20鳥種）</div>
   </div>
 
   <div class="status-bar">
@@ -172,16 +169,40 @@ body { font-family: 'Noto Sans TC', -apple-system, sans-serif; background: var(-
       <div class="add-row" style="display:flex;gap:8px;width:100%;">
         <select id="bird-select">
           <option value="">— 選擇鳥種 —</option>
+          <optgroup label="SSS 頂級吉兆">
+          <option value="goshawk">&#x1F985; 鳳頭蒼鷹</option>
+          <option value="magpie">&#x1F426; 喜鵲</option>
           <option value="eagle">&#x1F985; 老鷹</option>
+          </optgroup>
+          <optgroup label="SS 強力吉兆">
+          <option value="blackkite">&#x1F985; 黑翅鳶</option>
+          <option value="osprey">&#x1F985; 魚鷹</option>
           <option value="heron">&#x1F9A9; 黑冠麻鷺</option>
+          </optgroup>
+          <optgroup label="S 吉祥">
+          <option value="fivecolor">&#x1F99C; 五色鳥</option>
           <option value="bulbul">&#x1F426; 白頭翁</option>
+          </optgroup>
+          <optgroup label="A 好運">
           <option value="dove">&#x1F54A; 斑鳩</option>
           <option value="swallow">&#x1F426; 春燕</option>
           <option value="greenbird">&#x1F426; 綠繡眼</option>
+          </optgroup>
+          <optgroup label="B 中性偏吉">
+          <option value="littleegret">&#x1F9A2; 小白鷺</option>
+          <option value="cattle_egret">&#x1F9A2; 黃頭鷺</option>
           <option value="egret">&#x1F9A2; 白鷺鷥</option>
+          <option value="nightheron">&#x1F426; 夜鷺</option>
+          </optgroup>
+          <optgroup label="C 普通">
           <option value="sparrow">&#x1F426; 麻雀</option>
+          <option value="myna">&#x1F426; 八哥</option>
           <option value="pigeon">&#x1F54A; 鴿子</option>
+          <option value="ibis">&#x1F9A2; 埃及聖鹮</option>
+          </optgroup>
+          <optgroup label="D 注意">
           <option value="crow">&#x1F426; 烏鴉</option>
+          </optgroup>
         </select>
         <button class="btn-report" onclick="addSighting()">通報！</button>
       </div>
@@ -240,9 +261,19 @@ greenbird:{name:'綠繡眼',emoji:'\u{1F426}',fortune:45,rank:'A',rankClass:'ran
 egret:{name:'白鷺鷥',emoji:'\u{1F9A2}',fortune:35,rank:'B',rankClass:'rank-b',desc:'中性偏吉，建議檢查垃圾信箱。',mama:'楊媽媽判讀：......去看一下email'},
 sparrow:{name:'麻雀',emoji:'\u{1F426}',fortune:20,rank:'C',rankClass:'rank-c',desc:'日常鳥類，普通的一天。至少沒有烏鴉。',mama:'楊媽媽判讀：嗯，普通的一天'},
 pigeon:{name:'鴿子',emoji:'\u{1F54A}',fortune:10,rank:'C',rankClass:'rank-c',desc:'都市常見，玄學價值有限。風水不算差。',mama:'楊媽媽判讀：嗯......明天再看看'},
+magpie:{name:'喜鵲',emoji:'\u{1F426}',fortune:88,rank:'SSS',rankClass:'rank-sss',desc:'報喜神鳥！自古「靈鵲報喜」，喜鵲登梅代表喜上眉梢，好事即將臨門。',mama:'楊媽媽判讀：大喜事要來了！！！'},
+blackkite:{name:'黑翅鳶',emoji:'\u{1F985}',fortune:85,rank:'SS',rankClass:'rank-ss',desc:'猛禽現身，氣場極強！象徵高瞻遠矚、事業即將起飛。',mama:'楊媽媽判讀：大格局的好運來了！'},
+osprey:{name:'魚鷹',emoji:'\u{1F985}',fortune:82,rank:'SS',rankClass:'rank-ss',desc:'水上猛禽，精準出擊。象徵目標明確、財運亨通。',mama:'楊媽媽判讀：好運像魚一樣被你抓住！'},
+goshawk:{name:'鳳頭蒼鷹',emoji:'\u{1F985}',fortune:90,rank:'SSS',rankClass:'rank-sss',desc:'二級保育猛禽！都市王者，駐守橋下。極稀有吉兆，象徵權威與地位提升。',mama:'楊媽媽判讀：這是天大的吉兆啊！'},
+fivecolor:{name:'五色鳥',emoji:'\u{1F99C}',fortune:70,rank:'S',rankClass:'rank-s',desc:'森林和尚，五彩繽紛。象徵多才多藝、創意爆發，設計師看到加倍吉利。',mama:'楊媽媽判讀：你的才華要被看見了！'},
+nightheron:{name:'夜鷺',emoji:'\u{1F426}',fortune:30,rank:'B',rankClass:'rank-b',desc:'暗光鳥，夜行性。象徵暗中有貴人相助，低調行事反而有好結果。',mama:'楊媽媽判讀：貴人在暗處幫你'},
+cattle_egret:{name:'黃頭鷺',emoji:'\u{1F9A2}',fortune:35,rank:'B',rankClass:'rank-b',desc:'常伴牛隻出現，象徵勤勞有收穫、腳踏實地終有回報。',mama:'楊媽媽判讀：努力會有成果的'},
+littleegret:{name:'小白鷺',emoji:'\u{1F9A2}',fortune:38,rank:'B',rankClass:'rank-b',desc:'水邊優雅白鳥，象徵純淨與平靜。心情煩躁時看到，宜靜下心來等好消息。',mama:'楊媽媽判讀：靜待佳音'},
+myna:{name:'八哥',emoji:'\u{1F426}',fortune:15,rank:'C',rankClass:'rank-c',desc:'外來種都市鳥，能模仿人聲。中性偏平，但至少會說話，比HR還有互動。',mama:'楊媽媽判讀：有訊息但不確定好壞'},
+ibis:{name:'埃及聖鹮',emoji:'\u{1F9A2}',fortune:5,rank:'C',rankClass:'rank-c',desc:'外來入侵種，生態影響大。玄學上中性偏微妙，宜觀察後續發展。',mama:'楊媽媽判讀：嗯......先觀望'},
 crow:{name:'烏鴉',emoji:'\u{1F426}',fortune:-10,rank:'D',rankClass:'rank-d',desc:'傳統不祥，但也有一說很孝順。今天低調。',mama:'楊媽媽判讀：今天不要亂跑！'}
 };
-const birdOrder=['eagle','heron','bulbul','dove','swallow','greenbird','egret','sparrow','pigeon','crow'];
+const birdOrder=['goshawk','magpie','eagle','blackkite','osprey','heron','fivecolor','bulbul','dove','swallow','greenbird','littleegret','cattle_egret','egret','nightheron','sparrow','myna','pigeon','ibis','crow'];
 const quotes=[
 '「你看，鳥類來了。」—— 楊媽媽',
 '「我就說了吧，鳥都跟你講了你還不信！」—— 楊媽媽',
