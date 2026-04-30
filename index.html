@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="鳥類通報">
+<meta name="theme-color" content="#1D9E75">
+<title>鳥類通報系統 — 楊媽媽通靈研究所</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green-50: #E1F5EE; --green-100: #9FE1CB; --green-400: #1D9E75;
+  --green-600: #0F6E56; --green-800: #085041; --green-900: #04342C;
+  --amber-50: #FAEEDA; --amber-800: #633806;
+  --pink-50: #FBEAF0; --pink-800: #72243E;
+  --blue-50: #E6F1FB; --blue-800: #0C447C;
+  --gray-50: #F5F5F0; --gray-100: #EBEBDF; --gray-200: #D3D1C7;
+  --gray-400: #888780; --gray-600: #5F5E5A; --gray-800: #2C2C2A;
+  --red-50: #FCEBEB; --red-600: #A32D2D; --red-800: #791F1F;
+  --bg: #FAFAF7; --card-bg: #FFFFFF; --text: #2C2C2A; --text-secondary: #888780;
+  --text-tertiary: #B4B2A9; --border: rgba(0,0,0,0.08); --radius: 12px; --radius-sm: 8px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1A1A18; --card-bg: #262624; --text: #E8E6DF; --text-secondary: #9E9D97;
+    --text-tertiary: #6B6A65; --border: rgba(255,255,255,0.1);
+    --green-50: #0A2E22; --green-800: #9FE1CB; --green-900: #E1F5EE;
+    --amber-50: #2E2010; --amber-800: #FAC775;
+    --pink-50: #2E1520; --pink-800: #F4C0D1;
+    --blue-50: #0C1E2E; --blue-800: #85B7EB;
+    --gray-50: #2C2C2A; --gray-100: #3A3A37; --gray-200: #4A4A46;
+    --red-50: #2E1313; --red-800: #F09595;
+  }
+}
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body { font-family: 'Noto Sans TC', -apple-system, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; min-height: 100dvh; }
+.container { max-width: 480px; margin: 0 auto; padding: 0 16px; padding-bottom: 80px; }
+
+/* Header */
+.header { text-align: center; padding: 24px 0 16px; }
+.header-icon { font-size: 32px; margin-bottom: 4px; }
+.header h1 { font-size: 20px; font-weight: 700; letter-spacing: 3px; color: var(--text); }
+.header p { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+.header .ver { font-size: 10px; color: var(--text-tertiary); margin-top: 2px; }
+
+/* Status */
+.status-bar { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; background: var(--green-50); border-radius: var(--radius-sm); font-size: 12px; color: var(--green-800); margin-bottom: 16px; }
+.status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-400); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+/* Tabs */
+.tab-bar { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 16px; position: sticky; top: 0; background: var(--bg); z-index: 10; }
+.tab { flex: 1; padding: 10px 0; font-size: 13px; font-weight: 500; color: var(--text-secondary); text-align: center; border: none; background: none; border-bottom: 2px solid transparent; font-family: inherit; cursor: pointer; transition: all 0.2s; }
+.tab.active { color: var(--green-400); border-bottom-color: var(--green-400); }
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* Section labels */
+.section-label { font-size: 12px; font-weight: 500; color: var(--text-secondary); margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+
+/* Add form */
+.add-form { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+.add-row { display: flex; gap: 8px; }
+.add-form select, .add-form input { height: 44px; font-size: 14px; font-family: inherit; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0 12px; background: var(--card-bg); color: var(--text); flex: 1; appearance: none; -webkit-appearance: none; }
+.add-form select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M2 4l4 4 4-4'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+.btn-report { height: 44px; font-size: 14px; font-weight: 500; font-family: inherit; border: none; border-radius: var(--radius-sm); background: var(--green-400); color: #fff; cursor: pointer; padding: 0 20px; white-space: nowrap; transition: transform 0.1s, opacity 0.2s; }
+.btn-report:active { transform: scale(0.96); opacity: 0.9; }
+
+/* Result panel */
+.result-panel { padding: 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); text-align: center; margin-bottom: 20px; display: none; animation: slideIn 0.3s ease; }
+.result-panel.show { display: block; }
+@keyframes slideIn { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+.result-icon { font-size: 28px; margin-bottom: 6px; }
+.result-title { font-size: 16px; font-weight: 700; }
+.result-desc { font-size: 13px; color: var(--text-secondary); margin-top: 6px; line-height: 1.6; }
+.result-mama { font-size: 14px; color: var(--green-400); font-weight: 500; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+
+/* Log entries */
+.log-entry { display: flex; align-items: flex-start; gap: 10px; padding: 12px; background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 8px; position: relative; }
+.log-time { font-size: 11px; color: var(--text-tertiary); min-width: 40px; padding-top: 2px; }
+.log-content { font-size: 13px; line-height: 1.6; flex: 1; }
+.log-bird { font-weight: 500; }
+.log-verdict { color: var(--green-400); font-weight: 500; }
+.log-note { color: var(--text-secondary); font-style: italic; }
+.log-delete { position: absolute; top: 10px; right: 10px; width: 28px; height: 28px; border-radius: 50%; border: none; background: none; font-size: 16px; color: var(--text-tertiary); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.log-delete:active { background: var(--red-50); color: var(--red-600); }
+.log-date-header { font-size: 12px; font-weight: 500; color: var(--text-secondary); padding: 10px 0 6px; border-bottom: 1px solid var(--border); margin-bottom: 8px; }
+.empty-log { text-align: center; padding: 32px 16px; color: var(--text-tertiary); font-size: 13px; line-height: 1.8; }
+
+/* Stats */
+.stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 16px 0; }
+.stat-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px; text-align: center; }
+.stat-label { font-size: 11px; color: var(--text-secondary); }
+.stat-value { font-size: 22px; font-weight: 700; margin-top: 2px; }
+
+/* Fortune bar */
+.fortune-bar { height: 6px; background: var(--gray-100); border-radius: 3px; margin: 4px 0 16px; overflow: hidden; }
+.fortune-fill { height: 100%; border-radius: 3px; transition: width 0.6s ease; }
+.fortune-low { background: var(--gray-200); }
+.fortune-mid { background: #5DCAA5; }
+.fortune-high { background: var(--green-400); }
+.fortune-max { background: #639922; }
+
+/* Mama quote */
+.mama-quote { padding: 12px 16px; border-left: 3px solid var(--green-400); background: var(--green-50); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 13px; color: var(--green-800); line-height: 1.6; margin-top: 16px; }
+
+/* Bird grid */
+.bird-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.bird-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 12px; text-align: center; cursor: pointer; transition: transform 0.1s; }
+.bird-card:active { transform: scale(0.97); }
+.bird-emoji { font-size: 28px; margin-bottom: 4px; }
+.bird-name { font-size: 14px; font-weight: 500; }
+.bird-desc { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+.bird-rank { display: inline-block; margin-top: 6px; font-size: 11px; font-weight: 500; padding: 2px 10px; border-radius: 20px; }
+.bird-count { font-size: 11px; color: var(--text-tertiary); margin-top: 4px; }
+.rank-sss { background: var(--amber-50); color: var(--amber-800); }
+.rank-ss { background: var(--pink-50); color: var(--pink-800); }
+.rank-s { background: var(--blue-50); color: var(--blue-800); }
+.rank-a { background: var(--green-50); color: var(--green-800); }
+.rank-b { background: var(--gray-50); color: var(--gray-600); }
+.rank-c { background: var(--gray-50); color: var(--gray-400); }
+.rank-d { background: var(--red-50); color: var(--red-800); }
+.new-badge { display: inline-block; font-size: 9px; padding: 1px 5px; background: var(--red-50); color: var(--red-800); border-radius: 4px; margin-left: 2px; vertical-align: middle; }
+
+/* Clear button */
+.clear-btn { font-size: 11px; color: var(--text-tertiary); background: none; border: none; font-family: inherit; cursor: pointer; padding: 4px 8px; border-radius: 4px; }
+.clear-btn:active { background: var(--red-50); color: var(--red-600); }
+
+/* Toast */
+.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--gray-800); color: #fff; padding: 10px 20px; border-radius: 24px; font-size: 13px; font-weight: 500; z-index: 100; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+.toast.show { opacity: 1; }
+
+@media (min-width: 481px) {
+  .container { padding: 0 24px; padding-bottom: 40px; }
+  .bird-grid { grid-template-columns: repeat(3, 1fr); }
+  .stats { grid-template-columns: repeat(4, 1fr); }
+  .add-form { flex-direction: row; flex-wrap: wrap; }
+  .add-form select { flex: 2; }
+  .add-form input { flex: 1; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="header-icon">&#x1F426;</div>
+    <h1>鳥類通報系統</h1>
+    <p>楊媽媽通靈研究所 x 宇宙情報局</p>
+    <div class="ver">v3.0 — 手機獨立版</div>
+  </div>
+
+  <div class="status-bar">
+    <div class="status-dot"></div>
+    <span id="status-text">系統啟動中...</span>
+  </div>
+
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab('main',this)">即時通報</button>
+    <button class="tab" onclick="switchTab('history',this)">歷史紀錄</button>
+    <button class="tab" onclick="switchTab('ranking',this)">鳥種圖鑑</button>
+  </div>
+
+  <div class="tab-content active" id="tab-main">
+    <div class="section-label">通報新目擊</div>
+    <div class="add-form">
+      <div class="add-row" style="display:flex;gap:8px;width:100%;">
+        <select id="bird-select">
+          <option value="">— 選擇鳥種 —</option>
+          <option value="eagle">&#x1F985; 老鷹</option>
+          <option value="heron">&#x1F9A9; 黑冠麻鷺</option>
+          <option value="bulbul">&#x1F426; 白頭翁</option>
+          <option value="dove">&#x1F54A; 斑鳩</option>
+          <option value="swallow">&#x1F426; 春燕</option>
+          <option value="greenbird">&#x1F426; 綠繡眼</option>
+          <option value="egret">&#x1F9A2; 白鷺鷥</option>
+          <option value="sparrow">&#x1F426; 麻雀</option>
+          <option value="pigeon">&#x1F54A; 鴿子</option>
+          <option value="crow">&#x1F426; 烏鴉</option>
+        </select>
+        <button class="btn-report" onclick="addSighting()">通報！</button>
+      </div>
+      <input type="text" id="note-input" placeholder="備註（選填）" />
+    </div>
+
+    <div class="result-panel" id="result-panel">
+      <div class="result-icon" id="result-icon"></div>
+      <div class="result-title" id="result-title"></div>
+      <div class="result-desc" id="result-desc"></div>
+      <div class="result-mama" id="result-mama"></div>
+    </div>
+
+    <div class="section-label">
+      <span>今日情報</span>
+      <button class="clear-btn" onclick="clearToday()">清除今日</button>
+    </div>
+    <div id="today-log"></div>
+
+    <div class="stats">
+      <div class="stat-card"><div class="stat-label">今日目擊</div><div class="stat-value" id="stat-today">0</div></div>
+      <div class="stat-card"><div class="stat-label">累計目擊</div><div class="stat-value" id="stat-total">0</div></div>
+      <div class="stat-card"><div class="stat-label">今日運勢</div><div class="stat-value" id="stat-fortune">0</div></div>
+      <div class="stat-card"><div class="stat-label">準確率</div><div class="stat-value" id="stat-accuracy">?%</div></div>
+    </div>
+    <div class="fortune-bar"><div class="fortune-fill" id="fortune-bar" style="width:0%"></div></div>
+
+    <div class="mama-quote" id="mama-daily"></div>
+  </div>
+
+  <div class="tab-content" id="tab-history">
+    <div class="section-label">
+      <span>歷史情報紀錄</span>
+      <button class="clear-btn" onclick="clearAll()">清除全部</button>
+    </div>
+    <div id="history-log"></div>
+  </div>
+
+  <div class="tab-content" id="tab-ranking">
+    <div class="section-label">鳥種情報等級圖鑑</div>
+    <div class="bird-grid" id="ranking-grid"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const STORAGE_KEY='bird-report-v3';
+const birdData={
+eagle:{name:'老鷹',emoji:'\u{1F985}',fortune:95,rank:'SSS',rankClass:'rank-sss',desc:'極為罕見的頂級吉兆，代表重大突破即將降臨。建議立刻準備面試服裝。',mama:'楊媽媽判讀：天大的好運！準備上班了！'},
+heron:{name:'黑冠麻鷺',emoji:'\u{1F9A9}',fortune:80,rank:'SS',rankClass:'rank-ss',desc:'稀有大型鳥類現身，運勢加倍buff。出現即為強烈正面訊號。',mama:'楊媽媽判讀：好運要來了！（大聲版）'},
+bulbul:{name:'白頭翁',emoji:'\u{1F426}',fortune:65,rank:'S',rankClass:'rank-s',desc:'吉祥鳥，象徵白頭偕老、家業興旺。古籍認證好兆頭。',mama:'楊媽媽判讀：喜事將近！'},
+dove:{name:'斑鳩',emoji:'\u{1F54A}',fortune:55,rank:'A+',rankClass:'rank-a',desc:'皇帝欽封福星鳥！象徵情誼深厚、天賦吉運、富貴久長。',mama:'楊媽媽判讀：富貴久長！福星到了！'},
+swallow:{name:'春燕',emoji:'\u{1F426}',fortune:50,rank:'A',rankClass:'rank-a',desc:'經典好運象徵。燕子不進愁家門，選你家就是認證。',mama:'楊媽媽判讀：好消息在路上了！'},
+greenbird:{name:'綠繡眼',emoji:'\u{1F426}',fortune:45,rank:'A',rankClass:'rank-a',desc:'都市三劍客之一，象徵生機與繁榮。',mama:'楊媽媽判讀：小確幸要來了！'},
+egret:{name:'白鷺鷥',emoji:'\u{1F9A2}',fortune:35,rank:'B',rankClass:'rank-b',desc:'中性偏吉，建議檢查垃圾信箱。',mama:'楊媽媽判讀：......去看一下email'},
+sparrow:{name:'麻雀',emoji:'\u{1F426}',fortune:20,rank:'C',rankClass:'rank-c',desc:'日常鳥類，普通的一天。至少沒有烏鴉。',mama:'楊媽媽判讀：嗯，普通的一天'},
+pigeon:{name:'鴿子',emoji:'\u{1F54A}',fortune:10,rank:'C',rankClass:'rank-c',desc:'都市常見，玄學價值有限。風水不算差。',mama:'楊媽媽判讀：嗯......明天再看看'},
+crow:{name:'烏鴉',emoji:'\u{1F426}',fortune:-10,rank:'D',rankClass:'rank-d',desc:'傳統不祥，但也有一說很孝順。今天低調。',mama:'楊媽媽判讀：今天不要亂跑！'}
+};
+const birdOrder=['eagle','heron','bulbul','dove','swallow','greenbird','egret','sparrow','pigeon','crow'];
+const quotes=[
+'「你看，鳥類來了。」—— 楊媽媽',
+'「我就說了吧，鳥都跟你講了你還不信！」—— 楊媽媽',
+'「好運要來了！」—— 楊媽媽（每日固定台詞）',
+'「科學的盡頭是玄學。」—— 楊媽媽 x 宇宙',
+'「紅單來了就是好運的象徵。」—— 楊媽媽（瓦斯抄表版）',
+'「鳥飛來就是好事，不用問為什麼。」—— 楊媽媽',
+'「勞動節過了就會通知了。」—— 楊媽媽預言系統',
+'「斑鳩是皇帝封的福星鳥，你還不信？」—— 楊媽媽',
+'「鳥類通報系統，比104還準。」—— 楊媽媽（自評）',
+'「白頭翁都來了，offer還會遠嗎？」—— 楊媽媽'
+];
+
+let allSightings=[];
+function loadData(){try{const d=localStorage.getItem(STORAGE_KEY);if(d)allSightings=JSON.parse(d);}catch(e){allSightings=[];}}
+function saveData(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(allSightings));}catch(e){}}
+function getToday(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function formatDate(ds){const p=ds.split('-');return p[0]+'/'+p[1]+'/'+p[2];}
+function getTodaySightings(){return allSightings.filter(s=>s.date===getToday());}
+function calcFortune(arr){let t=0;arr.forEach(s=>{t+=(birdData[s.bird]?birdData[s.bird].fortune:0);});return Math.min(99,Math.max(-20,t));}
+
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000);}
+
+function addSighting(){
+const sel=document.getElementById('bird-select'),ni=document.getElementById('note-input'),key=sel.value;
+if(!key){showToast('請先選擇鳥種！');return;}
+const now=new Date(),time=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
+const entry={id:Date.now().toString(),bird:key,date:getToday(),time:time,note:ni.value.trim()};
+allSightings.push(entry);saveData();
+const bird=birdData[key];
+document.getElementById('result-icon').textContent=bird.emoji;
+document.getElementById('result-title').textContent=bird.name+'（'+bird.rank+'級）';
+document.getElementById('result-desc').textContent=bird.desc;
+document.getElementById('result-mama').textContent=bird.mama;
+document.getElementById('result-panel').classList.add('show');
+sel.value='';ni.value='';
+showToast(bird.emoji+' '+bird.name+' 已通報！');
+renderAll();
+}
+function deleteSighting(id){
+if(!confirm('確定要刪除這筆紀錄嗎？'))return;
+allSightings=allSightings.filter(s=>s.id!==id);saveData();renderAll();showToast('已刪除');
+}
+function clearToday(){
+if(!confirm('確定要清除今日所有紀錄嗎？'))return;
+allSightings=allSightings.filter(s=>s.date!==getToday());saveData();renderAll();
+document.getElementById('result-panel').classList.remove('show');
+showToast('今日紀錄已清除');
+}
+function clearAll(){
+if(!confirm('確定要清除所有歷史紀錄嗎？此操作無法復原。'))return;
+allSightings=[];saveData();renderAll();showToast('所有紀錄已清除');
+}
+function renderAll(){renderTodayLog();renderHistory();renderRanking();renderStats();}
+
+function renderTodayLog(){
+const c=document.getElementById('today-log'),today=getTodaySightings();
+if(!today.length){c.innerHTML='<div class="empty-log">今日尚無目擊紀錄<br>快去陽台看看有沒有鳥！&#x1F426;</div>';return;}
+let h='';today.slice().reverse().forEach(s=>{const b=birdData[s.bird];if(!b)return;
+h+='<div class="log-entry"><div class="log-time">'+s.time+'</div><div class="log-content"><span class="log-bird">'+b.emoji+' '+b.name+'</span>';
+if(s.note)h+='<br><span class="log-note">'+s.note+'</span>';
+h+='<br><span class="log-verdict">'+b.mama+'</span></div>';
+h+='<button class="log-delete" onclick="deleteSighting(\''+s.id+'\')">&#x2715;</button></div>';});
+c.innerHTML=h;
+}
+function renderHistory(){
+const c=document.getElementById('history-log');
+if(!allSightings.length){c.innerHTML='<div class="empty-log">尚無歷史紀錄<br>開始通報後就會在這裡累積 &#x1F4CA;</div>';return;}
+const byDate={};allSightings.forEach(s=>{if(!byDate[s.date])byDate[s.date]=[];byDate[s.date].push(s);});
+const dates=Object.keys(byDate).sort().reverse();let h='';
+dates.forEach(date=>{const entries=byDate[date],fortune=calcFortune(entries);
+h+='<div class="log-date-header">'+formatDate(date)+' — '+entries.length+'筆，運勢 '+fortune+'</div>';
+entries.slice().reverse().forEach(s=>{const b=birdData[s.bird];if(!b)return;
+h+='<div class="log-entry"><div class="log-time">'+s.time+'</div><div class="log-content"><span class="log-bird">'+b.emoji+' '+b.name+'</span>';
+if(s.note)h+='<br><span class="log-note">'+s.note+'</span>';
+h+='<br><span class="log-verdict">'+b.mama+'</span></div>';
+h+='<button class="log-delete" onclick="deleteSighting(\''+s.id+'\')">&#x2715;</button></div>';});});
+c.innerHTML=h;
+}
+function renderRanking(){
+const c=document.getElementById('ranking-grid'),counts={};
+allSightings.forEach(s=>{counts[s.bird]=(counts[s.bird]||0)+1;});
+let h='';birdOrder.forEach(key=>{const b=birdData[key],count=counts[key]||0;
+h+='<div class="bird-card" onclick="showBirdDetail(\''+key+'\')"><div class="bird-emoji">'+b.emoji+'</div><div class="bird-name">'+b.name+'</div><div class="bird-desc">'+b.desc.substring(0,10)+'...</div><div class="bird-rank '+b.rankClass+'">'+b.rank+'</div>';
+if(count>0)h+='<div class="bird-count">目擊 '+count+' 次</div>';
+h+='</div>';});c.innerHTML=h;
+}
+function showBirdDetail(key){
+const b=birdData[key];
+document.getElementById('result-icon').textContent=b.emoji;
+document.getElementById('result-title').textContent=b.name+'（'+b.rank+'級）';
+document.getElementById('result-desc').textContent=b.desc;
+document.getElementById('result-mama').textContent=b.mama;
+document.getElementById('result-panel').classList.add('show');
+switchTab('main',document.querySelector('.tab'));
+window.scrollTo({top:0,behavior:'smooth'});
+}
+function renderStats(){
+const today=getTodaySightings(),fortune=calcFortune(today);
+document.getElementById('stat-today').textContent=today.length;
+document.getElementById('stat-total').textContent=allSightings.length;
+document.getElementById('stat-fortune').textContent=fortune;
+const bar=document.getElementById('fortune-bar'),pct=Math.max(0,Math.min(100,fortune));
+bar.style.width=pct+'%';bar.className='fortune-fill';
+if(fortune>=80)bar.classList.add('fortune-max');
+else if(fortune>=50)bar.classList.add('fortune-high');
+else if(fortune>=20)bar.classList.add('fortune-mid');
+else bar.classList.add('fortune-low');
+}
+function switchTab(name,el){
+document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+document.getElementById('tab-'+name).classList.add('active');
+if(el)el.classList.add('active');
+}
+
+loadData();
+renderAll();
+document.getElementById('status-text').textContent='系統運作中 — '+allSightings.length+' 筆歷史紀錄';
+document.getElementById('mama-daily').textContent=quotes[Math.floor(Math.random()*quotes.length)];
+</script>
+</body>
+</html>
