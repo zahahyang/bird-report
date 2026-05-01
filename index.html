@@ -106,62 +106,11 @@ body{font-family:'Noto Sans TC','Zen Maru Gothic',-apple-system,sans-serif;backg
 .accuracy-highlight{color:var(--sage-dark)!important}
 .clear-btn{font-size:11px;color:var(--ink-faint);background:none;border:none;font-family:inherit;cursor:pointer;padding:4px 10px;border-radius:20px}
 .clear-btn:active{background:var(--red-50);color:var(--red-600)}
-.monthly-chart{margin-top:12px}
-.month-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
-.month-bar-label{font-size:12px;width:72px;text-align:right;color:var(--text-secondary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.month-bar-track{flex:1;height:20px;background:var(--warm-100);border-radius:10px;overflow:hidden}
-.month-bar-fill{height:100%;border-radius:10px;background:var(--sage);transition:width .5s;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;min-width:20px}
-.month-bar-count{font-size:10px;font-weight:700;color:#fff}
-/* Dashboard */
-.dash-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px}
-.dash-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-sm)}
-.dash-card.wide{grid-column:1/-1}
-.dash-number{font-size:32px;font-weight:700;color:var(--sage-dark)}
-.dash-sub{font-size:11px;color:var(--ink-lighter);margin-top:2px;text-transform:uppercase;letter-spacing:1px}
-.dash-icon{font-size:20px;margin-bottom:6px}
-.streak-fire{color:#E8A040}
-.top-bird-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
-.top-bird-row:last-child{border:none}
-.top-bird-rank-num{font-size:16px;font-weight:700;color:var(--ink-faint);width:24px;text-align:center}
-.top-bird-svg{width:48px;height:40px}
-.top-bird-svg svg{width:100%;height:100%}
-.top-bird-info{flex:1}
-.top-bird-name{font-size:14px;font-weight:700}
-.top-bird-count{font-size:12px;color:var(--text-secondary)}
-/* Lore database */
-.lore-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;overflow:hidden;box-shadow:var(--shadow-sm)}
-.lore-header{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;transition:background .15s}
-.lore-header:active{background:var(--warm-50)}
-.lore-bird-svg{width:48px;height:40px;flex-shrink:0}
-.lore-bird-svg svg{width:100%;height:100%}
-.lore-bird-emoji{font-size:28px;flex-shrink:0;width:48px;text-align:center}
-.lore-bird-info{flex:1}
-.lore-bird-name{font-size:14px;font-weight:700}
-.lore-bird-rank-tag{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:6px;vertical-align:middle}
-.lore-bird-desc{font-size:12px;color:var(--text-secondary);margin-top:2px}
-.lore-chevron{font-size:14px;color:var(--ink-faint);transition:transform .2s}
-.lore-chevron.open{transform:rotate(180deg)}
-.lore-body{display:none;padding:0 16px 16px;animation:slideIn .3s ease}
-.lore-body.open{display:block}
-.lore-section{margin-top:12px}
-.lore-section-title{font-size:11px;font-weight:700;color:var(--ink-lighter);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
-.lore-text{font-size:13px;line-height:1.8;color:var(--text-secondary)}
-.lore-mama{font-size:14px;color:var(--sage-dark);font-weight:700;margin-top:10px;padding:10px 14px;background:var(--sage-light);border-radius:var(--radius-sm)}
-/* Login modal */
-.login-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:100;align-items:center;justify-content:center;padding:16px}
-.login-modal.show{display:flex}
-.login-box{background:var(--card-bg);border-radius:var(--radius);padding:32px 24px;text-align:center;max-width:360px;width:100%;box-shadow:var(--shadow-md)}
-.login-box h2{font-size:18px;font-weight:700;margin-bottom:8px}
-.login-box p{font-size:13px;color:var(--text-secondary);margin-bottom:24px;line-height:1.6}
-.google-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:48px;border:1.5px solid var(--warm-200);border-radius:var(--radius-sm);background:var(--card-bg);font-size:14px;font-weight:500;font-family:inherit;color:var(--text);cursor:pointer;transition:all .15s}
-.google-btn:active{transform:scale(.98);border-color:var(--sage)}
-.google-btn img{width:20px;height:20px}
-.login-close{margin-top:16px;font-size:13px;color:var(--ink-lighter);background:none;border:none;cursor:pointer;font-family:inherit}
 .sync-status{font-size:11px;color:var(--ink-lighter);text-align:center;margin-top:8px}
 .sync-status.ok{color:var(--sage-dark)}.sync-status.err{color:var(--red-600)}
 .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--cloud-light);padding:12px 24px;border-radius:28px;font-size:13px;font-weight:500;z-index:200;opacity:0;transition:opacity .3s;pointer-events:none;box-shadow:var(--shadow-md)}
 .toast.show{opacity:1}
-@media(min-width:481px){.container{padding:0 24px 40px}.bird-grid{grid-template-columns:repeat(3,1fr)}.stats,.dash-grid{grid-template-columns:repeat(4,1fr)}.add-form{flex-direction:row;flex-wrap:wrap}.add-form select{flex:2}.add-form input{flex:1}}
+@media(min-width:481px){.container{padding:0 24px 40px}.stats{grid-template-columns:repeat(4,1fr)}.add-form{flex-direction:row;flex-wrap:wrap}.add-form select{flex:2}.add-form input{flex:1}}
 </style>
 </head>
 <body>
@@ -170,10 +119,10 @@ body{font-family:'Noto Sans TC','Zen Maru Gothic',-apple-system,sans-serif;backg
 <div class="header-icon">&#x1F426;</div>
 <h1>鳥類通報系統</h1>
 <p>楊媽媽通靈研究所 x 宇宙情報局</p>
-<div class="ver">v5.0 — Dashboard + 玄學資料庫版</div>
-<button class="login-btn" id="login-btn" onclick="handleAuth()">
-<span id="login-text">&#x1F512; 登入</span>
-</button>
+<div class="ver">v5.1 — 前後台分離版</div>
+<a href="admin.html" class="login-btn" style="text-decoration:none">
+&#x1F512; 後台登入
+</a>
 </div>
 <div class="status-bar">
 <div class="status-dot"></div>
@@ -182,9 +131,6 @@ body{font-family:'Noto Sans TC','Zen Maru Gothic',-apple-system,sans-serif;backg
 <div class="tab-bar" id="tab-bar">
 <button class="tab active" onclick="switchTab('main',this)">即時通報</button>
 <button class="tab" onclick="switchTab('history',this)">歷史紀錄</button>
-<button class="tab locked" id="tab-dash-btn" onclick="switchTab('dashboard',this)">Dashboard</button>
-<button class="tab locked" id="tab-guide-btn" onclick="switchTab('guide',this)">圖鑑</button>
-<button class="tab locked" id="tab-lore-btn" onclick="switchTab('lore',this)">玄學庫</button>
 </div>
 
 <!-- TAB: 即時通報 -->
@@ -241,56 +187,6 @@ body{font-family:'Noto Sans TC','Zen Maru Gothic',-apple-system,sans-serif;backg
 <div id="history-log"></div>
 </div>
 
-<!-- TAB: Dashboard (需登入) -->
-<div class="tab-content" id="tab-dashboard">
-<div class="section-label">數據總覽</div>
-<div class="dash-grid">
-<div class="dash-card"><div class="dash-icon">&#x1F426;</div><div class="dash-number" id="dash-total">0</div><div class="dash-sub">總目擊數</div></div>
-<div class="dash-card"><div class="dash-icon">&#x1F4C5;</div><div class="dash-number" id="dash-month">0</div><div class="dash-sub">本月目擊</div></div>
-<div class="dash-card"><div class="dash-icon">&#x1F3AF;</div><div class="dash-number" id="dash-accuracy">?%</div><div class="dash-sub">準確率</div></div>
-<div class="dash-card"><div class="dash-icon streak-fire">&#x1F525;</div><div class="dash-number" id="dash-streak">0</div><div class="dash-sub">連續天數</div></div>
-</div>
-<div class="dash-card wide" style="margin-bottom:20px">
-<div class="section-label" style="margin-bottom:8px">Top 5 最常出現鳥種</div>
-<div id="dash-top5"></div>
-</div>
-<div class="dash-card wide" style="margin-bottom:20px">
-<div class="section-label" style="margin-bottom:8px">本月鳥種統計</div>
-<div id="dash-monthly-birds"></div>
-</div>
-<div class="dash-card wide" style="margin-bottom:20px">
-<div class="section-label" style="margin-bottom:8px">地點熱點分析</div>
-<div id="dash-locations"></div>
-</div>
-<div class="dash-card wide">
-<div class="section-label" style="margin-bottom:8px">本月運勢走勢</div>
-<div id="dash-fortune-trend"></div>
-</div>
-</div>
-
-<!-- TAB: 圖鑑 (需登入) -->
-<div class="tab-content" id="tab-guide">
-<div class="section-label">鳥種情報等級圖鑑</div>
-<div class="bird-grid" id="ranking-grid"></div>
-</div>
-
-<!-- TAB: 玄學資料庫 (需登入) -->
-<div class="tab-content" id="tab-lore">
-<div class="section-label">鳥類玄學資料庫</div>
-<div id="lore-list"></div>
-</div>
-</div>
-
-<!-- Login Modal -->
-<div class="login-modal" id="login-modal">
-<div class="login-box">
-<h2>&#x1F426; 後台登入</h2>
-<p>登入後可查看 Dashboard、鳥種圖鑑與玄學資料庫</p>
-<button class="google-btn" onclick="googleSignIn()">
-<img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="G"> 使用 Google 帳號登入
-</button>
-<button class="login-close" onclick="closeLoginModal()">取消</button>
-</div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -298,13 +194,10 @@ body{font-family:'Noto Sans TC','Zen Maru Gothic',-apple-system,sans-serif;backg
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import{getFirestore,collection,addDoc,getDocs,deleteDoc,doc,setDoc}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-import{getAuth,signInWithPopup,GoogleAuthProvider,onAuthStateChanged,signOut}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const firebaseConfig={apiKey:"AIzaSyCUcyUSL1iQCBVxYlHzqzvczxLP_vEUwIc",authDomain:"bird-report.firebaseapp.com",projectId:"bird-report",storageBucket:"bird-report.firebasestorage.app",messagingSenderId:"300929721499",appId:"1:300929721499:web:6e35f79f5b48c72691523e"};
 const app=initializeApp(firebaseConfig);
 const db=getFirestore(app);
-const auth=getAuth(app);
-const ADMIN_EMAIL='sarah20120829@gmail.com';
 
 const birdData={
 eagle:{name:'老鷹',emoji:'\u{1F985}',fortune:95,rank:'SSS',rankClass:'rank-sss',desc:'極為罕見的頂級吉兆，代表重大突破即將降臨。建議立刻準備面試服裝。',lore:'《說文解字》記載鷹為「猛鳥」，象徵英勇與遠見。古代帝王以鷹狩獵，視為權力象徵。民間相信鷹飛過屋頂，主人必有升遷之喜。',mama:'楊媽媽判讀：天大的好運！準備上班了！'},
@@ -333,7 +226,7 @@ const quotes=['「你看，鳥類來了。」—— 楊媽媽','「我就說了�
 
 const birdSVG={bulbul:'<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="55" cy="62" rx="28" ry="22" fill="#8B9E5A"/><ellipse cx="55" cy="65" rx="22" ry="16" fill="#F5F0E0"/><circle cx="72" cy="44" r="16" fill="#4A4A42"/><circle cx="72" cy="38" r="8" fill="#F5F5F0"/><circle cx="76" cy="41" r="3" fill="#2C2C2A"/><circle cx="77" cy="40" r="1" fill="#FFF"/><polygon points="88,44 98,42 88,47" fill="#E8A040"/><path d="M30,58 Q15,50 12,62 Q10,70 22,65" fill="#7A8E50"/><path d="M38,78 Q30,88 25,92" stroke="#C08B6E" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M48,80 Q42,90 38,93" stroke="#C08B6E" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>',heron:'<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="60" cy="55" rx="22" ry="28" fill="#5C4A3A"/><ellipse cx="60" cy="60" rx="16" ry="20" fill="#6B5A4A"/><circle cx="60" cy="28" r="14" fill="#3A3230"/><circle cx="65" cy="25" r="3.5" fill="#D4A040"/><circle cx="66" cy="24.5" r="1.2" fill="#2C2C2A"/><polygon points="74,28 96,26 74,32" fill="#6B7A50"/><path d="M60,42 L60,30" stroke="#8B7A6A" stroke-width="3"/><path d="M50,78 Q46,92 44,98" stroke="#A0B060" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M68,78 Q72,92 74,98" stroke="#A0B060" stroke-width="3" fill="none" stroke-linecap="round"/><ellipse cx="45" cy="50" rx="12" ry="18" fill="#4A3A2E" transform="rotate(15,45,50)"/></svg>',dove:'<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="58" cy="58" rx="30" ry="22" fill="#C4AA90"/><ellipse cx="58" cy="62" rx="24" ry="16" fill="#D8C4AE"/><circle cx="78" cy="40" r="14" fill="#B8A088"/><circle cx="82" cy="37" r="3" fill="#E85040"/><circle cx="82" cy="37" r="1.5" fill="#2C2C2A"/><polygon points="92,40 102,38 92,43" fill="#888078"/><path d="M30,54 Q14,44 10,56 Q8,65 24,60" fill="#A89078"/><g transform="translate(68,32)"><path d="M0,0 Q4,-2 8,0 Q12,-2 16,0" stroke="#1A1A18" stroke-width="1.2" fill="none"/></g><path d="M45,76 Q40,88 38,94" stroke="#C08060" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M58,78 Q56,90 54,95" stroke="#C08060" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>',magpie:'<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="52" cy="55" rx="26" ry="22" fill="#1A1A18"/><ellipse cx="52" cy="60" rx="20" ry="15" fill="#F5F5F0"/><circle cx="70" cy="38" r="14" fill="#1A1A18"/><circle cx="75" cy="35" r="3" fill="#F5F5F0"/><circle cx="76" cy="34.5" r="1.2" fill="#1A1A18"/><polygon points="84,38 95,36 84,41" fill="#3A3632"/><path d="M28,52 Q8,42 2,60 Q0,70 18,62" fill="#0A2040"/><path d="M28,58 Q10,70 4,82 Q2,88 8,86" fill="#0A2848"/><ellipse cx="38" cy="50" rx="14" ry="10" fill="#0A2040" transform="rotate(-10,38,50)"/><path d="M42,74 Q38,86 36,94" stroke="#3A3632" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M55,76 Q54,88 52,94" stroke="#3A3632" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>',sparrow:'<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="58" cy="60" rx="24" ry="18" fill="#A08060"/><ellipse cx="58" cy="64" rx="18" ry="12" fill="#E8DCC8"/><circle cx="74" cy="44" r="12" fill="#8B6840"/><circle cx="78" cy="41" r="2.5" fill="#2C2C2A"/><circle cx="78.5" cy="40.5" r=".8" fill="#FFF"/><polygon points="86,44 94,43 86,46" fill="#E8A040"/><circle cx="74" cy="40" r="5" fill="#C8A878"/><path d="M36,56 Q22,48 18,58 Q16,66 30,60" fill="#7A5830"/><path d="M48,76 Q44,86 42,92" stroke="#C08B6E" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M60,77 Q58,87 56,92" stroke="#C08B6E" stroke-width="2" fill="none" stroke-linecap="round"/></svg>',pigeon:'<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="56" cy="58" rx="28" ry="24" fill="#8898A8"/><ellipse cx="56" cy="63" rx="22" ry="17" fill="#A8B8C4"/><circle cx="74" cy="38" r="14" fill="#7888A0"/><circle cx="78" cy="35" r="3" fill="#E8A040"/><circle cx="79" cy="34.5" r="1.2" fill="#2C2C2A"/><polygon points="88,38 98,37 88,41" fill="#B8A090"/><path d="M30,54 Q14,44 10,58 Q8,68 26,60" fill="#6878A0"/><ellipse cx="68" cy="36" rx="8" ry="6" fill="#58A870" opacity=".6"/><path d="M44,78 Q40,90 38,96" stroke="#C07060" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M58,80 Q56,92 54,96" stroke="#C07060" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>',egret:'<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="60" cy="50" rx="20" ry="26" fill="#F5F5F0"/><ellipse cx="60" cy="55" rx="15" ry="18" fill="#FAFAF6"/><circle cx="62" cy="24" r="12" fill="#F5F5F0"/><circle cx="66" cy="21" r="2.5" fill="#2C2C2A"/><polygon points="74,24 96,20 74,27" fill="#E8C840"/><path d="M60,36 Q60,28 62,24" stroke="#E0D8C8" stroke-width="2.5"/><path d="M52,74 Q48,86 46,98" stroke="#3A3A32" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M66,74 Q70,86 72,98" stroke="#3A3A32" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M42,44 Q28,36 24,48 Q22,58 38,50" fill="#F0EEE6"/></svg>',myna:'<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="56" cy="58" rx="26" ry="22" fill="#2C2820"/><ellipse cx="56" cy="62" rx="20" ry="16" fill="#3A3630"/><circle cx="72" cy="40" r="14" fill="#2C2820"/><circle cx="76" cy="37" r="3.5" fill="#E8D040"/><circle cx="77" cy="36.5" r="1.5" fill="#2C2C2A"/><polygon points="86,40 96,38 86,43" fill="#E8A030"/><path d="M72,28 Q76,22 80,26" fill="#E8D040"/><path d="M30,54 Q16,46 12,58 Q10,66 26,60" fill="#1A1812"/><ellipse cx="40" cy="52" rx="10" ry="6" fill="#F5F5F0" transform="rotate(-5,40,52)"/><path d="M44,76 Q40,88 38,94" stroke="#C0A060" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M58,78 Q56,90 54,94" stroke="#C0A060" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>',eagle:'<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="58" cy="52" rx="26" ry="24" fill="#5A3E28"/><ellipse cx="58" cy="56" rx="20" ry="18" fill="#6B4E38"/><circle cx="72" cy="32" r="14" fill="#4A3220"/><circle cx="77" cy="29" r="3" fill="#E8C040"/><circle cx="78" cy="28.5" r="1.2" fill="#1A1A18"/><polygon points="86,32 100,28 86,35" fill="#E8A020"/><path d="M32,44 Q6,30 2,52 Q0,68 24,56" fill="#3A2818"/><path d="M28,48 Q4,58 -2,74 Q-4,80 6,78" fill="#4A3828"/><path d="M46,72 Q42,86 40,96" stroke="#E8A020" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M64,74 Q66,88 68,96" stroke="#E8A020" stroke-width="3" fill="none" stroke-linecap="round"/></svg>',goshawk:'<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="58" cy="50" rx="24" ry="26" fill="#6B7888"/><ellipse cx="58" cy="55" rx="18" ry="18" fill="#E8E0D8"/><g><line x1="42" y1="48" x2="74" y2="48" stroke="#8898A8" stroke-width=".5"/><line x1="42" y1="52" x2="74" y2="52" stroke="#8898A8" stroke-width=".5"/><line x1="42" y1="56" x2="74" y2="56" stroke="#8898A8" stroke-width=".5"/><line x1="42" y1="60" x2="74" y2="60" stroke="#8898A8" stroke-width=".5"/></g><circle cx="68" cy="28" r="14" fill="#4A5868"/><path d="M68,18 Q72,10 78,14 Q74,16 68,18" fill="#3A4858"/><circle cx="74" cy="25" r="3" fill="#E8C020"/><circle cx="75" cy="24.5" r="1.2" fill="#1A1A18"/><polygon points="82,28 94,25 82,31" fill="#4A4A42"/><path d="M34,42 Q10,30 6,50 Q4,64 28,52" fill="#5A6878"/><path d="M46,72 Q42,86 40,96" stroke="#E8A020" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M66,74 Q68,88 70,96" stroke="#E8A020" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>',blackkite:'<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="56" cy="50" rx="28" ry="22" fill="#3A3632"/><ellipse cx="56" cy="54" rx="22" ry="16" fill="#4A4642"/><circle cx="72" cy="32" r="12" fill="#2C2820"/><circle cx="76" cy="29" r="2.5" fill="#E8A020"/><circle cx="77" cy="28.5" r="1" fill="#1A1A18"/><polygon points="84,32 94,30 84,34" fill="#3A3632"/><path d="M28,44 Q4,32 0,52 Q-2,66 22,54" fill="#1A1812"/><path d="M80,46 Q100,36 106,48 Q108,58 88,52" fill="#1A1812"/><path d="M44,68 Q40,82 38,92" stroke="#C0A060" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M62,70 Q64,84 66,92" stroke="#C0A060" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>',osprey:'<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="58" cy="52" rx="26" ry="22" fill="#4A3828"/><ellipse cx="58" cy="56" rx="20" ry="16" fill="#F5F0E0"/><circle cx="72" cy="32" r="14" fill="#F5F5F0"/><path d="M58,28 Q66,22 80,28" fill="#2C2820"/><circle cx="76" cy="30" r="2.5" fill="#E8A020"/><circle cx="77" cy="29.5" r="1" fill="#1A1A18"/><polygon points="84,32 96,30 84,35" fill="#3A3632"/><path d="M32,46 Q8,34 4,52 Q2,64 26,54" fill="#3A2818"/><path d="M46,72 Q42,86 40,94" stroke="#6B8EA0" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M64,74 Q66,88 68,94" stroke="#6B8EA0" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>',fivecolor:'<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="56" cy="58" rx="26" ry="20" fill="#2E8B57"/><ellipse cx="56" cy="62" rx="20" ry="14" fill="#3CB371"/><circle cx="72" cy="40" r="14" fill="#2E8B57"/><circle cx="68" cy="36" r="6" fill="#E84040"/><circle cx="76" cy="36" r="4" fill="#4040E8"/><circle cx="72" cy="32" r="3" fill="#E8D040"/><circle cx="78" cy="38" r="2.5" fill="#2C2C2A"/><circle cx="78.5" cy="37.5" r=".8" fill="#FFF"/><polygon points="86,40 96,38 86,43" fill="#E8A040"/><path d="M30,54 Q14,44 10,56 Q8,66 26,58" fill="#1A6040"/><path d="M44,76 Q40,88 38,94" stroke="#6B6560" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M58,78 Q56,90 54,94" stroke="#6B6560" stroke-width="2" fill="none" stroke-linecap="round"/></svg>',swallow:'<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="58" cy="52" rx="22" ry="16" fill="#1A2848"/><ellipse cx="58" cy="55" rx="16" ry="10" fill="#F5F0E0"/><circle cx="72" cy="40" r="10" fill="#1A2848"/><circle cx="76" cy="38" r="2" fill="#2C2C2A"/><polygon points="82,40 90,39 82,42" fill="#3A3632"/><path d="M36,48 Q10,38 4,52 Q2,60 28,52" fill="#1A2040"/><path d="M82,48 Q106,38 112,52 Q114,60 88,52" fill="#1A2040"/><circle cx="68" cy="42" r="4" fill="#C04030"/><path d="M46,64 Q38,78 28,88" stroke="#1A2848" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M66,64 Q74,78 84,88" stroke="#1A2848" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>',greenbird:'<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="58" cy="58" rx="20" ry="16" fill="#6B9E40"/><ellipse cx="58" cy="62" rx="14" ry="10" fill="#C8D8A0"/><circle cx="72" cy="44" r="10" fill="#6B9E40"/><circle cx="76" cy="42" r="4" fill="#F5F5F0"/><circle cx="76" cy="42" r="2.5" fill="#2C2C2A"/><circle cx="76.5" cy="41.5" r=".8" fill="#FFF"/><polygon points="82,44 88,43 82,46" fill="#888078"/><path d="M38,54 Q26,48 22,56 Q20,62 34,58" fill="#5A8E38"/><path d="M48,72 Q44,82 42,88" stroke="#C08B6E" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M58,74 Q56,84 54,88" stroke="#C08B6E" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>',nightheron:'<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="58" cy="52" rx="24" ry="24" fill="#2A2A3A"/><ellipse cx="58" cy="58" rx="18" ry="16" fill="#A8A8B8"/><circle cx="68" cy="30" r="14" fill="#1A1A2A"/><circle cx="73" cy="27" r="3" fill="#C03030"/><circle cx="74" cy="26.5" r="1.2" fill="#2C2C2A"/><polygon points="80,30 94,28 80,33" fill="#2A2A32"/><path d="M68,18 Q72,8 66,12" stroke="#F5F5F0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M34,46 Q16,36 12,50 Q10,62 30,52" fill="#1A1A2A"/><path d="M48,72 Q44,86 42,96" stroke="#C8C060" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M64,74 Q68,88 70,96" stroke="#C8C060" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>',cattle_egret:'<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="58" cy="50" rx="22" ry="24" fill="#F5F0E0"/><ellipse cx="58" cy="55" rx="16" ry="16" fill="#FAF6EE"/><circle cx="64" cy="26" r="12" fill="#F5F0E0"/><circle cx="60" cy="22" r="6" fill="#E8B840"/><circle cx="68" cy="23" r="2.5" fill="#2C2C2A"/><polygon points="76,26 92,22 76,29" fill="#E8A020"/><path d="M62,38 Q62,30 64,26" stroke="#E0D8C8" stroke-width="2"/><path d="M48,72 Q44,86 42,98" stroke="#4A6A40" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M66,72 Q70,86 72,98" stroke="#4A6A40" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M40,44 Q26,36 22,46 Q20,56 36,48" fill="#F0EAD8"/></svg>',littleegret:'<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="60" cy="48" rx="18" ry="24" fill="#F8F8F4"/><ellipse cx="60" cy="52" rx="14" ry="16" fill="#FEFEFE"/><circle cx="64" cy="22" r="11" fill="#F8F8F4"/><circle cx="68" cy="19" r="2.2" fill="#2C2C2A"/><polygon points="76,22 94,18 76,25" fill="#2C2C2A"/><path d="M62,33 Q62,26 64,22" stroke="#F0EEE6" stroke-width="2"/><path d="M50,14 Q56,4 62,10" stroke="#F0EEE6" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M52,70 Q48,84 46,98" stroke="#2C2C2A" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M66,70 Q70,84 72,98" stroke="#2C2C2A" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M42,42 Q28,34 24,44 Q22,54 38,46" fill="#F4F4F0"/></svg>',ibis:'<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="58" cy="50" rx="24" ry="24" fill="#F5F5F0"/><ellipse cx="58" cy="56" rx="18" ry="16" fill="#FAFAF6"/><circle cx="66" cy="26" r="12" fill="#1A1A18"/><circle cx="70" cy="23" r="2.5" fill="#E8A020"/><circle cx="71" cy="22.5" r="1" fill="#1A1A18"/><path d="M78,26 Q92,32 96,44 Q98,50 94,48" stroke="#2C2C2A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M34,44 Q16,34 12,48 Q10,60 30,50" fill="#1A1A18"/><path d="M76,44 Q92,36 96,48 Q98,58 82,50" fill="#1A1A18"/><path d="M48,72 Q44,86 42,96" stroke="#C08080" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M66,74 Q68,88 70,96" stroke="#C08080" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>',crow:'<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="56" cy="56" rx="28" ry="24" fill="#1A1A18"/><ellipse cx="56" cy="60" rx="22" ry="18" fill="#2A2A28"/><circle cx="72" cy="36" r="14" fill="#1A1A18"/><circle cx="76" cy="33" r="2.5" fill="#3A3A38"/><circle cx="77" cy="32.5" r="1" fill="#F5F5F0"/><polygon points="84,36 98,34 84,39" fill="#2C2C2A"/><path d="M28,50 Q6,38 2,56 Q0,68 22,58" fill="#0A0A08"/><path d="M44,76 Q40,88 38,96" stroke="#3A3632" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M60,78 Q58,90 56,96" stroke="#3A3632" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>'};
 
-let allSightings=[],verifyData={},currentLoc='陽台',currentUser=null;
+let allSightings=[],verifyData={},currentLoc='陽台';
 
 function setLoc(el){document.querySelectorAll('.loc-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');currentLoc=el.dataset.loc}
 function getToday(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
@@ -342,32 +235,6 @@ function getTodaySightings(){return allSightings.filter(s=>s.date===getToday())}
 function calcFortune(arr){let t=0;arr.forEach(s=>{t+=(birdData[s.bird]?birdData[s.bird].fortune:0)});return Math.min(99,Math.max(-20,t))}
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000)}
 function updateSyncStatus(type,msg){const el=document.getElementById('sync-status');el.textContent='\u2601\uFE0F '+msg;el.className='sync-status '+type}
-
-// Auth
-function handleAuth(){if(currentUser){signOut(auth);showToast('已登出')}else{document.getElementById('login-modal').classList.add('show')}}
-function closeLoginModal(){document.getElementById('login-modal').classList.remove('show')}
-async function googleSignIn(){try{await signInWithPopup(auth,new GoogleAuthProvider());closeLoginModal()}catch(e){showToast('登入失敗')}}
-function updateAuthUI(user){
-currentUser=user;
-const btn=document.getElementById('login-btn');
-const dashBtn=document.getElementById('tab-dash-btn');
-const guideBtn=document.getElementById('tab-guide-btn');
-const loreBtn=document.getElementById('tab-lore-btn');
-if(user&&user.email===ADMIN_EMAIL){
-btn.innerHTML='<img class="user-avatar" src="'+user.photoURL+'" alt=""/> 後台';
-btn.classList.add('logged-in');
-dashBtn.classList.remove('locked');guideBtn.classList.remove('locked');loreBtn.classList.remove('locked');
-}else if(user){
-signOut(auth);showToast('此帳號無權限');return;
-}else{
-btn.innerHTML='\u{1F512} 登入';btn.classList.remove('logged-in');
-dashBtn.classList.add('locked');guideBtn.classList.add('locked');loreBtn.classList.add('locked');
-if(document.getElementById('tab-dashboard').classList.contains('active')||document.getElementById('tab-guide').classList.contains('active')||document.getElementById('tab-lore').classList.contains('active')){
-switchTab('main',document.querySelector('.tab'));
-}
-}
-}
-onAuthStateChanged(auth,user=>updateAuthUI(user));
 
 // Firebase CRUD
 async function loadFromFirebase(){
@@ -385,64 +252,19 @@ async function clearAll(){if(!confirm('\u6E05\u9664\u5168\u90E8\uFF1F\u7121\u6CD
 
 async function verifyDay(date,result){verifyData[date]=result;renderAll();showToast(result==='yes'?'\u6E96\u4E86\uFF01\u2705':'\u6C92\u6E96 \u{1F605}');try{await setDoc(doc(db,'verifications',date),{result});localStorage.setItem('bird-verify-v5',JSON.stringify(verifyData))}catch(e){localStorage.setItem('bird-verify-v5',JSON.stringify(verifyData))}}
 
-function renderAll(){renderTodayLog();renderHistory();renderRanking();renderStats();renderDashboard();renderLore()}
+function renderAll(){renderTodayLog();renderHistory();renderStats()}
 
 function renderTodayLog(){const c=document.getElementById('today-log'),today=getTodaySightings();if(!today.length){c.innerHTML='<div class="empty-log">\u4ECA\u65E5\u5C1A\u7121\u76EE\u64CA\u7D00\u9304<br>\u5FEB\u53BB\u967D\u53F0\u770B\u770B\uFF01\u{1F426}</div>';return}let h='';today.slice().reverse().forEach(s=>{const b=birdData[s.bird];if(!b)return;h+='<div class="log-entry"><div class="log-time">'+s.time+'</div><div class="log-content"><span class="log-bird">'+b.emoji+' '+b.name+'</span>';if(s.loc)h+='<span class="log-loc">'+s.loc+'</span>';if(s.note)h+='<br><span class="log-note">'+s.note+'</span>';h+='<br><span class="log-verdict">'+b.mama+'</span></div><button class="log-delete" onclick="deleteSighting(\''+s.id+'\')">&#x2715;</button></div>'});c.innerHTML=h}
 
 function renderHistory(){const c=document.getElementById('history-log');if(!allSightings.length){c.innerHTML='<div class="empty-log">\u5C1A\u7121\u6B77\u53F2\u7D00\u9304</div>';return}const byDate={};allSightings.forEach(s=>{if(!byDate[s.date])byDate[s.date]=[];byDate[s.date].push(s)});const dates=Object.keys(byDate).sort().reverse();let h='';dates.forEach(date=>{const entries=byDate[date],fortune=calcFortune(entries),v=verifyData[date],isToday=date===getToday();h+='<div class="log-date-header">'+formatDate(date)+' \u2014 '+entries.length+'\u7B46\uFF0C\u904B\u52E2 '+fortune;if(v==='yes')h+=' <span class="verify-result accurate">\u6E96\u4E86\uFF01</span>';else if(v==='no')h+=' <span class="verify-result inaccurate">\u6C92\u6E96</span>';h+='</div>';entries.slice().reverse().forEach(s=>{const b=birdData[s.bird];if(!b)return;h+='<div class="log-entry"><div class="log-time">'+s.time+'</div><div class="log-content"><span class="log-bird">'+b.emoji+' '+b.name+'</span>';if(s.loc)h+='<span class="log-loc">'+s.loc+'</span>';if(s.note)h+='<br><span class="log-note">'+s.note+'</span>';h+='<br><span class="log-verdict">'+b.mama+'</span></div><button class="log-delete" onclick="deleteSighting(\''+s.id+'\')">&#x2715;</button></div>'});if(!isToday&&!v){h+='<div class="verify-row"><span class="verify-label">\u9019\u5929\u6709\u597D\u4E8B\u55CE\uFF1F</span><button class="verify-btn yes" onclick="verifyDay(\''+date+'\',\'yes\')">\u6E96\u4E86 &#x2714;</button><button class="verify-btn no" onclick="verifyDay(\''+date+'\',\'no\')">\u6C92\u6E96 &#x2718;</button></div>'}else if(isToday&&!v){h+='<div class="verify-row"><span class="verify-label">\u660E\u5929\u518D\u4F86\u9A57\u8B49</span></div>'}});c.innerHTML=h}
 
-function renderRanking(){const c=document.getElementById('ranking-grid'),counts={};allSightings.forEach(s=>{counts[s.bird]=(counts[s.bird]||0)+1});let h='';birdOrder.forEach(key=>{const b=birdData[key],count=counts[key]||0;h+='<div class="bird-card" onclick="showBirdDetail(\''+key+'\')"><div class="bird-emoji">'+(birdSVG[key]?'<div style="width:60px;height:50px;margin:0 auto">'+birdSVG[key]+'</div>':b.emoji)+'</div><div class="bird-name">'+b.name+'</div><div class="bird-desc">'+b.desc.substring(0,10)+'...</div><div class="bird-rank '+b.rankClass+'">'+b.rank+'</div>';if(count>0)h+='<div class="bird-count">\u76EE\u64CA '+count+' \u6B21</div>';h+='</div>'});c.innerHTML=h}
+function renderRanking(){}
 
 function showBirdDetail(key){const b=birdData[key];const svgC=document.getElementById('result-svg');svgC.innerHTML=birdSVG[key]||'<div class="emoji-fallback">'+b.emoji+'</div>';document.getElementById('result-title').textContent=b.name+'\uFF08'+b.rank+'\u7D1A\uFF09';document.getElementById('result-desc').textContent=b.desc;document.getElementById('result-lore').textContent=b.lore;document.getElementById('result-mama').textContent=b.mama;document.getElementById('result-panel').classList.add('show');switchTab('main',document.querySelector('.tab'));window.scrollTo({top:0,behavior:'smooth'})}
 
-function renderStats(){const today=getTodaySightings(),fortune=calcFortune(today);document.getElementById('stat-today').textContent=today.length;document.getElementById('stat-total').textContent=allSightings.length;document.getElementById('stat-fortune').textContent=fortune;const bar=document.getElementById('fortune-bar'),pct=Math.max(0,Math.min(100,fortune));bar.style.width=pct+'%';bar.className='fortune-fill';if(fortune>=80)bar.classList.add('fortune-max');else if(fortune>=50)bar.classList.add('fortune-high');else if(fortune>=20)bar.classList.add('fortune-mid');else bar.classList.add('fortune-low');const vDates=Object.keys(verifyData),totalV=vDates.length,correctV=vDates.filter(d=>verifyData[d]==='yes').length;if(totalV>0){document.getElementById('stat-accuracy').textContent=Math.round(correctV/totalV*100)+'%';document.getElementById('stat-accuracy').classList.add('accuracy-highlight')}else{document.getElementById('stat-accuracy').textContent='?%';document.getElementById('stat-accuracy').classList.remove('accuracy-highlight')}}
+function switchTab(name,el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));document.getElementById('tab-'+name).classList.add('active');if(el)el.classList.add('active')}
 
-function renderDashboard(){
-if(!currentUser)return;
-const now=new Date(),ym=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
-const monthS=allSightings.filter(s=>s.date.startsWith(ym));
-document.getElementById('dash-total').textContent=allSightings.length;
-document.getElementById('dash-month').textContent=monthS.length;
-const vD=Object.keys(verifyData),tV=vD.length,cV=vD.filter(d=>verifyData[d]==='yes').length;
-document.getElementById('dash-accuracy').textContent=tV>0?Math.round(cV/tV*100)+'%':'?%';
-// Streak
-const dates=[...new Set(allSightings.map(s=>s.date))].sort().reverse();let streak=0;const today=getToday();
-for(let i=0;i<dates.length;i++){const d=new Date(today);d.setDate(d.getDate()-i);const ds=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');if(dates.includes(ds))streak++;else break}
-document.getElementById('dash-streak').textContent=streak;
-// Top 5
-const counts={};allSightings.forEach(s=>{counts[s.bird]=(counts[s.bird]||0)+1});
-const sorted=Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,5);
-let t5='';sorted.forEach(([key,cnt],i)=>{const b=birdData[key];if(!b)return;t5+='<div class="top-bird-row"><div class="top-bird-rank-num">'+(i+1)+'</div><div class="top-bird-svg">'+(birdSVG[key]||'<span style="font-size:24px">'+b.emoji+'</span>')+'</div><div class="top-bird-info"><div class="top-bird-name">'+b.name+' <span class="bird-rank '+b.rankClass+'" style="font-size:9px;padding:1px 6px">'+b.rank+'</span></div><div class="top-bird-count">'+cnt+' \u6B21\u76EE\u64CA</div></div></div>'});
-document.getElementById('dash-top5').innerHTML=t5||'<div class="empty-log">\u5C1A\u7121\u8CC7\u6599</div>';
-// Monthly birds
-const mCounts={};monthS.forEach(s=>{mCounts[s.bird]=(mCounts[s.bird]||0)+1});
-const mSorted=Object.entries(mCounts).sort((a,b)=>b[1]-a[1]);
-const mMax=mSorted.length?mSorted[0][1]:1;
-let mb='<div class="monthly-chart">';mSorted.forEach(([key,cnt])=>{const b=birdData[key];if(!b)return;mb+='<div class="month-bar-row"><div class="month-bar-label">'+b.emoji+' '+b.name+'</div><div class="month-bar-track"><div class="month-bar-fill" style="width:'+Math.round(cnt/mMax*100)+'%"><span class="month-bar-count">'+cnt+'</span></div></div></div>'});mb+='</div>';
-document.getElementById('dash-monthly-birds').innerHTML=mSorted.length?mb:'<div class="empty-log">\u672C\u6708\u5C1A\u7121</div>';
-// Locations
-const locC={};allSightings.forEach(s=>{if(s.loc)locC[s.loc]=(locC[s.loc]||0)+1});
-const locS=Object.entries(locC).sort((a,b)=>b[1]-a[1]);const locMax=locS.length?locS[0][1]:1;
-let lh='<div class="monthly-chart">';locS.forEach(([loc,cnt])=>{lh+='<div class="month-bar-row"><div class="month-bar-label">'+loc+'</div><div class="month-bar-track"><div class="month-bar-fill" style="width:'+Math.round(cnt/locMax*100)+'%;background:var(--terracotta)"><span class="month-bar-count">'+cnt+'</span></div></div></div>'});lh+='</div>';
-document.getElementById('dash-locations').innerHTML=locS.length?lh:'<div class="empty-log">\u5C1A\u7121\u5730\u9EDE\u8CC7\u6599</div>';
-// Fortune trend
-const byDay={};monthS.forEach(s=>{if(!byDay[s.date])byDay[s.date]=[];byDay[s.date].push(s)});
-const days=Object.keys(byDay).sort();const maxF=Math.max(...days.map(d=>calcFortune(byDay[d])),1);
-let fh='<div class="monthly-chart">';days.forEach(d=>{const f=calcFortune(byDay[d]);const pct=Math.max(5,Math.round(f/maxF*100));fh+='<div class="month-bar-row"><div class="month-bar-label">'+d.split('-')[2]+'\u65E5</div><div class="month-bar-track"><div class="month-bar-fill" style="width:'+pct+'%"><span class="month-bar-count">'+f+'</span></div></div></div>'});fh+='</div>';
-document.getElementById('dash-fortune-trend').innerHTML=days.length?fh:'<div class="empty-log">\u672C\u6708\u5C1A\u7121</div>';
-}
-
-function renderLore(){
-const c=document.getElementById('lore-list');let h='';
-birdOrder.forEach(key=>{const b=birdData[key];
-h+='<div class="lore-card"><div class="lore-header" onclick="toggleLore(this)"><div class="lore-bird-svg">'+(birdSVG[key]||'<div class="lore-bird-emoji">'+b.emoji+'</div>')+'</div><div class="lore-bird-info"><div class="lore-bird-name">'+b.name+' <span class="lore-bird-rank-tag '+b.rankClass+'">'+b.rank+'</span></div><div class="lore-bird-desc">'+b.desc+'</div></div><div class="lore-chevron">\u25BC</div></div><div class="lore-body"><div class="lore-section"><div class="lore-section-title">\u{1F4DC} \u98A8\u6C34\u5178\u6545</div><div class="lore-text">'+b.lore+'</div></div><div class="lore-section"><div class="lore-section-title">\u{1F52E} \u904B\u52E2\u52A0\u6210</div><div class="lore-text">\u904B\u52E2\u6307\u6578\uFF1A+'+b.fortune+' \u2502 \u7B49\u7D1A\uFF1A'+b.rank+'</div></div><div class="lore-mama">'+b.mama+'</div></div></div>'});
-c.innerHTML=h;
-}
-function toggleLore(el){const body=el.nextElementSibling;const chevron=el.querySelector('.lore-chevron');body.classList.toggle('open');chevron.classList.toggle('open')}
-
-function switchTab(name,el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));document.getElementById('tab-'+name).classList.add('active');if(el)el.classList.add('active');if(name==='dashboard')renderDashboard()}
-
-window.addSighting=addSighting;window.deleteSighting=deleteSighting;window.clearToday=clearToday;window.clearAll=clearAll;window.verifyDay=verifyDay;window.showBirdDetail=showBirdDetail;window.switchTab=switchTab;window.setLoc=setLoc;window.handleAuth=handleAuth;window.googleSignIn=googleSignIn;window.closeLoginModal=closeLoginModal;window.toggleLore=toggleLore;
+window.addSighting=addSighting;window.deleteSighting=deleteSighting;window.clearToday=clearToday;window.clearAll=clearAll;window.verifyDay=verifyDay;window.showBirdDetail=showBirdDetail;window.switchTab=switchTab;window.setLoc=setLoc;
 
 document.getElementById('mama-daily').textContent=quotes[Math.floor(Math.random()*quotes.length)];
 document.getElementById('status-text').textContent='\u7CFB\u7D71\u555F\u52D5\u4E2D\u2026';
