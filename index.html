@@ -232,7 +232,7 @@ body{font-family:'Noto Sans TC','Zen Maru Gothic',-apple-system,sans-serif;backg
 
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import{getFirestore,collection,addDoc,getDocs,deleteDoc,doc,setDoc,query,orderBy}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import{getFirestore,collection,addDoc,getDocs,deleteDoc,doc,setDoc}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig={apiKey:"AIzaSyCUcyUSL1iQCBVxYlHzqzvczxLP_vEUwIc",authDomain:"bird-report.firebaseapp.com",projectId:"bird-report",storageBucket:"bird-report.firebasestorage.app",messagingSenderId:"300929721499",appId:"1:300929721499:web:6e35f79f5b48c72691523e"};
 const app=initializeApp(firebaseConfig);
@@ -300,10 +300,10 @@ function showToast(msg){const t=document.getElementById('toast');t.textContent=m
 
 async function loadFromFirebase(){
 try{
-const sq=query(collection(db,'sightings'),orderBy('ts'));
-const ss=await getDocs(sq);
+const ss=await getDocs(collection(db,'sightings'));
 allSightings=[];
 ss.forEach(d=>{const data=d.data();data.fireId=d.id;allSightings.push(data)});
+allSightings.sort((a,b)=>(a.ts||'').localeCompare(b.ts||''));
 const vq=await getDocs(collection(db,'verifications'));
 verifyData={};
 vq.forEach(d=>{verifyData[d.id]=d.data().result});
@@ -314,6 +314,7 @@ updateSyncStatus('ok','雲端同步完成');
 }catch(e){
 console.error('Firebase load error:',e);
 try{const d=localStorage.getItem('bird-report-v4');if(d)allSightings=JSON.parse(d);const v=localStorage.getItem('bird-verify-v4');if(v)verifyData=JSON.parse(v)}catch(e2){}
+if(!allSightings.length){try{const d=localStorage.getItem('bird-report-v3');if(d)allSightings=JSON.parse(d);const v=localStorage.getItem('bird-verify-v1');if(v)verifyData=JSON.parse(v)}catch(e3){}}
 updateSyncStatus('err','離線模式（本地資料）');
 }
 renderAll();
