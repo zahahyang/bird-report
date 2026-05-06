@@ -276,7 +276,7 @@ const badNewsTypes={no_reply:{icon:'\u{1F480}',label:'\u5C65\u6B77\u5DF2\u8B80\u
 
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000)}
 function getToday(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
-function calcFortune(arr){let t=0;arr.forEach(s=>{t+=(birdData[s.bird]?birdData[s.bird].fortune:0)});return Math.min(99,Math.max(-20,t))}
+function calcFortune(arr){if(!arr.length)return 0;let t=0;arr.forEach(s=>{t+=(birdData[s.bird]?birdData[s.bird].fortune:0)});return Math.round(t/arr.length)}
 
 // Auth
 async function googleSignIn(){try{await signInWithPopup(auth,new GoogleAuthProvider())}catch(e){showToast('登入失敗')}}

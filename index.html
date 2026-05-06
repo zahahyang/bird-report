@@ -321,7 +321,7 @@ function setLoc(el){document.querySelectorAll('.loc-btn').forEach(b=>b.classList
 function getToday(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
 function formatDate(ds){const p=ds.split('-');return p[0]+'/'+p[1]+'/'+p[2]}
 function getTodaySightings(){return allSightings.filter(s=>s.date===getToday())}
-function calcFortune(arr){let t=0;arr.forEach(s=>{t+=(birdData[s.bird]?birdData[s.bird].fortune:0)});return Math.min(99,Math.max(-20,t))}
+function calcFortune(arr){if(!arr.length)return 0;let t=0;arr.forEach(s=>{t+=(birdData[s.bird]?birdData[s.bird].fortune:0)});return Math.round(t/arr.length)}
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000)}
 function updateSyncStatus(type,msg){const el=document.getElementById('sync-status');el.textContent='\u2601\uFE0F '+msg;el.className='sync-status '+type}
 
