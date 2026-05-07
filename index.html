@@ -337,7 +337,30 @@ const birdSVG={bulbul:'<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/
 
 let currentUser=null;
 let allSightings=[],verifyData={},goodNews=[],badNews=[],currentLoc='陽台';
-function setLoc(el){document.querySelectorAll('.loc-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');currentLoc=el.dataset.loc}
+function setLoc(el){
+  // 「其他」要跳 prompt 必填輸入；取消或空白就維持原狀
+  if(el.dataset.loc==='其他'){
+    const v=prompt('請輸入地點：');
+    if(!v||!v.trim()){return}
+    const txt=v.trim();
+    document.querySelectorAll('.loc-btn').forEach(b=>b.classList.remove('active'));
+    el.classList.add('active');
+    el.textContent='\u{1F4CD} '+txt;
+    el.dataset.custom=txt;
+    currentLoc=txt;
+    return;
+  }
+  // 點其他預設按鈕時，把「其他」鈕還原成原樣
+  document.querySelectorAll('.loc-btn').forEach(b=>{
+    b.classList.remove('active');
+    if(b.dataset.loc==='其他'&&b.dataset.custom){
+      b.textContent='\u{1F4CD} 其他';
+      delete b.dataset.custom;
+    }
+  });
+  el.classList.add('active');
+  currentLoc=el.dataset.loc;
+}
 function getToday(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
 function formatDate(ds){const p=ds.split('-');return p[0]+'/'+p[1]+'/'+p[2]}
 function getTodaySightings(){return allSightings.filter(s=>s.date===getToday())}
@@ -435,8 +458,6 @@ function renderAll(){renderTodayLog();renderHistory();renderStats();renderGoodNe
 function renderTodayLog(){const c=document.getElementById('today-log'),today=getTodaySightings();if(!today.length){c.innerHTML='<div class="empty-log">\u4ECA\u65E5\u5C1A\u7121\u76EE\u64CA\u7D00\u9304<br>\u5FEB\u53BB\u967D\u53F0\u770B\u770B\uFF01\u{1F426}</div>';return}let h='';today.slice().reverse().forEach(s=>{const b=birdData[s.bird];if(!b)return;h+='<div class="log-entry"><div class="log-time">'+s.time+'</div><div class="log-content"><span class="log-bird">'+b.emoji+' '+b.name+'</span>';if(s.loc)h+='<span class="log-loc">'+s.loc+'</span>';if(s.note)h+='<br><span class="log-note">'+s.note+'</span>';h+='<br><span class="log-verdict">'+b.mama+'</span></div><button class="log-delete" onclick="deleteSighting(\''+s.id+'\')">&#x2715;</button></div>'});c.innerHTML=h}
 
 function renderHistory(){const c=document.getElementById('history-log');if(!allSightings.length){c.innerHTML='<div class="empty-log">\u5C1A\u7121\u6B77\u53F2\u7D00\u9304</div>';return}const byDate={};allSightings.forEach(s=>{if(!byDate[s.date])byDate[s.date]=[];byDate[s.date].push(s)});const dates=Object.keys(byDate).sort().reverse();let h='';dates.forEach(date=>{const entries=byDate[date],fortune=calcFortune(entries),v=verifyData[date],isToday=date===getToday();h+='<div class="log-date-header">'+formatDate(date)+' \u2014 '+entries.length+'\u7B46\uFF0C\u904B\u52E2 '+fortune;if(v==='yes')h+=' <span class="verify-result accurate">\u6E96\u4E86\uFF01</span>';else if(v==='no')h+=' <span class="verify-result inaccurate">\u6C92\u6E96</span>';h+='</div>';entries.slice().reverse().forEach(s=>{const b=birdData[s.bird];if(!b)return;h+='<div class="log-entry"><div class="log-time">'+s.time+'</div><div class="log-content"><span class="log-bird">'+b.emoji+' '+b.name+'</span>';if(s.loc)h+='<span class="log-loc">'+s.loc+'</span>';if(s.note)h+='<br><span class="log-note">'+s.note+'</span>';h+='<br><span class="log-verdict">'+b.mama+'</span></div><button class="log-delete" onclick="deleteSighting(\''+s.id+'\')">&#x2715;</button></div>'});if(!isToday&&!v){h+='<div class="verify-row"><span class="verify-label">\u9019\u5929\u6709\u597D\u4E8B\u55CE\uFF1F</span><button class="verify-btn yes" onclick="verifyDay(\''+date+'\',\'yes\')">\u6E96\u4E86 &#x2714;</button><button class="verify-btn no" onclick="verifyDay(\''+date+'\',\'no\')">\u6C92\u6E96 &#x2718;</button></div>'}else if(isToday&&!v){h+='<div class="verify-row"><span class="verify-label">\u660E\u5929\u518D\u4F86\u9A57\u8B49</span></div>'}});c.innerHTML=h}
-
-function renderRanking(){}
 
 function renderStats(){const today=getTodaySightings(),fortune=calcFortune(today);document.getElementById('stat-today').textContent=today.length;document.getElementById('stat-total').textContent=allSightings.length;document.getElementById('stat-fortune').textContent=fortune;const bar=document.getElementById('fortune-bar'),pct=Math.max(0,Math.min(100,fortune));bar.style.width=pct+'%';bar.className='fortune-fill';if(fortune>=80)bar.classList.add('fortune-max');else if(fortune>=50)bar.classList.add('fortune-high');else if(fortune>=20)bar.classList.add('fortune-mid');else bar.classList.add('fortune-low');const vDates=Object.keys(verifyData),totalV=vDates.length,correctV=vDates.filter(d=>verifyData[d]==='yes').length;if(totalV>0){document.getElementById('stat-accuracy').textContent=Math.round(correctV/totalV*100)+'%';document.getElementById('stat-accuracy').classList.add('accuracy-highlight')}else{document.getElementById('stat-accuracy').textContent='?%';document.getElementById('stat-accuracy').classList.remove('accuracy-highlight')}}
 
