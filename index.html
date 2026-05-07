@@ -307,7 +307,6 @@ const app=initializeApp(firebaseConfig);
 const db=getFirestore(app);
 const auth=getAuth(app);
 const ADMIN_EMAIL='sarah20120829@gmail.com';
-let currentUser=null;
 
 const birdData={
 eagle:{name:'老鷹',emoji:'\u{1F985}',fortune:95,rank:'SSS',rankClass:'rank-sss',desc:'極為罕見的頂級吉兆，代表重大突破即將降臨。建議立刻準備面試服裝。',lore:'《說文解字》記載鷹為「猛鳥」，象徵英勇與遠見。古代帝王以鷹狩獵，視為權力象徵。民間相信鷹飛過屋頂，主人必有升遷之喜。',mama:'楊媽媽判讀：天大的好運！準備上班了！'},
@@ -338,7 +337,6 @@ const birdSVG={bulbul:'<svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/
 
 let currentUser=null;
 let allSightings=[],verifyData={},goodNews=[],badNews=[],currentLoc='陽台';
-
 function setLoc(el){document.querySelectorAll('.loc-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');currentLoc=el.dataset.loc}
 function getToday(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
 function formatDate(ds){const p=ds.split('-');return p[0]+'/'+p[1]+'/'+p[2]}
