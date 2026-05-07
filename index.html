@@ -368,24 +368,42 @@ allSightings=[];goodNews=[];badNews=[];verifyData={};
 });
 
 // Firebase CRUD
+async function migrateOldData(uid,colName){
+const snap=await getDocs(collection(db,colName));let count=0;
+for(const d of snap.docs){const data=d.data();if(!data.userId){await setDoc(doc(db,colName,d.id),{...data,userId:uid},{merge:true});count++}}
+return count;
+}
+async function migrateOldVerifications(uid){
+const snap=await getDocs(collection(db,'verifications'));let count=0;
+for(const d of snap.docs){const data=d.data();
+await addDoc(collection(db,'verifications_v2'),{date:d.id,result:data.result,userId:uid});count++}
+if(count>0){for(const d of snap.docs){await deleteDoc(d.ref)}}
+return count;
+}
+
 async function loadFromFirebase(){
 if(!currentUser)return;
 const uid=currentUser.uid;
 try{
+// First check if migration needed
+const testQ=query(collection(db,'sightings'),where('userId','==',uid));const testSnap=await getDocs(testQ);
+if(testSnap.empty){
+// Try migration
+updateSyncStatus('ok','\u6AA2\u67E5\u820A\u8CC7\u6599...');
+let migrated=0;
+migrated+=await migrateOldData(uid,'sightings');
+migrated+=await migrateOldData(uid,'goodnews');
+migrated+=await migrateOldData(uid,'badnews');
+migrated+=await migrateOldVerifications(uid);
+if(migrated>0){showToast('\u5DF2\u9077\u79FB '+migrated+' \u7B46\u820A\u8CC7\u6599\uFF01');updateSyncStatus('ok','\u8CC7\u6599\u9077\u79FB\u5B8C\u6210')}
+}
+// Now load user's data
 const sq=query(collection(db,'sightings'),where('userId','==',uid));const ss=await getDocs(sq);allSightings=[];ss.forEach(d=>{const data=d.data();data.fireId=d.id;allSightings.push(data)});allSightings.sort((a,b)=>(a.ts||'').localeCompare(b.ts||''));
 const vq2=query(collection(db,'verifications_v2'),where('userId','==',uid));const vr=await getDocs(vq2);verifyData={};vr.forEach(d=>{const data=d.data();verifyData[data.date]=data.result});
 const gq=query(collection(db,'goodnews'),where('userId','==',uid));const gr=await getDocs(gq);goodNews=[];gr.forEach(d=>{const data=d.data();data.fireId=d.id;goodNews.push(data)});goodNews.sort((a,b)=>(a.ts||'').localeCompare(b.ts||''));
 const bq=query(collection(db,'badnews'),where('userId','==',uid));const br=await getDocs(bq);badNews=[];br.forEach(d=>{const data=d.data();data.fireId=d.id;badNews.push(data)});badNews.sort((a,b)=>(a.ts||'').localeCompare(b.ts||''));
 updateSyncStatus('ok','\u96F2\u7AEF\u540C\u6B65\u5B8C\u6210');
-}catch(e){console.error(e);
-// fallback: try loading old data without userId filter
-try{const ss=await getDocs(collection(db,'sightings'));allSightings=[];ss.forEach(d=>{const data=d.data();if(!data.userId){data.fireId=d.id;allSightings.push(data)}});allSightings.sort((a,b)=>(a.ts||'').localeCompare(b.ts||''));
-const vq=await getDocs(collection(db,'verifications'));verifyData={};vq.forEach(d=>{verifyData[d.id]=d.data().result});
-const gq=await getDocs(collection(db,'goodnews'));goodNews=[];gq.forEach(d=>{const data=d.data();if(!data.userId){data.fireId=d.id;goodNews.push(data)}});goodNews.sort((a,b)=>(a.ts||'').localeCompare(b.ts||''));
-const bq=await getDocs(collection(db,'badnews'));badNews=[];bq.forEach(d=>{const data=d.data();if(!data.userId){data.fireId=d.id;badNews.push(data)}});badNews.sort((a,b)=>(a.ts||'').localeCompare(b.ts||''));
-}catch(e2){}
-updateSyncStatus('err','\u8209\u8CC7\u6599\u4E2D\uFF08\u76F8\u5BB9\u6A21\u5F0F\uFF09');
-}
+}catch(e){console.error('Load error:',e);updateSyncStatus('err','\u8B80\u53D6\u5931\u6557\uFF0C\u8ACB\u91CD\u65B0\u6574\u7406')}
 renderAll();}
 
 async function addSighting(){if(!currentUser)return;const sel=document.getElementById('bird-select'),ni=document.getElementById('note-input'),key=sel.value;if(!key){showToast('\u8ACB\u5148\u9078\u64C7\u9CE5\u7A2E\uFF01');return}const now=new Date(),time=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');const entry={id:Date.now().toString(),bird:key,date:getToday(),time:time,note:ni.value.trim(),loc:currentLoc,ts:now.toISOString(),userId:currentUser.uid};allSightings.push(entry);const bird=birdData[key];const svgC=document.getElementById('result-svg');svgC.innerHTML=birdSVG[key]||'<div class="emoji-fallback">'+bird.emoji+'</div>';document.getElementById('result-title').textContent=bird.name+'\uFF08'+bird.rank+'\u7D1A\uFF09';document.getElementById('result-desc').textContent=bird.desc;document.getElementById('result-lore').textContent=bird.lore;document.getElementById('result-mama').textContent=bird.mama;document.getElementById('result-panel').classList.add('show');sel.value='';ni.value='';showToast(bird.emoji+' '+bird.name+' \u5DF2\u901A\u5831\uFF01');renderAll();try{const ref=await addDoc(collection(db,'sightings'),entry);entry.fireId=ref.id;updateSyncStatus('ok','\u5DF2\u540C\u6B65')}catch(e){updateSyncStatus('err','\u96E2\u7DDA')}}
