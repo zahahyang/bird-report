@@ -40,9 +40,7 @@ body{font-family:'Noto Sans TC','Zen Maru Gothic',-apple-system,sans-serif;backg
 .tab.locked{opacity:.5;pointer-events:none}
 .tab-content{display:none}.tab-content.active{display:block}
 .section-label{font-size:11px;font-weight:500;color:var(--ink-lighter);margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;text-transform:uppercase;letter-spacing:1.5px}
-#bird-search{height:44px;font-size:14px;font-family:inherit;border:1.5px solid var(--warm-200);border-radius:var(--radius-sm);padding:0 14px;background:var(--card-bg);color:var(--text);width:100%;transition:border-color .2s}
-#bird-search:focus{outline:none;border-color:var(--sage)}
-#bird-search::placeholder{color:var(--ink-lighter)}
+#main-content input::placeholder,#main-content textarea::placeholder{color:var(--ink-lighter)}
 
 .add-form{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
 .add-row{display:flex;gap:8px}
@@ -493,7 +491,7 @@ function mamaSays(data){let t=(data&&(data.judgment||data.report))||'';t=String(
 
 let lastChart='';
 function showChart(chart){if(!chart)return;lastChart=chart;const t=document.getElementById('chart-text'),card=document.getElementById('chart-card');if(t)t.textContent=chart;if(card)card.style.display='block';}
-function copyChart(){if(!lastChart){showToast('還沒有命盤可複製');return}const txt='我的八字／紫微命盤如下,請用溫暖、正向的方式幫我解讀(別嚇人、不要醫療或財務的斷言):\n\n'+lastChart;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(()=>showToast('已複製命盤,貼到你的 AI 就能解讀')).catch(()=>showToast('複製失敗,請長按上面文字手動複製'));}else{showToast('這個瀏覽器不支援自動複製,請長按上面文字複製');}}
+function copyChart(){if(!lastChart){showToast('還沒有命盤可複製');return}const txt='請不要讀取過去的記憶,你是命理大師,請依照以下訊息幫我詳細解釋。\n\n'+lastChart;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(()=>showToast('已複製命盤,貼到你的 AI 就能解讀')).catch(()=>showToast('複製失敗,請長按上面文字手動複製'));}else{showToast('這個瀏覽器不支援自動複製,請長按上面文字複製');}}
 
 async function askMama(){const inp=document.getElementById('askmama-input');const q=inp.value.trim();if(!q){showToast('先打一個想問的問題吧');return}const panel=document.getElementById('askmama-panel'),ans=document.getElementById('askmama-answer');panel.classList.add('show');ans.textContent='楊媽媽正在掐指一算…';ans.style.opacity='0.6';saveMingliProfile();const recentBirds=allSightings.slice(-5).reverse().map(s=>birdData[s.bird]?birdData[s.bird].name:'').filter(Boolean);const payload=attachProfile({question:q,recent_events:mamaRecentEvents(),recent_birds:recentBirds});try{const r=await fetch(JUDGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await r.json();ans.textContent=(data&&(data.judgment||data.report))||'楊媽媽今天訊號有點輕,等等再問一次,放著心。';if(data&&data.chart)showChart(data.chart);}catch(e){ans.textContent='楊媽媽今天訊號有點輕,等等再問一次,放著心。';}ans.style.opacity='1';}
 
