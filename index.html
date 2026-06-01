@@ -46,6 +46,10 @@ body{font-family:'Noto Sans TC','Zen Maru Gothic',-apple-system,sans-serif;backg
 
 .add-form{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
 .add-row{display:flex;gap:8px}
+#main-content input[type=text],#main-content input[type=date],#main-content input[type=number],#main-content select,#main-content textarea{width:100%;box-sizing:border-box;height:48px;font-size:15px;font-family:inherit;border:1.5px solid var(--warm-200);border-radius:var(--radius-sm);padding:0 14px;background:var(--card-bg);color:var(--text);transition:border-color .2s}
+#main-content textarea{height:auto;min-height:80px;padding:12px 14px;line-height:1.6}
+#main-content select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239E9890' d='M2 4l4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+#main-content input:focus,#main-content select:focus,#main-content textarea:focus{outline:none;border-color:var(--sage)}
 .add-form select,.add-form input{height:48px;font-size:14px;font-family:inherit;border:1.5px solid var(--warm-200);border-radius:var(--radius-sm);padding:0 14px;background:var(--card-bg);color:var(--text);flex:1;appearance:none;-webkit-appearance:none;transition:border-color .2s}
 .add-form select:focus,.add-form input:focus{outline:none;border-color:var(--sage)}
 .add-form select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239E9890' d='M2 4l4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
@@ -277,9 +281,9 @@ body{font-family:'Noto Sans TC','Zen Maru Gothic',-apple-system,sans-serif;backg
 <p style="color:var(--text-soft);font-size:14px;margin:0 0 10px;line-height:1.7">先設定一次生日,楊媽媽幫你排好八字、紫微命盤;之後問她任何事,她都會用你的命盤＋最近的鳥兆來回。生日會幫你記住。</p>
 <div class="add-form">
 <div class="add-row" style="flex-wrap:wrap;gap:8px;width:100%">
-<input type="date" id="mingli-date" style="flex:1;min-width:150px;padding:10px;border:1px solid var(--sage,#cdd6c5);border-radius:8px;font-size:15px;background:#fff"/>
-<select id="mingli-hour" style="flex:1;min-width:130px;padding:10px;border:1px solid var(--sage,#cdd6c5);border-radius:8px;font-size:15px;background:#fff"><option value="">出生時間(不確定也可)</option></select>
-<select id="mingli-gender" style="flex:1;min-width:90px;padding:10px;border:1px solid var(--sage,#cdd6c5);border-radius:8px;font-size:15px;background:#fff"><option value="女">女</option><option value="男">男</option></select>
+<input type="date" id="mingli-date" style="flex:1;min-width:150px"/>
+<select id="mingli-hour" style="flex:1;min-width:130px"><option value="">出生時間(不確定也可)</option></select>
+<select id="mingli-gender" style="flex:1;min-width:90px"><option value="女">女</option><option value="男">男</option></select>
 </div>
 <div class="add-row" style="width:100%;margin-top:8px">
 <input type="text" id="askmama-input" placeholder="問楊媽媽一件事（例：這週適合投履歷嗎？）" onkeydown="if(event.key==='Enter')askMama()"/>
@@ -312,12 +316,12 @@ body{font-family:'Noto Sans TC','Zen Maru Gothic',-apple-system,sans-serif;backg
 <p style="color:var(--text-soft);font-size:14px;margin:0 0 12px;line-height:1.7">填兩個人的生日,楊媽媽看你們合不合、緣分如何。你的生日會自動帶入(設過的話)。</p>
 <div class="add-form">
 <div class="add-row" style="flex-wrap:wrap;gap:8px;width:100%">
-<input type="date" id="compat-a-date" style="flex:1;min-width:150px;padding:10px;border:1px solid var(--sage,#cdd6c5);border-radius:8px;font-size:15px;background:#fff"/>
-<select id="compat-a-gender" style="flex:1;min-width:110px;padding:10px;border:1px solid var(--sage,#cdd6c5);border-radius:8px;font-size:15px;background:#fff"><option value="女">你：女</option><option value="男">你：男</option></select>
+<input type="date" id="compat-a-date" style="flex:1;min-width:150px"/>
+<select id="compat-a-gender" style="flex:1;min-width:110px"><option value="女">你：女</option><option value="男">你：男</option></select>
 </div>
 <div class="add-row" style="flex-wrap:wrap;gap:8px;width:100%;margin-top:8px">
-<input type="date" id="compat-b-date" style="flex:1;min-width:150px;padding:10px;border:1px solid var(--sage,#cdd6c5);border-radius:8px;font-size:15px;background:#fff"/>
-<select id="compat-b-gender" style="flex:1;min-width:110px;padding:10px;border:1px solid var(--sage,#cdd6c5);border-radius:8px;font-size:15px;background:#fff"><option value="女">對方：女</option><option value="男">對方：男</option></select>
+<input type="date" id="compat-b-date" style="flex:1;min-width:150px"/>
+<select id="compat-b-gender" style="flex:1;min-width:110px"><option value="女">對方：女</option><option value="男">對方：男</option></select>
 </div>
 <input type="text" id="compat-b-name" placeholder="對方暱稱（可選）" style="margin-top:8px"/>
 <button class="btn-report" style="width:100%;margin-top:8px" onclick="genCompat()">看我們的合盤</button>
@@ -329,21 +333,21 @@ body{font-family:'Noto Sans TC','Zen Maru Gothic',-apple-system,sans-serif;backg
 <div class="tab-content" id="tab-photo">
 <div class="section-label">&#x1F4F8; 拍照看兆頭</div>
 <p style="color:var(--text-soft);font-size:14px;margin:0 0 12px;line-height:1.7">拍張照(雲、貓、彩虹、街角…什麼都行),楊媽媽看這張照片今天帶來的氛圍與兆頭。</p>
-<label class="btn-report" style="display:block;text-align:center;cursor:pointer">&#x1F4F7; 拍照 / 選照片
+<label class="btn-report" style="display:flex;align-items:center;justify-content:center;cursor:pointer">&#x1F4F7; 拍照 / 選照片
 <input type="file" accept="image/*" capture="environment" id="photo-file" style="display:none" onchange="onVisionFile('omen',this)"/>
 </label>
 <img id="photo-preview" style="display:none;width:100%;max-height:280px;object-fit:contain;border-radius:12px;margin-top:12px"/>
-<button class="btn-report" style="width:100%;margin-top:10px" onclick="runVision('omen')">看兆頭</button>
+<button class="btn-report" id="photo-go" style="width:100%;margin-top:10px;display:none" onclick="runVision('omen')">看兆頭</button>
 <div class="result-panel" id="photo-panel" style="margin-top:16px"><div class="result-mama" id="photo-out" style="border-top:none;margin-top:0;padding-top:0;white-space:pre-wrap;line-height:1.9"></div></div>
 </div>
 <div class="tab-content" id="tab-palm">
 <div class="section-label">&#x1F590;&#xFE0F; 手相</div>
 <p style="color:var(--text-soft);font-size:14px;margin:0 0 12px;line-height:1.7">拍一張你的手掌(攤開、光線清楚),楊媽媽幫你看手相。設過生日的話,會一起參考你的命盤。</p>
-<label class="btn-report" style="display:block;text-align:center;cursor:pointer">&#x1F590;&#xFE0F; 拍手掌 / 選照片
+<label class="btn-report" style="display:flex;align-items:center;justify-content:center;cursor:pointer">&#x1F590;&#xFE0F; 拍手掌 / 選照片
 <input type="file" accept="image/*" capture="environment" id="palm-file" style="display:none" onchange="onVisionFile('palm',this)"/>
 </label>
 <img id="palm-preview" style="display:none;width:100%;max-height:280px;object-fit:contain;border-radius:12px;margin-top:12px"/>
-<button class="btn-report" style="width:100%;margin-top:10px" onclick="runVision('palm')">看手相</button>
+<button class="btn-report" id="palm-go" style="width:100%;margin-top:10px;display:none" onclick="runVision('palm')">看手相</button>
 <div class="result-panel" id="palm-panel" style="margin-top:16px"><div class="result-mama" id="palm-out" style="border-top:none;margin-top:0;padding-top:0;white-space:pre-wrap;line-height:1.9"></div></div>
 </div>
 <div class="tab-content" id="tab-qian">
@@ -505,7 +509,7 @@ async function genCompat(){const aDate=document.getElementById('compat-a-date').
 
 const visionImage={omen:null,palm:null};
 function readScaledImage(file){return new Promise((resolve,reject)=>{const fr=new FileReader();fr.onload=()=>{const img=new Image();img.onload=()=>{let w=img.width,h=img.height;const max=1024;if(w>max||h>max){if(w>=h){h=Math.round(h*max/w);w=max;}else{w=Math.round(w*max/h);h=max;}}const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);try{resolve(c.toDataURL('image/jpeg',0.85));}catch(e){reject(e);}};img.onerror=reject;img.src=fr.result;};fr.onerror=reject;fr.readAsDataURL(file);});}
-async function onVisionFile(kind,inputEl){const f=inputEl.files&&inputEl.files[0];if(!f)return;try{const url=await readScaledImage(f);visionImage[kind]=url;const prev=document.getElementById(kind==='palm'?'palm-preview':'photo-preview');if(prev){prev.src=url;prev.style.display='block';}}catch(e){showToast('照片讀取失敗,換一張試試');}}
+async function onVisionFile(kind,inputEl){const f=inputEl.files&&inputEl.files[0];if(!f)return;try{const url=await readScaledImage(f);visionImage[kind]=url;const prev=document.getElementById(kind==='palm'?'palm-preview':'photo-preview');if(prev){prev.src=url;prev.style.display='block';}const go=document.getElementById(kind==='palm'?'palm-go':'photo-go');if(go)go.style.display='block';}catch(e){showToast('照片讀取失敗,換一張試試');}}
 async function runVision(kind){const img=visionImage[kind];if(!img){showToast('先拍一張或選一張照片喔');return}const isPalm=kind==='palm';const panel=document.getElementById(isPalm?'palm-panel':'photo-panel'),out=document.getElementById(isPalm?'palm-out':'photo-out');panel.classList.add('show');out.textContent=isPalm?'楊媽媽正在看你的手相…':'楊媽媽正在看這張照片的兆頭…';out.style.opacity='0.6';const payload=attachProfile({image:img,visionKind:kind});try{const r=await fetch(JUDGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await r.json();out.textContent=(data&&(data.judgment||data.report))||'楊媽媽今天訊號有點輕,等等再看一次,放著心。';}catch(e){out.textContent='楊媽媽今天訊號有點輕,等等再看一次,放著心。';}out.style.opacity='1';}
 
 const qianData=[
