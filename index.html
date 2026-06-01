@@ -147,6 +147,9 @@ body{font-family:'Noto Sans TC','Zen Maru Gothic',-apple-system,sans-serif;backg
 .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--cloud-light);padding:12px 24px;border-radius:28px;font-size:13px;font-weight:500;z-index:200;opacity:0;transition:opacity .3s;pointer-events:none;box-shadow:var(--shadow-md)}
 .toast.show{opacity:1}
 @media(min-width:481px){.container{padding:0 24px 40px}.stats{grid-template-columns:repeat(4,1fr)}.add-form{flex-direction:row;flex-wrap:wrap}.add-form select{flex:2}.add-form input{flex:1}}
+#subnav{display:flex;gap:6px;margin:-6px 0 16px;flex-wrap:wrap}
+.subtab{padding:5px 12px;border-radius:14px;border:1px solid var(--sage,#cdd6c5);background:#fff;color:var(--ink-faint,#9a9a8e);font-size:13px;cursor:pointer;font-family:inherit;transition:all .15s}
+.subtab.active{background:var(--sage,#8a9a7b);color:#fff;border-color:var(--sage,#8a9a7b)}
 </style>
 </head>
 <body>
@@ -178,15 +181,12 @@ body{font-family:'Noto Sans TC','Zen Maru Gothic',-apple-system,sans-serif;backg
 <!-- Main content (hidden until login) -->
 <div id="main-content" style="display:none">
 <div class="tab-bar" id="tab-bar">
-<button class="tab active" onclick="switchTab('main',this)">即時通報</button>
-<button class="tab" onclick="switchTab('events',this)">好事壞事</button>
-<button class="tab" onclick="switchTab('history',this)">歷史紀錄</button>
-<button class="tab" onclick="switchTab('askmama',this)">問楊媽媽</button>
-<button class="tab" onclick="switchTab('daily',this)">今日運勢</button>
-<button class="tab" onclick="switchTab('compat',this)">兩人合盤</button>
-<button class="tab" onclick="switchTab('photo',this)">拍照看兆頭</button>
-<button class="tab" onclick="switchTab('palm',this)">手相</button>
+<button class="tab active" data-group="report" onclick="openGroup('report')">通報</button>
+<button class="tab" data-group="mama" onclick="openGroup('mama')">問楊媽媽</button>
+<button class="tab" data-group="vision" onclick="openGroup('vision')">拍照</button>
+<button class="tab" data-group="history" onclick="openGroup('history')">歷史紀錄</button>
 </div>
+<div id="subnav"></div>
 
 <!-- TAB: 即時通報 -->
 <div class="tab-content active" id="tab-main">
@@ -338,6 +338,14 @@ body{font-family:'Noto Sans TC','Zen Maru Gothic',-apple-system,sans-serif;backg
 <button class="btn-report" style="width:100%;margin-top:10px" onclick="runVision('palm')">看手相</button>
 <div class="result-panel" id="palm-panel" style="margin-top:16px"><div class="result-mama" id="palm-out" style="border-top:none;margin-top:0;padding-top:0;white-space:pre-wrap;line-height:1.9"></div></div>
 </div>
+<div class="tab-content" id="tab-qian">
+<div class="section-label">&#x26E9;&#xFE0F; 媽祖籤詩</div>
+<p style="color:var(--text-soft);font-size:14px;margin:0 0 12px;line-height:1.7">心裡默想一件事,跟媽祖求一支籤,楊媽媽幫你解(會參考你的命盤與最近鳥兆)。</p>
+<input type="text" id="qian-q" placeholder="想問的事（可留空）" onkeydown="if(event.key==='Enter')genQian()"/>
+<button class="btn-report" style="width:100%;margin-top:8px" onclick="genQian()">&#x1F38B; 求一支籤</button>
+<div id="qian-card" style="display:none;margin-top:16px;padding:18px 16px;border:1px solid var(--sage,#cdd6c5);border-radius:14px;background:#fbfaf3;text-align:center"></div>
+<div class="result-panel" id="qian-panel" style="margin-top:14px"><div class="result-mama" id="qian-out" style="border-top:none;margin-top:0;padding-top:0;white-space:pre-wrap;line-height:1.9"></div></div>
+</div>
 <!-- end main-content -->
 </div>
 
@@ -483,6 +491,70 @@ function readScaledImage(file){return new Promise((resolve,reject)=>{const fr=ne
 async function onVisionFile(kind,inputEl){const f=inputEl.files&&inputEl.files[0];if(!f)return;try{const url=await readScaledImage(f);visionImage[kind]=url;const prev=document.getElementById(kind==='palm'?'palm-preview':'photo-preview');if(prev){prev.src=url;prev.style.display='block';}}catch(e){showToast('照片讀取失敗,換一張試試');}}
 async function runVision(kind){const img=visionImage[kind];if(!img){showToast('先拍一張或選一張照片喔');return}const isPalm=kind==='palm';const panel=document.getElementById(isPalm?'palm-panel':'photo-panel'),out=document.getElementById(isPalm?'palm-out':'photo-out');panel.classList.add('show');out.textContent=isPalm?'楊媽媽正在看你的手相…':'楊媽媽正在看這張照片的兆頭…';out.style.opacity='0.6';const payload=attachProfile({image:img,visionKind:kind});try{const r=await fetch(JUDGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await r.json();out.textContent=(data&&(data.judgment||data.report))||'楊媽媽今天訊號有點輕,等等再看一次,放著心。';}catch(e){out.textContent='楊媽媽今天訊號有點輕,等等再看一次,放著心。';}out.style.opacity='1';}
 
+const qianData=[
+{no:1,gz:"甲子",poem:"日出便見風雲散，光明清淨照世間，一向前途通大道，萬事清吉保平安"},
+{no:2,gz:"甲寅",poem:"於今此景正當時，看看欲吐百花魁，若能遇得春色到，一洒清吉脫塵埃"},
+{no:3,gz:"甲辰",poem:"勸君把定心莫虛，天註衣祿自有餘，和合重重常吉慶，時來終遇得明珠"},
+{no:4,gz:"甲午",poem:"風恬浪靜可行舟，恰是中秋月一輪，凡事不須多憂慮，福祿自有慶家門"},
+{no:5,gz:"甲申",poem:"只恐前途命有變，勸君作急可宜先，且守長江無大事，命逢太白守身邊"},
+{no:6,gz:"甲戌",poem:"風雲致雨落洋洋，天災時氣必有傷，命內此事難和合，更逢一足出外鄉"},
+{no:7,gz:"乙丑",poem:"雲開月出正分明，不須進退問前程，婚姻皆由天註定，和合清吉萬事成"},
+{no:8,gz:"乙卯",poem:"禾稻看看結成完，此事必定兩相全，回到家中寬心坐，妻兒鼓舞樂團圓"},
+{no:9,gz:"乙巳",poem:"龍虎相隨在深山，君爾何須背後看，不知此去相愛愉，他日與我卻無干"},
+{no:10,gz:"乙未",poem:"花開結子一半枯，可惜今年汝虛度，漸漸日落西山去，勸君不用向前途"},
+{no:11,gz:"乙酉",poem:"靈雞漸漸見分明，凡事且看子丑寅，雲開月出照天下，郎君即便見太平"},
+{no:12,gz:"乙亥",poem:"長江風浪漸漸靜，於今得進可安寧，必有貴人相扶助，凶事脫出見太平"},
+{no:13,gz:"丙子",poem:"命中正逢羅孛關，用盡心機總未休，作福問神難得過，恰是行舟上高灘"},
+{no:14,gz:"丙寅",poem:"財中漸漸見分明，花開花謝結子成，寬心且看月中桂，郎君即便見太平"},
+{no:15,gz:"丙辰",poem:"八十原來是太公，看看晚景遇文王，目下緊事休相問，勸君且守待運通"},
+{no:16,gz:"丙午",poem:"不須作福不須求，用盡心機總未休，陽世不知陰世事，官法如爐不自由"},
+{no:17,gz:"丙申",poem:"舊恨重重未改為，家中禍患不臨身，須當謹防宜作福，龍蛇交會得和合"},
+{no:18,gz:"丙戌",poem:"君問中間此言因，看看祿馬拱前程，若得貴人多得利，和合自有兩分明"},
+{no:19,gz:"丁丑",poem:"富貴由命天註定，心高必然誤君期，不然且回依舊路，雲開月出自分明"},
+{no:20,gz:"丁卯",poem:"前途功名未得意，只恐命內有交加，兩家必定防損失，勸君且退莫咨嗟"},
+{no:21,gz:"丁巳",poem:"十方佛法有靈通，大難禍患不相同，紅日當空常照耀，還有貴人到家堂"},
+{no:22,gz:"丁未",poem:"太公家業八十成，月出光輝四海明，命內自然逢大吉，茅屋中間百事亨"},
+{no:23,gz:"丁酉",poem:"欲去長江水闊茫，前途未遂運未通，如今絲綸常在手，只恐魚水不相逢"},
+{no:24,gz:"丁亥",poem:"月出光輝四海明，前途祿位見太平，浮雲掃退終無事，可保禍患不臨身"},
+{no:25,gz:"戊子",poem:"總是前途莫心勞，求神問聖枉是多，但看雞犬日過後，不須作福事如何"},
+{no:26,gz:"戊寅",poem:"選出牡丹第一枝，勸君折取莫遲疑，世間若問相知處，萬事逢春正及時"},
+{no:27,gz:"戊辰",poem:"君爾寬心且自由，門庭清吉家無憂，財寶自然終吉利，凡事無傷不用求"},
+{no:28,gz:"戊午",poem:"於今莫作此當時，虎落平陽被犬欺，世間凡事何難定，千山萬水也遲疑"},
+{no:29,gz:"戊申",poem:"枯木可惜未逢春，如今反在暗中藏，寬心且守風霜退，還君依舊作乾坤"},
+{no:30,gz:"戊戌",poem:"漸漸看此月中和，過後須防未得高，改變顏色前途去，凡事必定見重勞"},
+{no:31,gz:"己丑",poem:"綠柳蒼蒼正當時，任君此去作乾坤，花果結實無殘謝，福祿自有慶家門"},
+{no:32,gz:"己卯",poem:"龍虎相交在門前，此事必定兩相連，黃金忽然變成鐵，何用作福問神仙"},
+{no:33,gz:"己巳",poem:"欲去長江水闊茫，行舟把定未遭風，戶內用心再作福，看看魚水得相逢"},
+{no:34,gz:"己未",poem:"危險高山行過盡，莫嫌此路有重重，若見蘭桂漸漸發，長蛇反轉變成龍"},
+{no:35,gz:"己酉",poem:"此事何須用心機，前途變怪自然知，看看此去得和合，漸漸脫出見太平"},
+{no:36,gz:"己亥",poem:"福如東海壽如山，君爾何須嘆苦難，命內自然逢大吉，祈保分明自平安"},
+{no:37,gz:"庚子",poem:"運逢得意身顯變，君爾身中皆有益，一向前途無難事，決意之中保清吉"},
+{no:38,gz:"庚寅",poem:"名顯有意在中央，不須祈禱心自安，看看早晚日過後，即時得意在其間"},
+{no:39,gz:"庚辰",poem:"意中若問神仙路，勸爾且退望高樓，寬心且守寬心坐，必然遇得貴人扶"},
+{no:40,gz:"庚午",poem:"平生富貴成祿位，君家門戶定光輝，此中必定無損失，夫妻百歲喜相隨"},
+{no:41,gz:"庚申",poem:"今行到此實難推，歌歌暢飲自徘徊，雞犬相聞消息近，婚姻夙世結成雙"},
+{no:42,gz:"庚戌",poem:"一重江水一重山，誰知此去路又難，任他改求終不過，是非終久未得安"},
+{no:43,gz:"辛丑",poem:"一年作事急如飛，君爾寬心莫遲疑，貴人還在千里外，音信月中漸漸知"},
+{no:44,gz:"辛卯",poem:"客到前途多得利，君爾何故兩相疑，雖是中間逢進退，月出光輝得運時"},
+{no:45,gz:"辛巳",poem:"花開今已結成果，富貴榮華終到老，君子小人相會合，萬事清吉莫煩惱"},
+{no:46,gz:"辛未",poem:"功名得意與君顯，前途富貴喜安然，若遇一輪明月照，十五團圓光滿天"},
+{no:47,gz:"辛酉",poem:"君爾何須問聖跡，自己心中皆有益，於今且看月中旬，凶事脫出化成吉"},
+{no:48,gz:"辛亥",poem:"陽世作事未和同，雲遮月色正朦朧，心中意欲前途去，只恐命內運未通"},
+{no:49,gz:"壬子",poem:"言語雖多不可從，風雲靜處未行龍，暗中終得明消息，君爾何須問重重"},
+{no:50,gz:"壬寅",poem:"佛前發誓無異心，且看前途得好音，此物原來本是鐵，也能變化得成金"},
+{no:51,gz:"壬辰",poem:"東西南北不堪行，前途此事正可當，勸君把定莫煩惱，家門自有保安康"},
+{no:52,gz:"壬午",poem:"功名事業本由天，不須掛念意懸懸，若問中間遲與速，風雲際會在眼前"},
+{no:53,gz:"壬申",poem:"看君來問心中事，積善之家慶有餘，運亨財子雙雙至，指日喜氣溢門閭"},
+{no:54,gz:"壬戌",poem:"孤燈寂寂夜沉沉，萬事清吉萬事成，若逢陰中有善果，燒得好香達神明"},
+{no:55,gz:"癸丑",poem:"須知進退總言虛，看看發暗未必全，珠玉深藏還未變，心中但得枉徒然"},
+{no:56,gz:"癸卯",poem:"病中若得苦心勞，到底完全總未遭，去後不須回頭問，心中事務盡消磨"},
+{no:57,gz:"癸巳",poem:"勸君把定心莫虛，前途清吉得運時，到底中間無大事，又遇神仙守安居"},
+{no:58,gz:"癸未",poem:"蛇身意欲變成龍，只恐命內運未通，久病且作寬心坐，言語雖多不可從"},
+{no:59,gz:"癸酉",poem:"有心作福莫遲疑，求名清吉正當時，此事必能成會合，財寶自然喜相隨"},
+{no:60,gz:"癸亥",poem:"月出光輝本清吉，浮雲總是蔽陰色，戶內用心再作福，當官分理便有益"}
+];
+function genQian(){const q=qianData[Math.floor(Math.random()*qianData.length)];const card=document.getElementById('qian-card');if(card){card.style.display='block';card.innerHTML='<div style="font-weight:700;color:var(--sage,#6f7f60);margin-bottom:10px;letter-spacing:1px">第 '+q.no+' 首　'+q.gz+'</div><div style="font-size:17px;line-height:2.1;color:var(--ink,#3a3a32);letter-spacing:1px">'+q.poem.split(/，|。/).filter(Boolean).join('<br>')+'</div>';}const panel=document.getElementById('qian-panel'),out=document.getElementById('qian-out');panel.classList.add('show');out.textContent='楊媽媽正在替你解籤…';out.style.opacity='0.6';const question=(document.getElementById('qian-q').value||'').trim();const recentBirds=allSightings.slice(-5).reverse().map(s=>birdData[s.bird]?birdData[s.bird].name:'').filter(Boolean);const payload=attachProfile({qian:{no:q.no,gz:q.gz,poem:q.poem},recent_birds:recentBirds,recent_events:mamaRecentEvents()});if(question)payload.question=question;fetch(JUDGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).then(r=>r.json()).then(data=>{out.textContent=(data&&(data.judgment||data.report))||'楊媽媽今天訊號有點輕,等等再求一支,放著心。';out.style.opacity='1';}).catch(()=>{out.textContent='楊媽媽今天訊號有點輕,等等再求一支,放著心。';out.style.opacity='1';});}
+
 async function addSighting(){if(!currentUser)return;const sel=document.getElementById('bird-select'),ni=document.getElementById('note-input'),key=sel.value;if(!key){showToast('\u8ACB\u5148\u9078\u64C7\u9CE5\u7A2E\uFF01');return}const now=new Date(),time=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');const entry={id:Date.now().toString(),bird:key,date:getToday(),time:time,note:ni.value.trim(),loc:currentLoc,ts:now.toISOString(),userId:currentUser.uid};allSightings.push(entry);const bird=birdData[key];const svgC=document.getElementById('result-svg');svgC.innerHTML=birdSVG[key]||'<div class="emoji-fallback">'+bird.emoji+'</div>';document.getElementById('result-title').textContent=bird.name+'\uFF08'+bird.rank+'\u7D1A\uFF09';document.getElementById('result-desc').textContent=bird.desc;document.getElementById('result-lore').textContent=bird.lore;document.getElementById('result-panel').classList.add('show');fetchMamaJudgment(entry,bird);sel.value='';ni.value='';showToast(bird.emoji+' '+bird.name+' \u5DF2\u901A\u5831\uFF01');renderAll();try{const ref=await addDoc(collection(db,'sightings'),entry);entry.fireId=ref.id;updateSyncStatus('ok','\u5DF2\u540C\u6B65')}catch(e){updateSyncStatus('err','\u96E2\u7DDA')}}
 
 async function deleteSighting(id){if(!confirm('\u78BA\u5B9A\u8981\u522A\u9664\uFF1F'))return;const entry=allSightings.find(s=>s.id===id);allSightings=allSightings.filter(s=>s.id!==id);renderAll();showToast('\u5DF2\u522A\u9664');try{if(entry?.fireId)await deleteDoc(doc(db,'sightings',entry.fireId));localStorage.setItem('bird-report-v5',JSON.stringify(allSightings));updateSyncStatus('ok','\u5DF2\u540C\u6B65')}catch(e){localStorage.setItem('bird-report-v5',JSON.stringify(allSightings))}}
@@ -553,7 +625,12 @@ function initEvents(){const sel=document.getElementById('event-type');if(!sel||s
 
 function showBirdDetail(key){const b=birdData[key];const svgC=document.getElementById('result-svg');svgC.innerHTML=birdSVG[key]||'<div class="emoji-fallback">'+b.emoji+'</div>';document.getElementById('result-title').textContent=b.name+'\uFF08'+b.rank+'\u7D1A\uFF09';document.getElementById('result-desc').textContent=b.desc;document.getElementById('result-lore').textContent=b.lore;document.getElementById('result-mama').textContent=b.mama;document.getElementById('result-panel').classList.add('show');switchTab('main',document.querySelector('.tab'));window.scrollTo({top:0,behavior:'smooth'})}
 
-function switchTab(name,el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));document.getElementById('tab-'+name).classList.add('active');if(el)el.classList.add('active')}
+const GROUPS={report:['main','events'],mama:['askmama','daily','compat','qian'],vision:['photo','palm'],history:['history']};
+const SUBLABELS={main:'\u{1F426} 鳥兆',events:'\u2728 好事壞事',askmama:'\u{1F52E} 問事',daily:'\u{1F305} 今日運勢',compat:'\u{1F49E} 兩人合盤',qian:'\u26E9\uFE0F 抽籤',photo:'\u{1F4F8} 看兆頭',palm:'\u{1F590}\uFE0F 手相',history:'歷史'};
+function groupOf(sub){return Object.keys(GROUPS).find(g=>GROUPS[g].indexOf(sub)>=0)||'report';}
+function openGroup(group){document.querySelectorAll('.tab-bar > .tab').forEach(t=>t.classList.toggle('active',t.dataset.group===group));const subs=GROUPS[group]||['main'];const subnav=document.getElementById('subnav');if(subnav){if(subs.length>1){subnav.style.display='flex';subnav.innerHTML=subs.map((s,i)=>'<button class="subtab'+(i===0?' active':'')+'" data-sub="'+s+'" onclick="showSub(\''+s+'\')">'+SUBLABELS[s]+'</button>').join('');}else{subnav.style.display='none';subnav.innerHTML='';}}showSub(subs[0]);}
+function showSub(name){document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));const p=document.getElementById('tab-'+name);if(p)p.classList.add('active');document.querySelectorAll('#subnav .subtab').forEach(b=>b.classList.toggle('active',b.dataset.sub===name));window.scrollTo({top:0,behavior:'smooth'});}
+function switchTab(name,el){openGroup(groupOf(name));showSub(name);}
 
 function filterBirdSelect(){
   const q=document.getElementById('bird-search').value.trim().toLowerCase();
@@ -583,8 +660,8 @@ window.filterBirdSelect=filterBirdSelect;
 
 // 通報後清空搜尋框
 const _origAddSighting2=window.addSighting;
-window.addSighting=addSighting;window.deleteSighting=deleteSighting;window.clearToday=clearToday;window.clearAll=clearAll;window.verifyDay=verifyDay;window.showBirdDetail=showBirdDetail;window.switchTab=switchTab;window.askMama=askMama;window.genReport=genReport;window.setLoc=setLoc;window.addGoodNews=addGoodNews;window.deleteGoodNews=deleteGoodNews;window.addBadNews=addBadNews;window.deleteBadNews=deleteBadNews;window.handleAuth=handleAuth;window.addEvent=addEvent;window.genDaily=genDaily;window.genCompat=genCompat;window.onVisionFile=onVisionFile;window.runVision=runVision;
-initMingli();initEvents();
+window.addSighting=addSighting;window.deleteSighting=deleteSighting;window.clearToday=clearToday;window.clearAll=clearAll;window.verifyDay=verifyDay;window.showBirdDetail=showBirdDetail;window.switchTab=switchTab;window.askMama=askMama;window.genReport=genReport;window.setLoc=setLoc;window.addGoodNews=addGoodNews;window.deleteGoodNews=deleteGoodNews;window.addBadNews=addBadNews;window.deleteBadNews=deleteBadNews;window.handleAuth=handleAuth;window.addEvent=addEvent;window.genDaily=genDaily;window.genCompat=genCompat;window.onVisionFile=onVisionFile;window.runVision=runVision;window.openGroup=openGroup;window.showSub=showSub;window.genQian=genQian;
+initMingli();initEvents();openGroup('report');
 
 document.getElementById('mama-daily').textContent=quotes[Math.floor(Math.random()*quotes.length)];
 document.getElementById('status-text').textContent='\u7B49\u5F85\u767B\u5165...';
