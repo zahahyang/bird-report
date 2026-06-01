@@ -182,6 +182,7 @@ body{font-family:'Noto Sans TC','Zen Maru Gothic',-apple-system,sans-serif;backg
 <button class="tab" onclick="switchTab('goodnews',this)">好事通報</button>
 <button class="tab" onclick="switchTab('badnews',this)">倒霉通報</button>
 <button class="tab" onclick="switchTab('history',this)">歷史紀錄</button>
+<button class="tab" onclick="switchTab('askmama',this)">問楊媽媽</button>
 </div>
 
 <!-- TAB: 即時通報 -->
@@ -296,6 +297,19 @@ body{font-family:'Noto Sans TC','Zen Maru Gothic',-apple-system,sans-serif;backg
 <div class="tab-content" id="tab-history">
 <div class="section-label"><span>歷史情報紀錄</span><button class="clear-btn" onclick="clearAll()">清除全部</button></div>
 <div id="history-log"></div>
+</div>
+<div class="tab-content" id="tab-askmama">
+<div class="section-label"><span>&#x1F52E; 問楊媽媽</span></div>
+<p style="color:var(--text-soft);font-size:14px;margin:0 0 12px;line-height:1.7">心裡有事就問問楊媽媽吧。她會看看你最近的鳥兆，再給你一句話。</p>
+<div class="add-form">
+<div class="add-row" style="width:100%">
+<input type="text" id="askmama-input" placeholder="例：這週適合投履歷嗎？" onkeydown="if(event.key==='Enter')askMama()"/>
+<button class="btn-report" onclick="askMama()">問楊媽媽</button>
+</div>
+</div>
+<div class="result-panel" id="askmama-panel" style="margin-top:16px">
+<div class="result-mama" id="askmama-answer" style="border-top:none;margin-top:0;padding-top:0"></div>
+</div>
 </div>
 <!-- end main-content -->
 </div>
@@ -419,6 +433,8 @@ function mamaWeekday(ds){const days=['Sunday','Monday','Tuesday','Wednesday','Th
 function mamaRecentEvents(){const all=[...goodNews,...badNews].slice().sort((a,b)=>(b.ts||'').localeCompare(a.ts||'')).slice(0,3);return all.map(e=>{const label=(goodNewsTypes[e.type]||badNewsTypes[e.type]||{}).label||'';const d=e.date?e.date.slice(5).replace('-','/'):'';return (d+' '+label+(e.note?'：'+e.note:'')).trim();}).filter(Boolean);}
 async function fetchMamaJudgment(entry,bird){const el=document.getElementById('result-mama');el.textContent='楊媽媽正在掐指一算…';el.style.opacity='0.6';const payload={sighting:{creature:bird.name,tier:bird.rank,behavior:'',time_of_day:mamaTimeOfDay(entry.time),direction:'',count:1,location:entry.loc||'',weekday:mamaWeekday(entry.date),date:entry.date,note:entry.note||''},recent_events:mamaRecentEvents()};try{const r=await fetch(JUDGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await r.json();el.textContent=(data&&data.judgment)?data.judgment:bird.mama;}catch(e){el.textContent=bird.mama;}el.style.opacity='1';}
 
+async function askMama(){const inp=document.getElementById('askmama-input');const q=inp.value.trim();if(!q){showToast('先打一個想問的問題吧');return}const panel=document.getElementById('askmama-panel'),ans=document.getElementById('askmama-answer');panel.classList.add('show');ans.textContent='\u694a\u5abd\u5abd\u6b63\u5728\u6390\u6307\u4e00\u7b97\u2026';ans.style.opacity='0.6';const recentBirds=allSightings.slice(-5).reverse().map(s=>birdData[s.bird]?birdData[s.bird].name:'').filter(Boolean);const payload={question:q,recent_events:mamaRecentEvents(),recent_birds:recentBirds};try{const r=await fetch(JUDGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await r.json();ans.textContent=(data&&data.judgment)?data.judgment:'\u694a\u5abd\u5abd\u4eca\u5929\u8a0a\u865f\u6709\u9ede\u8f15\uff0c\u7b49\u7b49\u518d\u554f\u4e00\u6b21\uff0c\u653e\u8457\u5fc3\u3002';}catch(e){ans.textContent='\u694a\u5abd\u5abd\u4eca\u5929\u8a0a\u865f\u6709\u9ede\u8f15\uff0c\u7b49\u7b49\u518d\u554f\u4e00\u6b21\uff0c\u653e\u8457\u5fc3\u3002';}ans.style.opacity='1';}
+
 async function addSighting(){if(!currentUser)return;const sel=document.getElementById('bird-select'),ni=document.getElementById('note-input'),key=sel.value;if(!key){showToast('\u8ACB\u5148\u9078\u64C7\u9CE5\u7A2E\uFF01');return}const now=new Date(),time=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');const entry={id:Date.now().toString(),bird:key,date:getToday(),time:time,note:ni.value.trim(),loc:currentLoc,ts:now.toISOString(),userId:currentUser.uid};allSightings.push(entry);const bird=birdData[key];const svgC=document.getElementById('result-svg');svgC.innerHTML=birdSVG[key]||'<div class="emoji-fallback">'+bird.emoji+'</div>';document.getElementById('result-title').textContent=bird.name+'\uFF08'+bird.rank+'\u7D1A\uFF09';document.getElementById('result-desc').textContent=bird.desc;document.getElementById('result-lore').textContent=bird.lore;document.getElementById('result-panel').classList.add('show');fetchMamaJudgment(entry,bird);sel.value='';ni.value='';showToast(bird.emoji+' '+bird.name+' \u5DF2\u901A\u5831\uFF01');renderAll();try{const ref=await addDoc(collection(db,'sightings'),entry);entry.fireId=ref.id;updateSyncStatus('ok','\u5DF2\u540C\u6B65')}catch(e){updateSyncStatus('err','\u96E2\u7DDA')}}
 
 async function deleteSighting(id){if(!confirm('\u78BA\u5B9A\u8981\u522A\u9664\uFF1F'))return;const entry=allSightings.find(s=>s.id===id);allSightings=allSightings.filter(s=>s.id!==id);renderAll();showToast('\u5DF2\u522A\u9664');try{if(entry?.fireId)await deleteDoc(doc(db,'sightings',entry.fireId));localStorage.setItem('bird-report-v5',JSON.stringify(allSightings));updateSyncStatus('ok','\u5DF2\u540C\u6B65')}catch(e){localStorage.setItem('bird-report-v5',JSON.stringify(allSightings))}}
@@ -511,7 +527,7 @@ window.filterBirdSelect=filterBirdSelect;
 
 // 通報後清空搜尋框
 const _origAddSighting2=window.addSighting;
-window.addSighting=addSighting;window.deleteSighting=deleteSighting;window.clearToday=clearToday;window.clearAll=clearAll;window.verifyDay=verifyDay;window.showBirdDetail=showBirdDetail;window.switchTab=switchTab;window.setLoc=setLoc;window.addGoodNews=addGoodNews;window.deleteGoodNews=deleteGoodNews;window.addBadNews=addBadNews;window.deleteBadNews=deleteBadNews;window.handleAuth=handleAuth;
+window.addSighting=addSighting;window.deleteSighting=deleteSighting;window.clearToday=clearToday;window.clearAll=clearAll;window.verifyDay=verifyDay;window.showBirdDetail=showBirdDetail;window.switchTab=switchTab;window.askMama=askMama;window.setLoc=setLoc;window.addGoodNews=addGoodNews;window.deleteGoodNews=deleteGoodNews;window.addBadNews=addBadNews;window.deleteBadNews=deleteBadNews;window.handleAuth=handleAuth;
 
 document.getElementById('mama-daily').textContent=quotes[Math.floor(Math.random()*quotes.length)];
 document.getElementById('status-text').textContent='\u7B49\u5F85\u767B\u5165...';
