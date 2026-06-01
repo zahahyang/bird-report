@@ -184,6 +184,8 @@ body{font-family:'Noto Sans TC','Zen Maru Gothic',-apple-system,sans-serif;backg
 <button class="tab" onclick="switchTab('askmama',this)">問楊媽媽</button>
 <button class="tab" onclick="switchTab('daily',this)">今日運勢</button>
 <button class="tab" onclick="switchTab('compat',this)">兩人合盤</button>
+<button class="tab" onclick="switchTab('photo',this)">拍照看兆頭</button>
+<button class="tab" onclick="switchTab('palm',this)">手相</button>
 </div>
 
 <!-- TAB: 即時通報 -->
@@ -315,6 +317,26 @@ body{font-family:'Noto Sans TC','Zen Maru Gothic',-apple-system,sans-serif;backg
 <div class="result-panel" id="compat-panel" style="margin-top:16px">
 <div class="result-mama" id="compat-out" style="border-top:none;margin-top:0;padding-top:0;white-space:pre-wrap;line-height:1.9"></div>
 </div>
+</div>
+<div class="tab-content" id="tab-photo">
+<div class="section-label">&#x1F4F8; 拍照看兆頭</div>
+<p style="color:var(--text-soft);font-size:14px;margin:0 0 12px;line-height:1.7">拍張照(雲、貓、彩虹、街角…什麼都行),楊媽媽看這張照片今天帶來的氛圍與兆頭。</p>
+<label class="btn-report" style="display:block;text-align:center;cursor:pointer">&#x1F4F7; 拍照 / 選照片
+<input type="file" accept="image/*" capture="environment" id="photo-file" style="display:none" onchange="onVisionFile('omen',this)"/>
+</label>
+<img id="photo-preview" style="display:none;width:100%;max-height:280px;object-fit:contain;border-radius:12px;margin-top:12px"/>
+<button class="btn-report" style="width:100%;margin-top:10px" onclick="runVision('omen')">看兆頭</button>
+<div class="result-panel" id="photo-panel" style="margin-top:16px"><div class="result-mama" id="photo-out" style="border-top:none;margin-top:0;padding-top:0;white-space:pre-wrap;line-height:1.9"></div></div>
+</div>
+<div class="tab-content" id="tab-palm">
+<div class="section-label">&#x1F590;&#xFE0F; 手相</div>
+<p style="color:var(--text-soft);font-size:14px;margin:0 0 12px;line-height:1.7">拍一張你的手掌(攤開、光線清楚),楊媽媽幫你看手相。設過生日的話,會一起參考你的命盤。</p>
+<label class="btn-report" style="display:block;text-align:center;cursor:pointer">&#x1F590;&#xFE0F; 拍手掌 / 選照片
+<input type="file" accept="image/*" capture="environment" id="palm-file" style="display:none" onchange="onVisionFile('palm',this)"/>
+</label>
+<img id="palm-preview" style="display:none;width:100%;max-height:280px;object-fit:contain;border-radius:12px;margin-top:12px"/>
+<button class="btn-report" style="width:100%;margin-top:10px" onclick="runVision('palm')">看手相</button>
+<div class="result-panel" id="palm-panel" style="margin-top:16px"><div class="result-mama" id="palm-out" style="border-top:none;margin-top:0;padding-top:0;white-space:pre-wrap;line-height:1.9"></div></div>
 </div>
 <!-- end main-content -->
 </div>
@@ -456,6 +478,11 @@ async function genDaily(){const panel=document.getElementById('daily-panel'),out
 
 async function genCompat(){const aDate=document.getElementById('compat-a-date').value,aGender=document.getElementById('compat-a-gender').value,bDate=document.getElementById('compat-b-date').value,bGender=document.getElementById('compat-b-gender').value,bName=document.getElementById('compat-b-name').value.trim();if(!aDate||!bDate){showToast('兩個人的生日都要填喔');return}const panel=document.getElementById('compat-panel'),out=document.getElementById('compat-out');panel.classList.add('show');out.textContent='楊媽媽正在合你們的盤…';out.style.opacity='0.6';const payload={personA:{birthday:aDate,gender:aGender,name:(currentUser&&currentUser.displayName)||'你'},personB:{birthday:bDate,gender:bGender,name:bName||'對方'}};try{const r=await fetch(JUDGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await r.json();out.textContent=(data&&(data.report||data.judgment))||'楊媽媽今天訊號有點輕,等等再合一次,放著心。';}catch(e){out.textContent='楊媽媽今天訊號有點輕,等等再合一次,放著心。';}out.style.opacity='1';}
 
+const visionImage={omen:null,palm:null};
+function readScaledImage(file){return new Promise((resolve,reject)=>{const fr=new FileReader();fr.onload=()=>{const img=new Image();img.onload=()=>{let w=img.width,h=img.height;const max=1024;if(w>max||h>max){if(w>=h){h=Math.round(h*max/w);w=max;}else{w=Math.round(w*max/h);h=max;}}const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);try{resolve(c.toDataURL('image/jpeg',0.85));}catch(e){reject(e);}};img.onerror=reject;img.src=fr.result;};fr.onerror=reject;fr.readAsDataURL(file);});}
+async function onVisionFile(kind,inputEl){const f=inputEl.files&&inputEl.files[0];if(!f)return;try{const url=await readScaledImage(f);visionImage[kind]=url;const prev=document.getElementById(kind==='palm'?'palm-preview':'photo-preview');if(prev){prev.src=url;prev.style.display='block';}}catch(e){showToast('照片讀取失敗,換一張試試');}}
+async function runVision(kind){const img=visionImage[kind];if(!img){showToast('先拍一張或選一張照片喔');return}const isPalm=kind==='palm';const panel=document.getElementById(isPalm?'palm-panel':'photo-panel'),out=document.getElementById(isPalm?'palm-out':'photo-out');panel.classList.add('show');out.textContent=isPalm?'楊媽媽正在看你的手相…':'楊媽媽正在看這張照片的兆頭…';out.style.opacity='0.6';const payload=attachProfile({image:img,visionKind:kind});try{const r=await fetch(JUDGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await r.json();out.textContent=(data&&(data.judgment||data.report))||'楊媽媽今天訊號有點輕,等等再看一次,放著心。';}catch(e){out.textContent='楊媽媽今天訊號有點輕,等等再看一次,放著心。';}out.style.opacity='1';}
+
 async function addSighting(){if(!currentUser)return;const sel=document.getElementById('bird-select'),ni=document.getElementById('note-input'),key=sel.value;if(!key){showToast('\u8ACB\u5148\u9078\u64C7\u9CE5\u7A2E\uFF01');return}const now=new Date(),time=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');const entry={id:Date.now().toString(),bird:key,date:getToday(),time:time,note:ni.value.trim(),loc:currentLoc,ts:now.toISOString(),userId:currentUser.uid};allSightings.push(entry);const bird=birdData[key];const svgC=document.getElementById('result-svg');svgC.innerHTML=birdSVG[key]||'<div class="emoji-fallback">'+bird.emoji+'</div>';document.getElementById('result-title').textContent=bird.name+'\uFF08'+bird.rank+'\u7D1A\uFF09';document.getElementById('result-desc').textContent=bird.desc;document.getElementById('result-lore').textContent=bird.lore;document.getElementById('result-panel').classList.add('show');fetchMamaJudgment(entry,bird);sel.value='';ni.value='';showToast(bird.emoji+' '+bird.name+' \u5DF2\u901A\u5831\uFF01');renderAll();try{const ref=await addDoc(collection(db,'sightings'),entry);entry.fireId=ref.id;updateSyncStatus('ok','\u5DF2\u540C\u6B65')}catch(e){updateSyncStatus('err','\u96E2\u7DDA')}}
 
 async function deleteSighting(id){if(!confirm('\u78BA\u5B9A\u8981\u522A\u9664\uFF1F'))return;const entry=allSightings.find(s=>s.id===id);allSightings=allSightings.filter(s=>s.id!==id);renderAll();showToast('\u5DF2\u522A\u9664');try{if(entry?.fireId)await deleteDoc(doc(db,'sightings',entry.fireId));localStorage.setItem('bird-report-v5',JSON.stringify(allSightings));updateSyncStatus('ok','\u5DF2\u540C\u6B65')}catch(e){localStorage.setItem('bird-report-v5',JSON.stringify(allSightings))}}
@@ -556,7 +583,7 @@ window.filterBirdSelect=filterBirdSelect;
 
 // 通報後清空搜尋框
 const _origAddSighting2=window.addSighting;
-window.addSighting=addSighting;window.deleteSighting=deleteSighting;window.clearToday=clearToday;window.clearAll=clearAll;window.verifyDay=verifyDay;window.showBirdDetail=showBirdDetail;window.switchTab=switchTab;window.askMama=askMama;window.genReport=genReport;window.setLoc=setLoc;window.addGoodNews=addGoodNews;window.deleteGoodNews=deleteGoodNews;window.addBadNews=addBadNews;window.deleteBadNews=deleteBadNews;window.handleAuth=handleAuth;window.addEvent=addEvent;window.genDaily=genDaily;window.genCompat=genCompat;
+window.addSighting=addSighting;window.deleteSighting=deleteSighting;window.clearToday=clearToday;window.clearAll=clearAll;window.verifyDay=verifyDay;window.showBirdDetail=showBirdDetail;window.switchTab=switchTab;window.askMama=askMama;window.genReport=genReport;window.setLoc=setLoc;window.addGoodNews=addGoodNews;window.deleteGoodNews=deleteGoodNews;window.addBadNews=addBadNews;window.deleteBadNews=deleteBadNews;window.handleAuth=handleAuth;window.addEvent=addEvent;window.genDaily=genDaily;window.genCompat=genCompat;window.onVisionFile=onVisionFile;window.runVision=runVision;
 initMingli();initEvents();
 
 document.getElementById('mama-daily').textContent=quotes[Math.floor(Math.random()*quotes.length)];
