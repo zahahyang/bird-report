@@ -194,6 +194,11 @@ body{font-family:'Noto Sans TC','Zen Maru Gothic',-apple-system,sans-serif;backg
 
 <!-- TAB: 即時通報 -->
 <div class="tab-content active" id="tab-main">
+<div id="about-card" style="position:relative;background:var(--sage-light);border:1px solid var(--warm-200);border-radius:14px;padding:16px 18px;margin-bottom:20px">
+<button onclick="dismissAbout()" aria-label="關閉" style="position:absolute;top:8px;right:12px;border:none;background:none;font-size:18px;color:var(--ink-faint);cursor:pointer;line-height:1;font-family:inherit">&times;</button>
+<div style="font-weight:700;color:var(--sage-dark);margin-bottom:8px">&#x1F52E; 關於本所</div>
+<p style="margin:0;font-size:14px;color:var(--text);line-height:1.9">歡迎光臨「楊媽媽通靈研究所 × 宇宙情報局」。<br>天上飛的鳥、停在欄杆的蝶,其實都是宇宙派來的「飛行信使」,替你捎今天的兆頭。把看到的鳥通報進來,楊媽媽就替你掐指一算,讀牠帶來的好消息、算你最旺的時辰。<br>本所偏心報好事:好的替你放大,壞的溫柔接住。準的啦,放著心。</p>
+</div>
 <div class="section-label">通報新目擊</div>
 <div class="add-form">
 <input type="text" id="bird-search" placeholder="🔍 搜尋鳥種名稱..." oninput="filterBirdSelect()" autocomplete="off"/>
@@ -411,6 +416,7 @@ function formatDate(ds){const p=ds.split('-');return p[0]+'/'+p[1]+'/'+p[2]}
 function getTodaySightings(){return allSightings.filter(s=>s.date===getToday())}
 function calcFortune(arr){if(!arr.length)return 0;let t=0;arr.forEach(s=>{t+=(birdData[s.bird]?birdData[s.bird].fortune:0)});return Math.round(t/arr.length)}
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000)}
+function dismissAbout(){const c=document.getElementById('about-card');if(c)c.style.display='none';try{localStorage.setItem('about-dismissed','1');}catch(e){}}
 function updateSyncStatus(type,msg){const el=document.getElementById('sync-status');el.textContent='\u2601\uFE0F '+msg;el.className='sync-status '+type}
 
 // Auth
@@ -686,6 +692,8 @@ window.filterBirdSelect=filterBirdSelect;
 const _origAddSighting2=window.addSighting;
 window.addSighting=addSighting;window.deleteSighting=deleteSighting;window.clearToday=clearToday;window.clearAll=clearAll;window.verifyDay=verifyDay;window.showBirdDetail=showBirdDetail;window.switchTab=switchTab;window.askMama=askMama;window.genReport=genReport;window.setLoc=setLoc;window.addGoodNews=addGoodNews;window.deleteGoodNews=deleteGoodNews;window.addBadNews=addBadNews;window.deleteBadNews=deleteBadNews;window.handleAuth=handleAuth;window.addEvent=addEvent;window.genDaily=genDaily;window.genCompat=genCompat;window.onVisionFile=onVisionFile;window.runVision=runVision;window.openGroup=openGroup;window.showSub=showSub;window.genQian=genQian;window.copyChart=copyChart;window.enterGuest=enterGuest;
 initMingli();initEvents();openGroup('report');
+try{if(localStorage.getItem('about-dismissed')==='1'){const c=document.getElementById('about-card');if(c)c.style.display='none';}}catch(e){}
+window.dismissAbout=dismissAbout;
 if(location.hash.indexOf('dev')>=0||location.hash.indexOf('guest')>=0)enterGuest();
 
 document.getElementById('mama-daily').textContent=quotes[Math.floor(Math.random()*quotes.length)];
