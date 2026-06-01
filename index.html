@@ -179,6 +179,7 @@ body{font-family:'Noto Sans TC','Zen Maru Gothic',-apple-system,sans-serif;backg
 <button onclick="handleAuth()" style="display:flex;align-items:center;justify-content:center;gap:10px;width:260px;height:48px;border:1.5px solid var(--warm-200);border-radius:10px;background:var(--card-bg);font-size:14px;font-weight:500;font-family:inherit;color:var(--text);cursor:pointer;margin:0 auto">
 <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width:20px;height:20px" alt="G"> 使用 Google 帳號登入
 </button>
+<div style="margin-top:14px"><button onclick="enterGuest()" style="width:260px;height:44px;border:1.5px solid var(--warm-200);border-radius:10px;background:transparent;font-size:13px;font-weight:500;font-family:inherit;color:var(--text-secondary);cursor:pointer;margin:0 auto">&#x1F9EA; 開發者：先不登入，直接試用</button></div>
 </div>
 
 <!-- Main content (hidden until login) -->
@@ -413,6 +414,8 @@ function showToast(msg){const t=document.getElementById('toast');t.textContent=m
 function updateSyncStatus(type,msg){const el=document.getElementById('sync-status');el.textContent='\u2601\uFE0F '+msg;el.className='sync-status '+type}
 
 // Auth
+let guestMode=false;
+function enterGuest(){guestMode=true;const p=document.getElementById('login-prompt');const c=document.getElementById('main-content');const st=document.getElementById('status-text');if(p)p.style.display='none';if(c)c.style.display='block';if(st)st.textContent='\u{1F9EA} \u8A2A\u5BA2\u6A21\u5F0F\uFF08\u4E0D\u6703\u96F2\u7AEF\u5132\u5B58\uFF09';try{const x=localStorage.getItem('mingli-profile');if(x&&!myProfile){myProfile=JSON.parse(x);fillMingliForm();}}catch(e){}}
 function handleAuth(){if(currentUser){signOut(auth)}else{signInWithPopup(auth,new GoogleAuthProvider()).catch(()=>showToast('\u767B\u5165\u5931\u6557'))}}
 onAuthStateChanged(auth,user=>{
 currentUser=user;
@@ -428,6 +431,7 @@ if(content)content.style.display='block';
 if(st)st.textContent='\u2601\uFE0F \u5DF2\u767B\u5165';
 loadFromFirebase();
 }else{
+if(guestMode)return;
 if(btn){btn.innerHTML='\u{1F512} \u767B\u5165';btn.classList.remove('logged-in');}
 if(prompt)prompt.style.display='block';
 if(content)content.style.display='none';
@@ -680,8 +684,9 @@ window.filterBirdSelect=filterBirdSelect;
 
 // 通報後清空搜尋框
 const _origAddSighting2=window.addSighting;
-window.addSighting=addSighting;window.deleteSighting=deleteSighting;window.clearToday=clearToday;window.clearAll=clearAll;window.verifyDay=verifyDay;window.showBirdDetail=showBirdDetail;window.switchTab=switchTab;window.askMama=askMama;window.genReport=genReport;window.setLoc=setLoc;window.addGoodNews=addGoodNews;window.deleteGoodNews=deleteGoodNews;window.addBadNews=addBadNews;window.deleteBadNews=deleteBadNews;window.handleAuth=handleAuth;window.addEvent=addEvent;window.genDaily=genDaily;window.genCompat=genCompat;window.onVisionFile=onVisionFile;window.runVision=runVision;window.openGroup=openGroup;window.showSub=showSub;window.genQian=genQian;window.copyChart=copyChart;
+window.addSighting=addSighting;window.deleteSighting=deleteSighting;window.clearToday=clearToday;window.clearAll=clearAll;window.verifyDay=verifyDay;window.showBirdDetail=showBirdDetail;window.switchTab=switchTab;window.askMama=askMama;window.genReport=genReport;window.setLoc=setLoc;window.addGoodNews=addGoodNews;window.deleteGoodNews=deleteGoodNews;window.addBadNews=addBadNews;window.deleteBadNews=deleteBadNews;window.handleAuth=handleAuth;window.addEvent=addEvent;window.genDaily=genDaily;window.genCompat=genCompat;window.onVisionFile=onVisionFile;window.runVision=runVision;window.openGroup=openGroup;window.showSub=showSub;window.genQian=genQian;window.copyChart=copyChart;window.enterGuest=enterGuest;
 initMingli();initEvents();openGroup('report');
+if(location.hash.indexOf('dev')>=0||location.hash.indexOf('guest')>=0)enterGuest();
 
 document.getElementById('mama-daily').textContent=quotes[Math.floor(Math.random()*quotes.length)];
 document.getElementById('status-text').textContent='\u7B49\u5F85\u767B\u5165...';
