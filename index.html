@@ -174,36 +174,37 @@ body{font-family:'Huninn','Noto Sans TC','Zen Maru Gothic',-apple-system,'Segoe 
 <div class="container">
 <div class="header">
 <div class="header-icon">&#x1F99C;</div>
-<h1>鳥類通報系統</h1>
-<p>楊媽媽通靈研究所 x 宇宙情報局</p>
-<div class="ver">v6.0 — 多人版</div>
+<h1 data-i18n="title">鳥類通報系統</h1>
+<p data-i18n="subtitle">楊媽媽通靈研究所 x 宇宙情報局</p>
+<div class="ver" data-i18n="ver">v6.0 — 多人版</div>
+<button class="login-btn" id="lang-btn" onclick="toggleLang()" style="right:auto;left:0">EN</button>
 <button class="login-btn" id="auth-btn" onclick="handleAuth()">
-<span id="auth-text">&#x1F512; 登入</span>
+<span id="auth-text" data-i18n="login">&#x1F512; 登入</span>
 </button>
 </div>
 <div class="status-bar">
 <div class="status-dot"></div>
-<span id="status-text">系統啟動中...</span>
+<span id="status-text" data-i18n="booting">系統啟動中...</span>
 </div>
 
 <!-- Login prompt (shown when not logged in) -->
 <div id="login-prompt" style="text-align:center;padding:60px 16px">
 <div style="font-size:48px;margin-bottom:16px">&#x1F99C;</div>
-<div style="font-size:18px;font-weight:700;margin-bottom:8px">歡迎來到鳥類通報系統</div>
-<div style="font-size:13px;color:var(--ink-lighter);margin-bottom:24px;line-height:1.7">登入 Google 帳號開始記錄你的鳥類運勢</div>
+<div style="font-size:18px;font-weight:700;margin-bottom:8px" data-i18n="welcome">歡迎來到鳥類通報系統</div>
+<div style="font-size:13px;color:var(--ink-lighter);margin-bottom:24px;line-height:1.7" data-i18n="welcomeSub">登入 Google 帳號開始記錄你的鳥類運勢</div>
 <button onclick="handleAuth()" style="display:flex;align-items:center;justify-content:center;gap:10px;width:260px;height:48px;border:none;border-radius:10px;background:var(--sage,#7A9E7E);font-size:14px;font-weight:700;font-family:inherit;color:#fff;cursor:pointer;margin:0 auto;box-shadow:0 2px 8px rgba(122,158,126,.3)">
-<span style="display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#fff"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width:16px;height:16px" alt="G"></span> 使用 Google 帳號登入
+<span style="display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#fff"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width:16px;height:16px" alt="G"></span> <span data-i18n="googleLogin">使用 Google 帳號登入</span>
 </button>
-<div style="margin-top:14px"><button onclick="enterGuest()" style="width:260px;height:44px;border:1.5px solid var(--sage,#7A9E7E);border-radius:10px;background:#fff;font-size:13px;font-weight:700;font-family:inherit;color:var(--sage-dark,#5C7A3A);cursor:pointer;margin:0 auto">&#x1F99C; 訪客模式，立即通報！</button></div>
+<div style="margin-top:14px"><button onclick="enterGuest()" style="width:260px;height:44px;border:1.5px solid var(--sage,#7A9E7E);border-radius:10px;background:#fff;font-size:13px;font-weight:700;font-family:inherit;color:var(--sage-dark,#5C7A3A);cursor:pointer;margin:0 auto" data-i18n="guestBtn">&#x1F99C; 訪客模式，立即通報！</button></div>
 </div>
 
 <!-- Main content (hidden until login) -->
 <div id="main-content" style="display:none">
 <div class="tab-bar" id="tab-bar">
-<button class="tab active" data-group="report" onclick="openGroup('report')">通報</button>
-<button class="tab" data-group="mama" onclick="openGroup('mama')">問楊媽媽</button>
-<button class="tab" data-group="vision" onclick="openGroup('vision')">拍照</button>
-<button class="tab" data-group="history" onclick="openGroup('history')">歷史紀錄</button>
+<button class="tab active" data-group="report" onclick="openGroup('report')" data-i18n="tabReport">通報</button>
+<button class="tab" data-group="mama" onclick="openGroup('mama')" data-i18n="tabMama">問楊媽媽</button>
+<button class="tab" data-group="vision" onclick="openGroup('vision')" data-i18n="tabVision">拍照</button>
+<button class="tab" data-group="history" onclick="openGroup('history')" data-i18n="tabHistory">歷史紀錄</button>
 </div>
 <div id="subnav"></div>
 
@@ -211,10 +212,10 @@ body{font-family:'Huninn','Noto Sans TC','Zen Maru Gothic',-apple-system,'Segoe 
 <div class="tab-content active" id="tab-main">
 <div id="about-card" style="position:relative;background:var(--sage-light);border:1px solid var(--warm-200);border-radius:14px;padding:16px 18px;margin-bottom:20px">
 <button onclick="dismissAbout()" aria-label="關閉" style="position:absolute;top:8px;right:12px;border:none;background:none;font-size:18px;color:var(--ink-faint);cursor:pointer;line-height:1;font-family:inherit">&times;</button>
-<div style="font-weight:700;color:var(--sage-dark);margin-bottom:8px">&#x1F52E; 楊媽媽跟你說</div>
+<div style="font-weight:700;color:var(--sage-dark);margin-bottom:8px" data-i18n="aboutTitle">&#x1F52E; 楊媽媽跟你說</div>
 <p style="margin:0;font-size:14px;color:var(--text);line-height:1.9">來,囝仔,媽媽在這兒等你。<br>天上飛的鳥、停在欄杆的蝶,都不是白白飛的——那是宇宙派來「替你送信」的小信使。你看到哪隻就通報進來,媽媽掐指一算,馬上跟你說今天帶了什麼好消息、哪個時辰你最旺。<br>媽媽偏心,專挑好的跟你講;真遇上不順的,媽媽也輕輕替你接住、不嚇你。<br>放著心,有媽媽在——準的啦。</p>
 </div>
-<div class="section-label">通報新目擊</div>
+<div class="section-label" data-i18n="reportNew">通報新目擊</div>
 <div class="add-form">
 <input type="text" id="bird-search" placeholder="🔍 搜尋鳥種名稱..." oninput="filterBirdSelect()" autocomplete="off"/>
 <div id="bird-search-empty" style="display:none;font-size:12px;color:var(--ink-lighter);text-align:center;padding:8px">找不到匹配，先按等級瀏覽吧 ↓</div>
@@ -222,17 +223,17 @@ body{font-family:'Huninn','Noto Sans TC','Zen Maru Gothic',-apple-system,'Segoe 
 <select id="bird-select">
 <option value="">— 選擇鳥種 —</option>
 </select>
-<button class="btn-report" onclick="addSighting()">通報！</button>
+<button class="btn-report" onclick="addSighting()" data-i18n="reportBtn">通報！</button>
 </div>
 <input type="text" id="note-input" placeholder="備註（選填）"/>
-<div class="section-label" style="margin-bottom:4px;margin-top:4px">目擊地點</div>
+<div class="section-label" style="margin-bottom:4px;margin-top:4px" data-i18n="sightLoc">目擊地點</div>
 <div class="loc-row">
-<button class="loc-btn active" data-loc="陽台" onclick="setLoc(this)">&#x1F3E0; 陽台</button>
-<button class="loc-btn" data-loc="公園" onclick="setLoc(this)">&#x1F333; 公園</button>
-<button class="loc-btn" data-loc="路上" onclick="setLoc(this)">&#x1F6B6; 路上</button>
-<button class="loc-btn" data-loc="河邊" onclick="setLoc(this)">&#x1F30A; 河邊</button>
-<button class="loc-btn" data-loc="屋頂" onclick="setLoc(this)">&#x1F3D7; 屋頂</button>
-<button class="loc-btn" data-loc="其他" onclick="setLoc(this)">&#x1F4CD; 其他</button>
+<button class="loc-btn active" data-loc="陽台" onclick="setLoc(this)" data-i18n="locBalcony">&#x1F3E0; 陽台</button>
+<button class="loc-btn" data-loc="公園" onclick="setLoc(this)" data-i18n="locPark">&#x1F333; 公園</button>
+<button class="loc-btn" data-loc="路上" onclick="setLoc(this)" data-i18n="locStreet">&#x1F6B6; 路上</button>
+<button class="loc-btn" data-loc="河邊" onclick="setLoc(this)" data-i18n="locRiver">&#x1F30A; 河邊</button>
+<button class="loc-btn" data-loc="屋頂" onclick="setLoc(this)" data-i18n="locRoof">&#x1F3D7; 屋頂</button>
+<button class="loc-btn" data-loc="其他" onclick="setLoc(this)" data-i18n="locOther">&#x1F4CD; 其他</button>
 </div>
 </div>
 <div class="result-panel" id="result-panel">
@@ -242,13 +243,13 @@ body{font-family:'Huninn','Noto Sans TC','Zen Maru Gothic',-apple-system,'Segoe 
 <div class="result-lore" id="result-lore"></div>
 <div class="result-mama" id="result-mama"></div>
 </div>
-<div class="section-label"><span>今日情報</span><button class="clear-btn" onclick="clearToday()">清除今日</button></div>
+<div class="section-label"><span data-i18n="todayIntel">今日情報</span><button class="clear-btn" onclick="clearToday()" data-i18n="clearToday">清除今日</button></div>
 <div id="today-log"></div>
 <div class="stats">
-<div class="stat-card"><div class="stat-label">今日目擊</div><div class="stat-value" id="stat-today">0</div></div>
-<div class="stat-card"><div class="stat-label">累計目擊</div><div class="stat-value" id="stat-total">0</div></div>
-<div class="stat-card"><div class="stat-label">今日運勢</div><div class="stat-value" id="stat-fortune">0</div></div>
-<div class="stat-card"><div class="stat-label">準確率</div><div class="stat-value" id="stat-accuracy">?%</div></div>
+<div class="stat-card"><div class="stat-label" data-i18n="statToday">今日目擊</div><div class="stat-value" id="stat-today">0</div></div>
+<div class="stat-card"><div class="stat-label" data-i18n="statTotal">累計目擊</div><div class="stat-value" id="stat-total">0</div></div>
+<div class="stat-card"><div class="stat-label" data-i18n="statFortune">今日運勢</div><div class="stat-value" id="stat-fortune">0</div></div>
+<div class="stat-card"><div class="stat-label" data-i18n="statAccuracy">準確率</div><div class="stat-value" id="stat-accuracy">?%</div></div>
 </div>
 <div class="fortune-bar"><div class="fortune-fill" id="fortune-bar" style="width:0%"></div></div>
 <div class="mama-quote" id="mama-daily"></div>
@@ -257,40 +258,40 @@ body{font-family:'Huninn','Noto Sans TC','Zen Maru Gothic',-apple-system,'Segoe 
 
 <!-- TAB: 好事通報 -->
 <div class="tab-content" id="tab-events">
-<div class="section-label">&#x1F340; 記一件事</div>
-<p style="color:var(--text-soft);font-size:14px;margin:0 0 12px;line-height:1.7">好事壞事都記這裡。記下後楊媽媽會立刻用你的命盤＋鳥兆回你一句——好事道喜,壞事溫柔接住。</p>
+<div class="section-label" data-i18n="eventLogOne">&#x1F340; 記一件事</div>
+<p style="color:var(--text-soft);font-size:14px;margin:0 0 12px;line-height:1.7" data-i18n="eventDesc">好事壞事都記這裡。記下後楊媽媽會立刻用你的命盤＋鳥兆回你一句——好事道喜,壞事溫柔接住。</p>
 <div class="goodnews-form">
 <div class="add-row" style="width:100%">
 <select id="event-type"><option value="">— 發生什麼事? —</option></select>
-<button class="btn-goodnews" onclick="addEvent()">記錄</button>
+<button class="btn-goodnews" onclick="addEvent()" data-i18n="eventLogBtn">記錄</button>
 </div>
 <input type="text" id="event-note" placeholder="描述一下（例：104 三封已讀不回 / Uber 來回省 400）"/>
 </div>
 <div class="result-panel" id="event-reaction-panel" style="margin-top:14px">
 <div class="result-mama" id="event-reaction" style="border-top:none;margin-top:0;padding-top:0;white-space:pre-wrap;line-height:1.9"></div>
 </div>
-<div class="section-label" style="margin-top:18px"><span>事件紀錄</span></div>
+<div class="section-label" style="margin-top:18px"><span data-i18n="eventRecord">事件紀錄</span></div>
 <div id="events-log"></div>
 <div class="accuracy-card">
-<div class="section-label" style="margin-bottom:8px">&#x1F3AF; 鳥種預測準確率（好事）</div>
-<div class="section-label" style="font-size:10px;color:var(--ink-faint);margin-bottom:12px;text-transform:none;letter-spacing:0">好事發生前 3 天內出現的鳥種，視為「預測成功」</div>
+<div class="section-label" style="margin-bottom:8px" data-i18n="accGood">&#x1F3AF; 鳥種預測準確率（好事）</div>
+<div class="section-label" style="font-size:10px;color:var(--ink-faint);margin-bottom:12px;text-transform:none;letter-spacing:0" data-i18n="accGoodSub">好事發生前 3 天內出現的鳥種，視為「預測成功」</div>
 <div id="bird-accuracy"></div>
 </div>
 <div class="accuracy-card">
-<div class="section-label" style="margin-bottom:8px">&#x26A0;&#xFE0F; 鳥種倒霉預警率</div>
-<div class="section-label" style="font-size:10px;color:var(--ink-faint);margin-bottom:12px;text-transform:none;letter-spacing:0">倒霉事發生前 3 天內出現的鳥種，視為「預警成功」</div>
+<div class="section-label" style="margin-bottom:8px" data-i18n="accBad">&#x26A0;&#xFE0F; 鳥種倒霉預警率</div>
+<div class="section-label" style="font-size:10px;color:var(--ink-faint);margin-bottom:12px;text-transform:none;letter-spacing:0" data-i18n="accBadSub">倒霉事發生前 3 天內出現的鳥種，視為「預警成功」</div>
 <div id="bird-badluck"></div>
 </div>
 </div>
 
 <!-- TAB: 歷史紀錄 -->
 <div class="tab-content" id="tab-history">
-<div class="section-label"><span>歷史情報紀錄</span><button class="clear-btn" onclick="clearAll()">清除全部</button></div>
+<div class="section-label"><span data-i18n="historyIntel">歷史情報紀錄</span><button class="clear-btn" onclick="clearAll()" data-i18n="clearAll">清除全部</button></div>
 <div id="history-log"></div>
 </div>
 <div class="tab-content" id="tab-askmama">
-<div class="section-label"><span>&#x1F52E; 問楊媽媽</span></div>
-<p style="color:var(--text-soft);font-size:14px;margin:0 0 10px;line-height:1.7">先設定一次生日,楊媽媽幫你排好八字、紫微命盤;之後問她任何事,她都會用你的命盤＋最近的鳥兆來回。生日會幫你記住。</p>
+<div class="section-label"><span data-i18n="askmamaTitle">&#x1F52E; 問楊媽媽</span></div>
+<p style="color:var(--text-soft);font-size:14px;margin:0 0 10px;line-height:1.7" data-i18n="askmamaDesc">先設定一次生日,楊媽媽幫你排好八字、紫微命盤;之後問她任何事,她都會用你的命盤＋最近的鳥兆來回。生日會幫你記住。</p>
 <div class="add-form">
 <div class="add-row" style="flex-wrap:wrap;gap:8px;width:100%">
 <input type="date" id="mingli-date" style="flex:1;min-width:150px"/>
@@ -299,47 +300,47 @@ body{font-family:'Huninn','Noto Sans TC','Zen Maru Gothic',-apple-system,'Segoe 
 </div>
 <div class="add-row" style="width:100%;margin-top:8px">
 <input type="text" id="askmama-input" placeholder="問楊媽媽一件事（例：這週適合投履歷嗎？）" onkeydown="if(event.key==='Enter')askMama()"/>
-<button class="btn-report" onclick="askMama()">問楊媽媽</button>
+<button class="btn-report" onclick="askMama()" data-i18n="askBtn">問楊媽媽</button>
 </div>
-<button class="btn-report" style="width:100%;margin-top:8px" onclick="genReport()">&#x1FAB7; 幫我出一份完整命理報告</button>
+<button class="btn-report" style="width:100%;margin-top:8px" onclick="genReport()" data-i18n="reportFull">&#x1FAB7; 幫我出一份完整命理報告</button>
 </div>
 <div class="result-panel" id="askmama-panel" style="margin-top:16px">
 <div class="result-mama" id="askmama-answer" style="border-top:none;margin-top:0;padding-top:0;white-space:pre-wrap;line-height:1.9"></div>
 </div>
 <div id="chart-card" style="display:none;margin-top:14px;padding:14px 16px;border:1px solid var(--sage,#cdd6c5);border-radius:12px;background:#fbfaf3">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-<span style="font-weight:700;color:var(--sage,#6f7f60)">&#x1F4DC; 你的命盤概要</span>
-<button onclick="copyChart()" style="border:1px solid var(--sage,#cdd6c5);background:#fff;color:var(--sage,#6f7f60);border-radius:8px;padding:5px 12px;font-size:13px;cursor:pointer;font-family:inherit">&#x1F4CB; 複製</button>
+<span style="font-weight:700;color:var(--sage,#6f7f60)" data-i18n="chartTitle">&#x1F4DC; 你的命盤概要</span>
+<button onclick="copyChart()" style="border:1px solid var(--sage,#cdd6c5);background:#fff;color:var(--sage,#6f7f60);border-radius:8px;padding:5px 12px;font-size:13px;cursor:pointer;font-family:inherit" data-i18n="chartCopy">&#x1F4CB; 複製</button>
 </div>
 <pre id="chart-text" style="white-space:pre-wrap;font-size:13px;line-height:1.8;color:var(--text,#444);margin:0;font-family:inherit"></pre>
-<div style="font-size:11px;color:var(--ink-faint,#999);margin-top:8px">複製後可貼到任何 AI(像 ChatGPT）請它幫你解讀</div>
+<div style="font-size:11px;color:var(--ink-faint,#999);margin-top:8px" data-i18n="chartHint">複製後可貼到任何 AI(像 ChatGPT）請它幫你解讀</div>
 </div>
 </div>
 <div class="tab-content" id="tab-heart">
-<div class="section-label">&#x1F54A;&#xFE0F; 啾啾樹洞</div>
-<p style="color:var(--text-soft);font-size:14px;margin:0 0 12px;line-height:1.7">有什麼心事,寫下來託小鳥帶去給楊媽媽。媽媽不會跟別人說,只會好好聽你說。</p>
+<div class="section-label" data-i18n="heartTitle">&#x1F54A;&#xFE0F; 啾啾樹洞</div>
+<p style="color:var(--text-soft);font-size:14px;margin:0 0 12px;line-height:1.7" data-i18n="heartDesc">有什麼心事,寫下來託小鳥帶去給楊媽媽。媽媽不會跟別人說,只會好好聽你說。</p>
 <textarea id="heart-input" rows="5" placeholder="今天心裡裝著什麼?都可以跟媽媽說…" style="resize:vertical;padding:12px 14px;line-height:1.7"></textarea>
-<button class="btn-report" id="heart-go" style="width:100%;margin-top:8px" onclick="sendHeart()">&#x1F54A;&#xFE0F; 請小鳥帶去</button>
+<button class="btn-report" id="heart-go" style="width:100%;margin-top:8px" onclick="sendHeart()" data-i18n="heartBtn">&#x1F54A;&#xFE0F; 請小鳥帶去</button>
 <div class="result-panel" id="heart-panel" style="margin-top:16px">
 <div class="result-mama" id="heart-out" style="border-top:none;margin-top:0;padding-top:0;white-space:pre-wrap;line-height:1.9"></div>
 </div>
-<div class="section-label" style="margin-top:26px">&#x1F5D3;&#xFE0F; 樹洞回顧</div>
-<p style="color:var(--text-soft);font-size:13px;margin:0 0 10px;line-height:1.6">你跟媽媽說過的心事都收在這裡,想回頭看看就翻翻,不想留著就刪掉。</p>
+<div class="section-label" style="margin-top:26px" data-i18n="heartReviewTitle">&#x1F5D3;&#xFE0F; 樹洞回顧</div>
+<p style="color:var(--text-soft);font-size:13px;margin:0 0 10px;line-height:1.6" data-i18n="heartReviewDesc">你跟媽媽說過的心事都收在這裡,想回頭看看就翻翻,不想留著就刪掉。</p>
 <div id="heart-log"></div>
 </div>
 <div class="tab-content" id="tab-photo">
-<div class="section-label">&#x1F4F8; 拍照看兆頭</div>
-<p style="color:var(--text-soft);font-size:14px;margin:0 0 12px;line-height:1.7">拍張照(雲、貓、彩虹、街角…什麼都行),楊媽媽看這張照片今天帶來的氛圍與兆頭。</p>
-<label class="btn-report" style="display:flex;align-items:center;justify-content:center;cursor:pointer">&#x1F4F7; 拍照 / 選照片
+<div class="section-label" data-i18n="photoTitle">&#x1F4F8; 拍照看兆頭</div>
+<p style="color:var(--text-soft);font-size:14px;margin:0 0 12px;line-height:1.7" data-i18n="photoDesc">拍張照(雲、貓、彩虹、街角…什麼都行),楊媽媽看這張照片今天帶來的氛圍與兆頭。</p>
+<label class="btn-report" style="display:flex;align-items:center;justify-content:center;cursor:pointer"><span data-i18n="photoPick">&#x1F4F7; 拍照 / 選照片</span>
 <input type="file" accept="image/*" capture="environment" id="photo-file" style="display:none" onchange="onVisionFile('omen',this)"/>
 </label>
 <img id="photo-preview" style="display:none;width:100%;max-height:280px;object-fit:contain;border-radius:12px;margin-top:12px"/>
-<button class="btn-report" id="photo-go" style="width:100%;margin-top:10px;display:none" onclick="runVision('omen')">看兆頭</button>
+<button class="btn-report" id="photo-go" style="width:100%;margin-top:10px;display:none" onclick="runVision('omen')" data-i18n="photoGo">看兆頭</button>
 <div class="result-panel" id="photo-panel" style="margin-top:16px"><div class="result-mama" id="photo-out" style="border-top:none;margin-top:0;padding-top:0;white-space:pre-wrap;line-height:1.9"></div></div>
 </div>
 <div class="tab-content" id="tab-lifeomen">
-<div class="section-label">&#x1F340; 生活預兆</div>
-<p style="color:var(--text-soft);font-size:14px;margin:0 0 12px;line-height:1.7">眼皮跳、打噴嚏、打破碗…生活裡的小預兆都有話要說。選一個(或自己描述),楊媽媽依民俗與時辰幫你解。</p>
+<div class="section-label" data-i18n="lifeTitle">&#x1F340; 生活預兆</div>
+<p style="color:var(--text-soft);font-size:14px;margin:0 0 12px;line-height:1.7" data-i18n="lifeDesc">眼皮跳、打噴嚏、打破碗…生活裡的小預兆都有話要說。選一個(或自己描述),楊媽媽依民俗與時辰幫你解。</p>
 <select id="omen-type">
 <option value="">— 選一個預兆 —</option>
 <optgroup label="身體的訊號">
@@ -354,7 +355,7 @@ body{font-family:'Huninn','Noto Sans TC','Zen Maru Gothic',-apple-system,'Segoe 
 <option value="other">其他(下面自己描述)</option>
 </select>
 <input type="text" id="omen-note" placeholder="補充描述(可留空,選「其他」時請寫)" style="margin-top:8px"/>
-<button class="btn-report" id="omen-go" style="width:100%;margin-top:8px" onclick="sendLifeOmen()">&#x1F340; 問楊媽媽這是什麼兆</button>
+<button class="btn-report" id="omen-go" style="width:100%;margin-top:8px" onclick="sendLifeOmen()" data-i18n="omenGo">&#x1F340; 問楊媽媽這是什麼兆</button>
 <div class="result-panel" id="omen-panel" style="margin-top:16px"><div class="result-mama" id="omen-out" style="border-top:none;margin-top:0;padding-top:0;white-space:pre-wrap;line-height:1.9"></div></div>
 </div>
 <!-- end main-content -->
@@ -369,12 +370,32 @@ import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-ap
 import{getFirestore,collection,addDoc,getDocs,getDoc,deleteDoc,doc,setDoc,query,where}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 import{getAuth,signInWithPopup,GoogleAuthProvider,onAuthStateChanged,signOut}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import{birdData,birdSVG,birdOrder}from"./birds.js";
+import{I18N,BIRD_EN,RANK_LABEL}from"./i18n.js";
 
 const firebaseConfig={apiKey:"AIzaSyCUcyUSL1iQCBVxYlHzqzvczxLP_vEUwIc",authDomain:"bird-report.firebaseapp.com",projectId:"bird-report",storageBucket:"bird-report.firebasestorage.app",messagingSenderId:"300929721499",appId:"1:300929721499:web:6e35f79f5b48c72691523e"};
 const app=initializeApp(firebaseConfig);
 const db=getFirestore(app);
 const auth=getAuth(app);
 const ADMIN_EMAIL='sarah20120829@gmail.com';
+
+// ── 雙語引擎 ──
+let LANG=(function(){try{const sv=localStorage.getItem('app-lang');if(sv)return sv;}catch(e){}return (navigator.language||'').toLowerCase().startsWith('zh')?'zh':'en';})();
+function t(k){return (I18N[LANG]&&I18N[LANG][k])||(I18N.zh[k])||k;}
+const PLACEHOLDERS={'bird-search':'birdSearch','note-input':'noteOpt','event-note':'eventNote','askmama-input':'askInput','heart-input':'heartInput','omen-note':'omenNote'};
+function applyI18n(){
+  document.documentElement.lang = (LANG==='zh')?'zh-TW':'en';
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');const v=t(k);if(k==='aboutBody'||/<br>/.test(v))el.innerHTML=v;else el.textContent=v;});
+  for(const id in PLACEHOLDERS){const el=document.getElementById(id);if(el)el.placeholder=t(PLACEHOLDERS[id]);}
+  // 下拉的固定 option
+  const sb=document.querySelector('#bird-select option[value=""]');if(sb)sb.textContent=t('selectBird');
+  const eb=document.querySelector('#event-type option[value=""]');if(eb)eb.textContent=t('eventWhat');
+  const lbtn=document.getElementById('lang-btn');if(lbtn)lbtn.textContent=(LANG==='zh')?'EN':'中';
+  try{buildBirdSelect();}catch(e){}
+  try{initEvents&&document.getElementById('event-type')&&(document.getElementById('event-type').dataset.ready='')&&initEvents();}catch(e){}
+}
+function toggleLang(){LANG=(LANG==='zh')?'en':'zh';try{localStorage.setItem('app-lang',LANG);}catch(e){}applyI18n();}
+window.toggleLang=toggleLang;
+
 
 const quotes=['「你看，鳥類來了。」—— 楊媽媽','「我就說了吧，鳥都跟你講了你還不信！」—— 楊媽媽','「好運要來了！」—— 楊媽媽（每日固定台詞）','「科學的盡頭是玄學。」—— 楊媽媽 x 宇宙','「紅單來了就是好運的象徵。」—— 楊媽媽（瓦斯抄表版）','「鳥飛來就是好事，不用問為什麼。」—— 楊媽媽','「勞動節過了就會通知了。」—— 楊媽媽預言系統','「斑鳩是皇帝封的福星鳥，你還不信？」—— 楊媽媽','「鳥類通報系統，比104還準。」—— 楊媽媽（自評）','「白頭翁都來了，offer還會遠嗎？」—— 楊媽媽','「鳳頭蒼鷹都來了，你還不去買面試的衣服？」—— 楊媽媽','「連烏鴉都不來，代表壞運也懶得找你。」—— 楊媽媽','「今天出門看到鳥了嗎？沒有的話回去看。」—— 楊媽媽','「你的好運不是不來，是在排隊。」—— 楊媽媽','「鳥都選你家飛，HR 不選你是他們沒眼光。」—— 楊媽媽','「喜鵲報喜，白頭偕老，斑鳩富貴，媽媽都幫你看好了。」—— 楊媽媽','「不是沒有好消息，是鳥還在飛過來的路上。」—— 楊媽媽','「抬頭看天，低頭看路，轉頭看鳥。」—— 楊媽媽人生哲學','「每一隻飛過的鳥，都是宇宙在跟你說加油。」—— 楊媽媽','「風水輪流轉，今天到你家陽台。」—— 楊媽媽','「別人養貓招財，我們看鳥招福。」—— 楊媽媽','「履歷丟出去是種子，鳥飛過來是花開。」—— 楊媽媽（詩人模式）','「你不相信也沒關係，鳥相信你就好。」—— 楊媽媽','「今天沒看到鳥？那就自己當一隻，飛高一點。」—— 楊媽媽','「瓦斯單是紅單，停車單不算，要分清楚。」—— 楊媽媽（嚴謹版）','「有鳥飛過就是有人在想你，可能是HR。」—— 楊媽媽','「馬年屬馬又看到鳥，三重最強組合就是你。」—— 楊媽媽','「實力是底子，玄學是加速器，鳥是認證標章。」—— 楊媽媽經營哲學','「我看鳥看了幾十年，什麼時候錯過？」—— 楊媽媽（準確率待驗證）','「你就放心吧，媽媽的鳥不會騙你。」—— 楊媽媽'];
 
@@ -487,11 +508,11 @@ const JUDGE_URL="https://ping-7yfigotifa-uc.a.run.app";
 function mamaTimeOfDay(hhmm){const h=parseInt((hhmm||'').split(':')[0],10);if(isNaN(h))return'';if(h>=4&&h<8)return'清晨';if(h>=8&&h<11)return'上午';if(h>=11&&h<13)return'中午';if(h>=13&&h<17)return'下午';if(h>=17&&h<19)return'傍晚';return'晚上';}
 function mamaWeekday(ds){const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];const d=new Date(ds+'T00:00:00');return isNaN(d.getTime())?'':days[d.getDay()];}
 function mamaRecentEvents(){const all=[...goodNews,...badNews].slice().sort((a,b)=>(b.ts||'').localeCompare(a.ts||'')).slice(0,3);return all.map(e=>{const label=(goodNewsTypes[e.type]||badNewsTypes[e.type]||{}).label||'';const d=e.date?e.date.slice(5).replace('-','/'):'';return (d+' '+label+(e.note?'：'+e.note:'')).trim();}).filter(Boolean);}
-async function fetchMamaJudgment(entry,bird){const el=document.getElementById('result-mama');el.textContent='楊媽媽正在掐指一算…';el.style.opacity='0.6';const payload=attachProfile({sighting:{creature:bird.name,tier:bird.rank,behavior:'',time_of_day:mamaTimeOfDay(entry.time),direction:'',count:1,location:entry.loc||'',weekday:mamaWeekday(entry.date),date:entry.date,note:entry.note||''},recent_events:mamaRecentEvents()});try{const r=await fetch(JUDGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await r.json();el.textContent=(data&&data.judgment)?data.judgment:bird.mama;}catch(e){el.textContent=bird.mama;}el.style.opacity='1';}
+async function fetchMamaJudgment(entry,bird){const el=document.getElementById('result-mama');el.textContent=t('loadCalc');el.style.opacity='0.6';const payload=attachProfile({sighting:{creature:bird.name,tier:bird.rank,behavior:'',time_of_day:mamaTimeOfDay(entry.time),direction:'',count:1,location:entry.loc||'',weekday:mamaWeekday(entry.date),date:entry.date,note:entry.note||''},recent_events:mamaRecentEvents()});try{const r=await fetch(JUDGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await r.json();el.textContent=(data&&data.judgment)?data.judgment:bird.mama;}catch(e){el.textContent=bird.mama;}el.style.opacity='1';}
 
 function saveMingliProfile(){const dEl=document.getElementById('mingli-date'),hEl=document.getElementById('mingli-hour'),gEl=document.getElementById('mingli-gender');if(!dEl||!dEl.value)return;const date=dEl.value,hour=hEl?hEl.value:'',gender=gEl?gEl.value:'女';myProfile={birthday:date,hour:hour,gender:gender};try{localStorage.setItem('mingli-profile',JSON.stringify(myProfile));}catch(e){}if(currentUser){try{setDoc(doc(db,'profiles',currentUser.uid),{birthday:date,hour:hour,gender:gender,userId:currentUser.uid});}catch(e){}}}
 
-function attachProfile(payload){if(myProfile&&myProfile.birthday){payload.birthday=myProfile.birthday;payload.gender=myProfile.gender;if(myProfile.hour!=='')payload.hour=parseInt(myProfile.hour,10);}if(currentUser&&currentUser.displayName)payload.name=currentUser.displayName;if(currentUser&&currentUser.email)payload.email=currentUser.email;return payload;}
+function attachProfile(payload){if(myProfile&&myProfile.birthday){payload.birthday=myProfile.birthday;payload.gender=myProfile.gender;if(myProfile.hour!=='')payload.hour=parseInt(myProfile.hour,10);}if(currentUser&&currentUser.displayName)payload.name=currentUser.displayName;if(currentUser&&currentUser.email)payload.email=currentUser.email;payload.lang=LANG;return payload;}
 
 let heartLog=[];
 function escH(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
@@ -500,42 +521,42 @@ function saveHeartLocal(){try{localStorage.setItem('heart-log',JSON.stringify(he
 function renderHeartLog(){const box=document.getElementById('heart-log');if(!box)return;if(!heartLog.length){box.innerHTML='<div style="font-size:13px;color:var(--ink-faint,#999);padding:8px 2px">還沒有心事紀錄。寫下第一則,媽媽在聽。</div>';return}
 const sorted=heartLog.slice().sort((a,b)=>(b.ts||'').localeCompare(a.ts||''));let h='',last=null;
 sorted.forEach(e=>{if(e.date!==last){if(last!==null)h+='</div>';h+='<div class="heart-day"><div class="heart-day-head"><span>\u{1F4C5} '+heartDayLabel(e.date)+'</span><span class="hd-line"></span></div>';last=e.date;}
-h+='<div class="heart-entry"><div class="he-time">'+escH(e.time||'')+'</div><div class="he-text">'+escH(e.text||'')+'</div>'+(e.reply?'<div class="he-reply">\u{1F54A}\uFE0F '+escH(e.reply)+'</div>':'')+'<button class="he-del" onclick="deleteHeart(\''+e.id+'\')" title="刪除這則" aria-label="刪除這則">\u{1F5D1}\uFE0F</button></div>';});
+h+='<div class="heart-entry"><div class="he-time">'+escH(e.time||'')+'</div><div class="he-text">'+escH(e.text||'')+'</div>'+(e.reply?'<div class="he-reply">\u{1F54A}\uFE0F '+escH(e.reply)+'</div>':'')+'<button class="he-del" onclick="deleteHeart(\''+e.id+'\')" title="">\u{1F5D1}\uFE0F</button></div>';});
 if(last!==null)h+='</div>';box.innerHTML=h;}
-async function deleteHeart(id){if(!confirm('刪掉這則心事?媽媽就當沒聽過。'))return;const entry=heartLog.find(x=>x.id===id);heartLog=heartLog.filter(x=>x.id!==id);renderHeartLog();showToast('已刪除');if(guestMode){saveHeartLocal();return}try{if(entry&&entry.fireId)await deleteDoc(doc(db,'hearts',entry.fireId))}catch(e){}}
-async function sendHeart(){const input=document.getElementById('heart-input'),text=(input.value||'').trim();if(!text){showToast('先寫點心事再請小鳥帶去喔');return}const btn=document.getElementById('heart-go'),panel=document.getElementById('heart-panel'),out=document.getElementById('heart-out');btn.disabled=true;panel.classList.add('show');out.textContent='\u{1F54A}\uFE0F 小鳥正帶著你的心事飛去給楊媽媽…';out.style.opacity='0.6';const recentBirds=allSightings.slice(-5).reverse().map(s=>birdData[s.bird]?birdData[s.bird].name:'').filter(Boolean);const payload=attachProfile({heart:text,recent_birds:recentBirds,recent_events:mamaRecentEvents()});let reply='';try{const r=await fetch(JUDGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await r.json();reply=mamaSays(data);out.textContent=reply||'媽媽有聽到了。今天訊號有點輕,等等再請小鳥送一次,媽媽都在,放著心。';}catch(e){out.textContent='媽媽有聽到了。今天訊號有點輕,等等再請小鳥送一次,媽媽都在,放著心。';}
+async function deleteHeart(id){if(!confirm(t('delConfirmHeart')))return;const entry=heartLog.find(x=>x.id===id);heartLog=heartLog.filter(x=>x.id!==id);renderHeartLog();showToast(t('tDeleted'));if(guestMode){saveHeartLocal();return}try{if(entry&&entry.fireId)await deleteDoc(doc(db,'hearts',entry.fireId))}catch(e){}}
+async function sendHeart(){const input=document.getElementById('heart-input'),text=(input.value||'').trim();if(!text){showToast(t('tHeartFirst'));return}const btn=document.getElementById('heart-go'),panel=document.getElementById('heart-panel'),out=document.getElementById('heart-out');btn.disabled=true;panel.classList.add('show');out.textContent=t('loadHeart');out.style.opacity='0.6';const recentBirds=allSightings.slice(-5).reverse().map(s=>birdData[s.bird]?birdData[s.bird].name:'').filter(Boolean);const payload=attachProfile({heart:text,recent_birds:recentBirds,recent_events:mamaRecentEvents()});let reply='';try{const r=await fetch(JUDGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await r.json();reply=mamaSays(data);out.textContent=reply||t('fbHeart');}catch(e){out.textContent=t('fbHeart');}
 const now=new Date();const entry={id:Date.now().toString(),date:getToday(),time:String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0'),text:text,reply:reply||'',ts:now.toISOString(),userId:(currentUser?currentUser.uid:'guest')};heartLog.push(entry);input.value='';renderHeartLog();
 if(guestMode){saveHeartLocal();}else{try{const ref=await addDoc(collection(db,'hearts'),entry);entry.fireId=ref.id;}catch(e){}}
 out.style.opacity='1';btn.disabled=false;}
 const SHICHEN=['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
-async function sendLifeOmen(){const sel=document.getElementById('omen-type'),note=(document.getElementById('omen-note').value||'').trim();let type=sel.value;if(type==='other')type='';if(!type&&!note){showToast('先選一個預兆,或自己描述一下喔');return}const btn=document.getElementById('omen-go'),panel=document.getElementById('omen-panel'),out=document.getElementById('omen-out');btn.disabled=true;panel.classList.add('show');out.textContent='\u{1F340} 楊媽媽正在翻民俗的本子…';out.style.opacity='0.6';const h=new Date().getHours();const recentBirds=allSightings.slice(-5).reverse().map(s=>birdData[s.bird]?birdData[s.bird].name:'').filter(Boolean);const payload=attachProfile({lifeomen:{type:type||note,note:type?note:'',hour:h,time_slot:SHICHEN[Math.floor(((h+1)%24)/2)],weekday:mamaWeekday(),time_of_day:mamaTimeOfDay()},recent_birds:recentBirds,recent_events:mamaRecentEvents()});try{const r=await fetch(JUDGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await r.json();const t=mamaSays(data);out.textContent=t||'楊媽媽今天訊號有點輕,等等再問一次,放著心。';}catch(e){out.textContent='楊媽媽今天訊號有點輕,等等再問一次,放著心。';}out.style.opacity='1';btn.disabled=false;}
+async function sendLifeOmen(){const sel=document.getElementById('omen-type'),note=(document.getElementById('omen-note').value||'').trim();let type=sel.value;if(type==='other')type='';if(!type&&!note){showToast(t('tOmenFirst'));return}const btn=document.getElementById('omen-go'),panel=document.getElementById('omen-panel'),out=document.getElementById('omen-out');btn.disabled=true;panel.classList.add('show');out.textContent=t('loadOmen');out.style.opacity='0.6';const h=new Date().getHours();const recentBirds=allSightings.slice(-5).reverse().map(s=>birdData[s.bird]?birdData[s.bird].name:'').filter(Boolean);const payload=attachProfile({lifeomen:{type:type||note,note:type?note:'',hour:h,time_slot:SHICHEN[Math.floor(((h+1)%24)/2)],weekday:mamaWeekday(),time_of_day:mamaTimeOfDay()},recent_birds:recentBirds,recent_events:mamaRecentEvents()});try{const r=await fetch(JUDGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await r.json();const t=mamaSays(data);out.textContent=t||t('fbGeneric');}catch(e){out.textContent=t('fbGeneric');}out.style.opacity='1';btn.disabled=false;}
 function mamaSays(data){let t=(data&&(data.judgment||data.report))||'';t=String(t).trim();if(!t||t==='...'||/溫暖口語|3[~～]4句|繁體中文|judgment|^[\{\[]/.test(t))return '';return t;}
 
 let lastChart='';
 function showChart(chart){if(!chart)return;lastChart=chart;const t=document.getElementById('chart-text'),card=document.getElementById('chart-card');if(t)t.textContent=chart;if(card)card.style.display='block';}
-function copyChart(){if(!lastChart){showToast('還沒有命盤可複製');return}const txt='請不要讀取過去的記憶,你是命理大師,請依照以下訊息幫我詳細解釋。\n\n'+lastChart;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(()=>showToast('已複製命盤,貼到你的 AI 就能解讀')).catch(()=>showToast('複製失敗,請長按上面文字手動複製'));}else{showToast('這個瀏覽器不支援自動複製,請長按上面文字複製');}}
+function copyChart(){if(!lastChart){showToast(t('tNoChart'));return}const txt='請不要讀取過去的記憶,你是命理大師,請依照以下訊息幫我詳細解釋。\n\n'+lastChart;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(()=>showToast(t('tCopied'))).catch(()=>showToast('複製失敗,請長按上面文字手動複製'));}else{showToast('這個瀏覽器不支援自動複製,請長按上面文字複製');}}
 
-async function askMama(){const inp=document.getElementById('askmama-input');const q=inp.value.trim();if(!q){showToast('先打一個想問的問題吧');return}const panel=document.getElementById('askmama-panel'),ans=document.getElementById('askmama-answer');panel.classList.add('show');ans.textContent='楊媽媽正在掐指一算…';ans.style.opacity='0.6';saveMingliProfile();const recentBirds=allSightings.slice(-5).reverse().map(s=>birdData[s.bird]?birdData[s.bird].name:'').filter(Boolean);const payload=attachProfile({question:q,recent_events:mamaRecentEvents(),recent_birds:recentBirds});try{const r=await fetch(JUDGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await r.json();ans.textContent=(data&&(data.judgment||data.report))||'楊媽媽今天訊號有點輕,等等再問一次,放著心。';if(data&&data.chart)showChart(data.chart);}catch(e){ans.textContent='楊媽媽今天訊號有點輕,等等再問一次,放著心。';}ans.style.opacity='1';}
+async function askMama(){const inp=document.getElementById('askmama-input');const q=inp.value.trim();if(!q){showToast(t('tAskFirst'));return}const panel=document.getElementById('askmama-panel'),ans=document.getElementById('askmama-answer');panel.classList.add('show');ans.textContent=t('loadCalc');ans.style.opacity='0.6';saveMingliProfile();const recentBirds=allSightings.slice(-5).reverse().map(s=>birdData[s.bird]?birdData[s.bird].name:'').filter(Boolean);const payload=attachProfile({question:q,recent_events:mamaRecentEvents(),recent_birds:recentBirds});try{const r=await fetch(JUDGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await r.json();ans.textContent=(data&&(data.judgment||data.report))||t('fbGeneric');if(data&&data.chart)showChart(data.chart);}catch(e){ans.textContent=t('fbGeneric');}ans.style.opacity='1';}
 
 function fillMingliForm(){if(!myProfile)return;const dEl=document.getElementById('mingli-date');if(dEl&&myProfile.birthday)dEl.value=myProfile.birthday;const hEl=document.getElementById('mingli-hour');if(hEl&&myProfile.hour!=null&&myProfile.hour!=='')hEl.value=String(myProfile.hour);const gEl=document.getElementById('mingli-gender');if(gEl&&myProfile.gender)gEl.value=myProfile.gender;const caEl=document.getElementById('compat-a-date');if(caEl&&myProfile.birthday)caEl.value=myProfile.birthday;const cagEl=document.getElementById('compat-a-gender');if(cagEl&&myProfile.gender)cagEl.value=myProfile.gender;}
 
 function initMingli(){const sel=document.getElementById('mingli-hour');if(sel&&!sel.dataset.ready){const SC=[['子時 23–01',[23,0]],['丑時 01–03',[1,2]],['寅時 03–05',[3,4]],['卯時 05–07',[5,6]],['辰時 07–09',[7,8]],['巳時 09–11',[9,10]],['午時 11–13',[11,12]],['未時 13–15',[13,14]],['申時 15–17',[15,16]],['酉時 17–19',[17,18]],['戌時 19–21',[19,20]],['亥時 21–23',[21,22]]];let html='<option value="">出生時間（不確定也可）</option>';SC.forEach(function(g){html+='<optgroup label="'+g[0]+'">';g[1].forEach(function(h){var hh=h<10?'0'+h:''+h;html+='<option value="'+h+'">'+hh+':00</option><option value="'+h+'.5">'+hh+':30</option>';});html+='</optgroup>';});sel.innerHTML=html;sel.dataset.ready='1';}try{const p=localStorage.getItem('mingli-profile');if(p&&!myProfile){myProfile=JSON.parse(p);fillMingliForm();}}catch(e){}}
 
-async function genReport(){if(!currentUser&&!guestMode){showToast('先登入才能算自己的命理喔');return}const dEl=document.getElementById('mingli-date');const date=dEl?dEl.value:'';if(!date){showToast('先填你的生日喔');return}const panel=document.getElementById('askmama-panel'),out=document.getElementById('askmama-answer');panel.classList.add('show');out.textContent='楊媽媽正在替你排盤、掐指一算…';out.style.opacity='0.6';saveMingliProfile();const recentBirds=allSightings.slice(-5).reverse().map(s=>birdData[s.bird]?birdData[s.bird].name:'').filter(Boolean);const payload=attachProfile({recent_birds:recentBirds,recent_events:mamaRecentEvents()});try{const r=await fetch(JUDGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await r.json();out.textContent=(data&&(data.report||data.judgment))||'楊媽媽今天訊號有點輕,等等再幫你算一次,放著心。';if(data&&data.chart)showChart(data.chart);}catch(e){out.textContent='楊媽媽今天訊號有點輕,等等再幫你算一次,放著心。';}out.style.opacity='1';}
+async function genReport(){if(!currentUser&&!guestMode){showToast(t('tMingliFirst'));return}const dEl=document.getElementById('mingli-date');const date=dEl?dEl.value:'';if(!date){showToast(t('tBirthFirst'));return}const panel=document.getElementById('askmama-panel'),out=document.getElementById('askmama-answer');panel.classList.add('show');out.textContent=t('loadChart');out.style.opacity='0.6';saveMingliProfile();const recentBirds=allSightings.slice(-5).reverse().map(s=>birdData[s.bird]?birdData[s.bird].name:'').filter(Boolean);const payload=attachProfile({recent_birds:recentBirds,recent_events:mamaRecentEvents()});try{const r=await fetch(JUDGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await r.json();out.textContent=(data&&(data.report||data.judgment))||t('fbGeneric');if(data&&data.chart)showChart(data.chart);}catch(e){out.textContent=t('fbGeneric');}out.style.opacity='1';}
 
 
 
 const visionImage={omen:null,palm:null};
 function readScaledImage(file){return new Promise((resolve,reject)=>{const fr=new FileReader();fr.onload=()=>{const img=new Image();img.onload=()=>{let w=img.width,h=img.height;const max=1024;if(w>max||h>max){if(w>=h){h=Math.round(h*max/w);w=max;}else{w=Math.round(w*max/h);h=max;}}const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);try{resolve(c.toDataURL('image/jpeg',0.85));}catch(e){reject(e);}};img.onerror=reject;img.src=fr.result;};fr.onerror=reject;fr.readAsDataURL(file);});}
-async function onVisionFile(kind,inputEl){const f=inputEl.files&&inputEl.files[0];if(!f)return;try{const url=await readScaledImage(f);visionImage[kind]=url;const prev=document.getElementById(kind==='palm'?'palm-preview':'photo-preview');if(prev){prev.src=url;prev.style.display='block';}const go=document.getElementById(kind==='palm'?'palm-go':'photo-go');if(go)go.style.display='block';}catch(e){showToast('照片讀取失敗,換一張試試');}}
-async function runVision(kind){const img=visionImage[kind];if(!img){showToast('先拍一張或選一張照片喔');return}const isPalm=kind==='palm';const panel=document.getElementById(isPalm?'palm-panel':'photo-panel'),out=document.getElementById(isPalm?'palm-out':'photo-out');panel.classList.add('show');out.textContent=isPalm?'楊媽媽正在看你的手相…':'楊媽媽正在看這張照片的兆頭…';out.style.opacity='0.6';const payload=attachProfile({image:img,visionKind:kind});try{const r=await fetch(JUDGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await r.json();out.textContent=(data&&(data.judgment||data.report))||'楊媽媽今天訊號有點輕,等等再看一次,放著心。';}catch(e){out.textContent='楊媽媽今天訊號有點輕,等等再看一次,放著心。';}out.style.opacity='1';}
+async function onVisionFile(kind,inputEl){const f=inputEl.files&&inputEl.files[0];if(!f)return;try{const url=await readScaledImage(f);visionImage[kind]=url;const prev=document.getElementById(kind==='palm'?'palm-preview':'photo-preview');if(prev){prev.src=url;prev.style.display='block';}const go=document.getElementById(kind==='palm'?'palm-go':'photo-go');if(go)go.style.display='block';}catch(e){showToast(t('tPhotoFail'));}}
+async function runVision(kind){const img=visionImage[kind];if(!img){showToast(t('tPhotoFirst'));return}const isPalm=kind==='palm';const panel=document.getElementById(isPalm?'palm-panel':'photo-panel'),out=document.getElementById(isPalm?'palm-out':'photo-out');panel.classList.add('show');out.textContent=t('loadPhoto');out.style.opacity='0.6';const payload=attachProfile({image:img,visionKind:kind});try{const r=await fetch(JUDGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await r.json();out.textContent=(data&&(data.judgment||data.report))||t('fbGeneric');}catch(e){out.textContent=t('fbGeneric');}out.style.opacity='1';}
 
 
 const ICON_BASE='icons/';
 function setBirdIcon(box,key){const b=birdData[key]||{};box.innerHTML='';const img=new Image();img.alt=b.name||'';let stage=0;img.onerror=function(){if(stage===0){stage=1;img.src=ICON_BASE+key+'.png';return;}box.innerHTML=birdSVG[key]||'<div class="emoji-fallback">'+(b.emoji||'\uD83D\uDC26')+'</div>';};box.appendChild(img);img.src=ICON_BASE+key+'.svg';}
-async function addSighting(){if(!currentUser&&!guestMode)return;const sel=document.getElementById('bird-select'),ni=document.getElementById('note-input'),key=sel.value;if(!key){showToast('\u8ACB\u5148\u9078\u64C7\u9CE5\u7A2E\uFF01');return}const now=new Date(),time=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');const entry={id:Date.now().toString(),bird:key,date:getToday(),time:time,note:ni.value.trim(),loc:currentLoc,ts:now.toISOString(),userId:(currentUser?currentUser.uid:'guest')};allSightings.push(entry);const bird=birdData[key];const svgC=document.getElementById('result-svg');setBirdIcon(svgC,key);document.getElementById('result-title').textContent=bird.name+'\uFF08'+bird.rank+'\u7D1A\uFF09';document.getElementById('result-desc').textContent=bird.desc;document.getElementById('result-lore').textContent=bird.lore;document.getElementById('result-panel').classList.add('show');fetchMamaJudgment(entry,bird);sel.value='';ni.value='';showToast(bird.emoji+' '+bird.name+' \u5DF2\u901A\u5831\uFF01');renderAll();if(!guestMode)try{const ref=await addDoc(collection(db,'sightings'),entry);entry.fireId=ref.id;updateSyncStatus('ok','\u5DF2\u540C\u6B65')}catch(e){updateSyncStatus('err','\u96E2\u7DDA')}}
+async function addSighting(){if(!currentUser&&!guestMode)return;const sel=document.getElementById('bird-select'),ni=document.getElementById('note-input'),key=sel.value;if(!key){showToast(t('tSelBird'));return}const now=new Date(),time=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');const entry={id:Date.now().toString(),bird:key,date:getToday(),time:time,note:ni.value.trim(),loc:currentLoc,ts:now.toISOString(),userId:(currentUser?currentUser.uid:'guest')};allSightings.push(entry);const bird=birdData[key];const svgC=document.getElementById('result-svg');setBirdIcon(svgC,key);document.getElementById('result-title').textContent=bird.name+'\uFF08'+bird.rank+'\u7D1A\uFF09';document.getElementById('result-desc').textContent=bird.desc;document.getElementById('result-lore').textContent=bird.lore;document.getElementById('result-panel').classList.add('show');fetchMamaJudgment(entry,bird);sel.value='';ni.value='';showToast(bird.emoji+' '+bird.name+' \u5DF2\u901A\u5831\uFF01');renderAll();if(!guestMode)try{const ref=await addDoc(collection(db,'sightings'),entry);entry.fireId=ref.id;updateSyncStatus('ok','\u5DF2\u540C\u6B65')}catch(e){updateSyncStatus('err','\u96E2\u7DDA')}}
 
-async function deleteSighting(id){if(!confirm('\u78BA\u5B9A\u8981\u522A\u9664\uFF1F'))return;const entry=allSightings.find(s=>s.id===id);allSightings=allSightings.filter(s=>s.id!==id);renderAll();showToast('\u5DF2\u522A\u9664');try{if(entry?.fireId)await deleteDoc(doc(db,'sightings',entry.fireId));localStorage.setItem('bird-report-v5',JSON.stringify(allSightings));updateSyncStatus('ok','\u5DF2\u540C\u6B65')}catch(e){localStorage.setItem('bird-report-v5',JSON.stringify(allSightings))}}
+async function deleteSighting(id){if(!confirm('\u78BA\u5B9A\u8981\u522A\u9664\uFF1F'))return;const entry=allSightings.find(s=>s.id===id);allSightings=allSightings.filter(s=>s.id!==id);renderAll();showToast(t('tDeleted'));try{if(entry?.fireId)await deleteDoc(doc(db,'sightings',entry.fireId));localStorage.setItem('bird-report-v5',JSON.stringify(allSightings));updateSyncStatus('ok','\u5DF2\u540C\u6B65')}catch(e){localStorage.setItem('bird-report-v5',JSON.stringify(allSightings))}}
 
 async function clearToday(){if(!confirm('\u6E05\u9664\u4ECA\u65E5\uFF1F'))return;const today=getToday(),todayE=allSightings.filter(s=>s.date===today);allSightings=allSightings.filter(s=>s.date!==today);document.getElementById('result-panel').classList.remove('show');renderAll();showToast('\u5DF2\u6E05\u9664');try{for(const e of todayE){if(e.fireId)await deleteDoc(doc(db,'sightings',e.fireId))}localStorage.setItem('bird-report-v5',JSON.stringify(allSightings))}catch(e){}}
 
@@ -545,15 +566,15 @@ async function verifyDay(date,result){if(!currentUser)return;verifyData[date]=re
 
 const goodNewsTypes={interview:{icon:'\u{1F4E9}',label:'\u6536\u5230\u9762\u8A66\u901A\u77E5'},interview_good:{icon:'\u{1F91D}',label:'\u9762\u8A66\u9806\u5229'},offer:{icon:'\u{1F4BC}',label:'\u6536\u5230 offer'},money:{icon:'\u{1F4B0}',label:'\u7701\u5230\u9322 / \u8CFA\u5230\u9322'},health:{icon:'\u{1F49A}',label:'\u5065\u5EB7\u597D\u4E8B'},social:{icon:'\u{1F465}',label:'\u4EBA\u969B\u597D\u4E8B'},luck:{icon:'\u2728',label:'\u610F\u5916\u597D\u904B'},other:{icon:'\u{1F389}',label:'\u5176\u4ED6\u597D\u4E8B'}};
 
-async function addGoodNews(){if(!currentUser)return;const sel=document.getElementById('goodnews-type'),ni=document.getElementById('goodnews-note'),type=sel.value;if(!type){showToast('\u8ACB\u9078\u64C7\u597D\u4E8B\u985E\u578B\uFF01');return}const now=new Date(),time=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');const entry={id:Date.now().toString(),type:type,date:getToday(),time:time,note:ni.value.trim(),ts:now.toISOString(),userId:currentUser.uid};goodNews.push(entry);sel.value='';ni.value='';const t=goodNewsTypes[type];showToast(t.icon+' '+t.label+' \u5DF2\u901A\u5831\uFF01');renderAll();try{const ref=await addDoc(collection(db,'goodnews'),entry);entry.fireId=ref.id;updateSyncStatus('ok','\u5DF2\u540C\u6B65')}catch(e){updateSyncStatus('err','\u96E2\u7DDA')}}
+async function addGoodNews(){if(!currentUser)return;const sel=document.getElementById('goodnews-type'),ni=document.getElementById('goodnews-note'),type=sel.value;if(!type){showToast(t('tSelGood'));return}const now=new Date(),time=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');const entry={id:Date.now().toString(),type:type,date:getToday(),time:time,note:ni.value.trim(),ts:now.toISOString(),userId:currentUser.uid};goodNews.push(entry);sel.value='';ni.value='';const t=goodNewsTypes[type];showToast(t.icon+' '+t.label+' \u5DF2\u901A\u5831\uFF01');renderAll();try{const ref=await addDoc(collection(db,'goodnews'),entry);entry.fireId=ref.id;updateSyncStatus('ok','\u5DF2\u540C\u6B65')}catch(e){updateSyncStatus('err','\u96E2\u7DDA')}}
 
-async function deleteGoodNews(id){if(!confirm('\u522A\u9664\u9019\u7B46\u597D\u4E8B\uFF1F'))return;const entry=goodNews.find(g=>g.id===id);goodNews=goodNews.filter(g=>g.id!==id);renderAll();showToast('\u5DF2\u522A\u9664');try{if(entry?.fireId)await deleteDoc(doc(db,'goodnews',entry.fireId));localStorage.setItem('bird-goodnews-v1',JSON.stringify(goodNews))}catch(e){localStorage.setItem('bird-goodnews-v1',JSON.stringify(goodNews))}}
+async function deleteGoodNews(id){if(!confirm('\u522A\u9664\u9019\u7B46\u597D\u4E8B\uFF1F'))return;const entry=goodNews.find(g=>g.id===id);goodNews=goodNews.filter(g=>g.id!==id);renderAll();showToast(t('tDeleted'));try{if(entry?.fireId)await deleteDoc(doc(db,'goodnews',entry.fireId));localStorage.setItem('bird-goodnews-v1',JSON.stringify(goodNews))}catch(e){localStorage.setItem('bird-goodnews-v1',JSON.stringify(goodNews))}}
 
 const badNewsTypes={no_reply:{icon:'\u{1F480}',label:'\u5C65\u6B77\u5DF2\u8B80\u4E0D\u56DE'},interview_fail:{icon:'\u{1F44E}',label:'\u9762\u8A66\u6C92\u904E'},money_loss:{icon:'\u{1F4B8}',label:'\u591A\u82B1\u9322 / \u88AB\u6263\u6B3E'},sick:{icon:'\u{1F915}',label:'\u8EAB\u9AD4\u4E0D\u8212\u670D'},fight:{icon:'\u{1F624}',label:'\u8DDF\u4EBA\u5435\u67B6'},crow_spotted:{icon:'\u{1F987}',label:'\u70CF\u9D09\u98DB\u904E\u53BB'},other_bad:{icon:'\u{1F629}',label:'\u5176\u4ED6\u5012\u9709\u4E8B'}};
 
-async function addBadNews(){if(!currentUser)return;const sel=document.getElementById('badnews-type'),ni=document.getElementById('badnews-note'),type=sel.value;if(!type){showToast('\u8ACB\u9078\u64C7\u5012\u9709\u985E\u578B\uFF01');return}const now=new Date(),time=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');const entry={id:Date.now().toString(),type:type,date:getToday(),time:time,note:ni.value.trim(),ts:now.toISOString(),userId:currentUser.uid};badNews.push(entry);sel.value='';ni.value='';const t=badNewsTypes[type];showToast(t.icon+' '+t.label+' \u5DF2\u901A\u5831');renderAll();try{const ref=await addDoc(collection(db,'badnews'),entry);entry.fireId=ref.id;updateSyncStatus('ok','\u5DF2\u540C\u6B65')}catch(e){updateSyncStatus('err','\u96E2\u7DDA')}}
+async function addBadNews(){if(!currentUser)return;const sel=document.getElementById('badnews-type'),ni=document.getElementById('badnews-note'),type=sel.value;if(!type){showToast(t('tSelBad'));return}const now=new Date(),time=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');const entry={id:Date.now().toString(),type:type,date:getToday(),time:time,note:ni.value.trim(),ts:now.toISOString(),userId:currentUser.uid};badNews.push(entry);sel.value='';ni.value='';const t=badNewsTypes[type];showToast(t.icon+' '+t.label+' \u5DF2\u901A\u5831');renderAll();try{const ref=await addDoc(collection(db,'badnews'),entry);entry.fireId=ref.id;updateSyncStatus('ok','\u5DF2\u540C\u6B65')}catch(e){updateSyncStatus('err','\u96E2\u7DDA')}}
 
-async function deleteBadNews(id){if(!confirm('\u522A\u9664\u9019\u7B46\u5012\u9709\u4E8B\uFF1F'))return;const entry=badNews.find(g=>g.id===id);badNews=badNews.filter(g=>g.id!==id);renderAll();showToast('\u5DF2\u522A\u9664');try{if(entry?.fireId)await deleteDoc(doc(db,'badnews',entry.fireId));localStorage.setItem('bird-badnews-v1',JSON.stringify(badNews))}catch(e){localStorage.setItem('bird-badnews-v1',JSON.stringify(badNews))}}
+async function deleteBadNews(id){if(!confirm('\u522A\u9664\u9019\u7B46\u5012\u9709\u4E8B\uFF1F'))return;const entry=badNews.find(g=>g.id===id);badNews=badNews.filter(g=>g.id!==id);renderAll();showToast(t('tDeleted'));try{if(entry?.fireId)await deleteDoc(doc(db,'badnews',entry.fireId));localStorage.setItem('bird-badnews-v1',JSON.stringify(badNews))}catch(e){localStorage.setItem('bird-badnews-v1',JSON.stringify(badNews))}}
 
 function getBirdsBeforeDate(date,days){const d=new Date(date);const birds=new Set();for(let i=0;i<=days;i++){const dd=new Date(d);dd.setDate(dd.getDate()-i);const ds=dd.getFullYear()+'-'+String(dd.getMonth()+1).padStart(2,'0')+'-'+String(dd.getDate()).padStart(2,'0');allSightings.filter(s=>s.date===ds).forEach(s=>birds.add(s.bird))}return birds}
 
@@ -597,17 +618,17 @@ function renderAccuracy(){const calc=(events)=>{const birdHits={},birdTotal={};b
 
 function renderEvents(){const logC=document.getElementById('events-log');if(logC){const items=[];goodNews.forEach(g=>items.push(Object.assign({_kind:'good'},g)));badNews.forEach(g=>items.push(Object.assign({_kind:'bad'},g)));items.sort((a,b)=>(b.ts||'').localeCompare(a.ts||''));if(!items.length){logC.innerHTML='<div class="empty-log">尚無紀錄<br>好事壞事發生時,記得來記一筆！</div>';}else{let h='';items.forEach(g=>{const good=g._kind==='good';const t=(good?goodNewsTypes:badNewsTypes)[g.type]||{icon:good?'\u{1F389}':'\u{1F629}',label:good?'好事':'倒霉事'};const cls=good?'goodnews':'badnews';const delFn=good?'deleteGoodNews':'deleteBadNews';const tag='<span style="font-size:11px;padding:1px 7px;border-radius:8px;margin-right:4px;'+(good?'background:#e7f0e0;color:#5a7a48':'background:#ededed;color:#888')+'">'+(good?'好事':'倒霉')+'</span>';const birds=getBirdsBeforeDate(g.date,3);let birdsStr='';if(birds.size>0){const bArr=[];birds.forEach(b=>{if(birdData[b])bArr.push(birdData[b].emoji+' '+birdData[b].name)});birdsStr='\u{1F99C} 前3天出現：'+bArr.join('、');}h+='<div class="'+cls+'-entry"><div class="'+cls+'-icon">'+t.icon+'</div><div class="'+cls+'-content">'+tag+'<span class="'+cls+'-type">'+t.label+'</span> <span style="font-size:11px;color:var(--ink-faint)">'+formatDate(g.date)+' '+g.time+'</span>';if(g.note)h+='<br><span class="'+cls+'-note">'+g.note+'</span>';if(birdsStr)h+='<br><span class="'+cls+'-birds">'+birdsStr+'</span>';h+='</div><button class="'+cls+'-delete" onclick="'+delFn+'(\''+g.id+'\')">&#x2715;</button></div>';});logC.innerHTML=h;}}renderAccuracy();}
 
-async function addEvent(){if(!currentUser&&!guestMode){showToast('先登入才能記錄喔');return}const sel=document.getElementById('event-type'),ni=document.getElementById('event-note'),raw=sel.value;if(!raw){showToast('先選發生了什麼事');return}const parts=raw.split(':'),kind=parts[0],type=parts[1];const dict=kind==='good'?goodNewsTypes:badNewsTypes;const t=dict[type]||{icon:'',label:'事件'};const now=new Date(),time=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');const entry={id:Date.now().toString(),type:type,date:getToday(),time:time,note:ni.value.trim(),ts:now.toISOString(),userId:(currentUser?currentUser.uid:'guest')};if(kind==='good')goodNews.push(entry);else badNews.push(entry);const noteVal=entry.note;sel.value='';ni.value='';showToast(t.icon+' '+t.label+' 已記下');renderAll();const panel=document.getElementById('event-reaction-panel'),out=document.getElementById('event-reaction');panel.classList.add('show');out.textContent='楊媽媽正在掐指一算…';out.style.opacity='0.6';const recentBirds=allSightings.slice(-5).reverse().map(s=>birdData[s.bird]?birdData[s.bird].name:'').filter(Boolean);const payload=attachProfile({event:{kind:kind,label:t.label,note:noteVal},recent_birds:recentBirds,recent_events:mamaRecentEvents()});fetch(JUDGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).then(r=>r.json()).then(data=>{out.textContent=(data&&(data.judgment||data.report))||'楊媽媽收到了,放著心。';out.style.opacity='1';}).catch(()=>{out.textContent='楊媽媽收到了,放著心。';out.style.opacity='1';});if(!guestMode)try{const ref=await addDoc(collection(db,kind==='good'?'goodnews':'badnews'),entry);entry.fireId=ref.id;updateSyncStatus('ok','已同步')}catch(e){updateSyncStatus('err','離線')}}
+async function addEvent(){if(!currentUser&&!guestMode){showToast(t('tLoginFirst'));return}const sel=document.getElementById('event-type'),ni=document.getElementById('event-note'),raw=sel.value;if(!raw){showToast(t('tEventFirst'));return}const parts=raw.split(':'),kind=parts[0],type=parts[1];const dict=kind==='good'?goodNewsTypes:badNewsTypes;const t=dict[type]||{icon:'',label:'事件'};const now=new Date(),time=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');const entry={id:Date.now().toString(),type:type,date:getToday(),time:time,note:ni.value.trim(),ts:now.toISOString(),userId:(currentUser?currentUser.uid:'guest')};if(kind==='good')goodNews.push(entry);else badNews.push(entry);const noteVal=entry.note;sel.value='';ni.value='';showToast(t.icon+' '+t.label+' 已記下');renderAll();const panel=document.getElementById('event-reaction-panel'),out=document.getElementById('event-reaction');panel.classList.add('show');out.textContent='楊媽媽正在掐指一算…';out.style.opacity='0.6';const recentBirds=allSightings.slice(-5).reverse().map(s=>birdData[s.bird]?birdData[s.bird].name:'').filter(Boolean);const payload=attachProfile({event:{kind:kind,label:t.label,note:noteVal},recent_birds:recentBirds,recent_events:mamaRecentEvents()});fetch(JUDGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).then(r=>r.json()).then(data=>{out.textContent=(data&&(data.judgment||data.report))||'楊媽媽收到了,放著心。';out.style.opacity='1';}).catch(()=>{out.textContent='楊媽媽收到了,放著心。';out.style.opacity='1';});if(!guestMode)try{const ref=await addDoc(collection(db,kind==='good'?'goodnews':'badnews'),entry);entry.fireId=ref.id;updateSyncStatus('ok','已同步')}catch(e){updateSyncStatus('err','離線')}}
 
-function buildBirdSelect(){const sel=document.getElementById('bird-select');if(!sel)return;const RL={'SSS':'SSS 頂級吉兆','SS':'SS 強力吉兆','S':'S 吉祥','A+':'A+ 上等好運','A':'A 好運','B':'B 中性偏吉','C':'C 普通','D':'D 注意'};let h='<option value="">— 選擇鳥種 —</option>';let last=null;birdOrder.forEach(function(k){const b=birdData[k];if(!b)return;if(b.rank!==last){if(last!==null)h+='</optgroup>';h+='<optgroup label="'+(RL[b.rank]||b.rank)+'" data-rank="'+b.rank+'">';last=b.rank;}h+='<option value="'+k+'">'+(b.emoji||'\u{1F99C}')+' '+b.name+'</option>';});if(last!==null)h+='</optgroup>';sel.innerHTML=h;}
+function buildBirdSelect(){const sel=document.getElementById('bird-select');if(!sel)return;const RL=RANK_LABEL[LANG]||RANK_LABEL.zh;let h='<option value="">'+t('selectBird')+'</option>';let last=null;birdOrder.forEach(function(k){const b=birdData[k];if(!b)return;if(b.rank!==last){if(last!==null)h+='</optgroup>';h+='<optgroup label="'+(RL[b.rank]||b.rank)+'" data-rank="'+b.rank+'">';last=b.rank;}const nm=(LANG==='en'&&BIRD_EN[k])?BIRD_EN[k]:b.name;h+='<option value="'+k+'">'+(b.emoji||'\u{1F99C}')+' '+nm+'</option>';});if(last!==null)h+='</optgroup>';sel.innerHTML=h;}
 function initEvents(){const sel=document.getElementById('event-type');if(!sel||sel.dataset.ready)return;let h='<option value="">— 發生什麼事? —</option><optgroup label="好事 ✨">';Object.keys(goodNewsTypes).forEach(k=>{const t=goodNewsTypes[k];h+='<option value="good:'+k+'">'+t.icon+' '+t.label+'</option>';});h+='</optgroup><optgroup label="倒霉事 💠">';Object.keys(badNewsTypes).forEach(k=>{const t=badNewsTypes[k];h+='<option value="bad:'+k+'">'+t.icon+' '+t.label+'</option>';});h+='</optgroup>';sel.innerHTML=h;sel.dataset.ready='1';}
 
 function showBirdDetail(key){const b=birdData[key];const svgC=document.getElementById('result-svg');setBirdIcon(svgC,key);document.getElementById('result-title').textContent=b.name+'\uFF08'+b.rank+'\u7D1A\uFF09';document.getElementById('result-desc').textContent=b.desc;document.getElementById('result-lore').textContent=b.lore;document.getElementById('result-mama').textContent=b.mama;document.getElementById('result-panel').classList.add('show');switchTab('main',document.querySelector('.tab'));window.scrollTo({top:0,behavior:'smooth'})}
 
 const GROUPS={report:['main','events'],mama:['askmama','heart'],vision:['photo','lifeomen'],history:['history']};
-const SUBLABELS={main:'\u{1F99C} 鳥兆',events:'\u2728 好事壞事',askmama:'\u{1F52E} 問事',heart:'\u{1F54A}\uFE0F 啾啾樹洞',photo:'\u{1F4F8} 看兆頭',lifeomen:'\u{1F340} 生活預兆',history:'歷史'};
+function SUBLABELS_get(name){const m={main:'subMain',events:'subEvents',askmama:'subAskmama',heart:'subHeart',photo:'subPhoto',lifeomen:'subLifeomen',history:'subHistory'};return t(m[name]||name);}
 function groupOf(sub){return Object.keys(GROUPS).find(g=>GROUPS[g].indexOf(sub)>=0)||'report';}
-function openGroup(group){document.querySelectorAll('.tab-bar > .tab').forEach(t=>t.classList.toggle('active',t.dataset.group===group));const subs=GROUPS[group]||['main'];const subnav=document.getElementById('subnav');if(subnav){if(subs.length>1){subnav.style.display='flex';subnav.innerHTML=subs.map((s,i)=>'<button class="subtab'+(i===0?' active':'')+'" data-sub="'+s+'" onclick="showSub(\''+s+'\')">'+SUBLABELS[s]+'</button>').join('');}else{subnav.style.display='none';subnav.innerHTML='';}}showSub(subs[0]);}
+function openGroup(group){document.querySelectorAll('.tab-bar > .tab').forEach(tb=>tb.classList.toggle('active',tb.dataset.group===group));const subs=GROUPS[group]||['main'];const subnav=document.getElementById('subnav');if(subnav){if(subs.length>1){subnav.style.display='flex';subnav.innerHTML=subs.map((s,i)=>'<button class="subtab'+(i===0?' active':'')+'" data-sub="'+s+'" onclick="showSub(\''+s+'\')">'+SUBLABELS_get(s)+'</button>').join('');}else{subnav.style.display='none';subnav.innerHTML='';}}showSub(subs[0]);}
 function showSub(name){document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));const p=document.getElementById('tab-'+name);if(p)p.classList.add('active');document.querySelectorAll('#subnav .subtab').forEach(b=>b.classList.toggle('active',b.dataset.sub===name));window.scrollTo({top:0,behavior:'smooth'});}
 function switchTab(name,el){openGroup(groupOf(name));showSub(name);}
 
@@ -640,7 +661,7 @@ window.filterBirdSelect=filterBirdSelect;
 // 通報後清空搜尋框
 const _origAddSighting2=window.addSighting;
 window.addSighting=addSighting;window.deleteSighting=deleteSighting;window.clearToday=clearToday;window.clearAll=clearAll;window.verifyDay=verifyDay;window.showBirdDetail=showBirdDetail;window.switchTab=switchTab;window.askMama=askMama;window.genReport=genReport;window.setLoc=setLoc;window.addGoodNews=addGoodNews;window.deleteGoodNews=deleteGoodNews;window.addBadNews=addBadNews;window.deleteBadNews=deleteBadNews;window.handleAuth=handleAuth;window.addEvent=addEvent;window.onVisionFile=onVisionFile;window.runVision=runVision;window.openGroup=openGroup;window.showSub=showSub;window.sendHeart=sendHeart;window.deleteHeart=deleteHeart;window.sendLifeOmen=sendLifeOmen;window.copyChart=copyChart;window.enterGuest=enterGuest;
-initMingli();initEvents();buildBirdSelect();openGroup('report');
+initMingli();initEvents();buildBirdSelect();applyI18n();openGroup('report');
 try{if(localStorage.getItem('about-dismissed')==='1'){const c=document.getElementById('about-card');if(c)c.style.display='none';}}catch(e){}
 window.dismissAbout=dismissAbout;
 if(location.hash.indexOf('dev')>=0||location.hash.indexOf('guest')>=0)enterGuest();

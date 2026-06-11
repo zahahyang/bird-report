@@ -1,0 +1,141 @@
+// 介面雙語字典 — 楊媽媽通靈研究所
+export const I18N = {
+  zh: {
+    title:'鳥類通報系統', subtitle:'楊媽媽通靈研究所 x 宇宙情報局', ver:'v6.0 — 多人版',
+    login:'🔒 登入', logout:'登出', booting:'系統啟動中...',
+    welcome:'歡迎來到鳥類通報系統', welcomeSub:'登入 Google 帳號開始記錄你的鳥類運勢',
+    googleLogin:'使用 Google 帳號登入', guestBtn:'🦜 訪客模式，立即通報！',
+    statusGuest:'🧪 訪客模式（不會雲端儲存）', statusIn:'☁️ 已登入', statusWait:'等待登入...',
+    // tabs
+    tabReport:'通報', tabMama:'問楊媽媽', tabVision:'拍照', tabHistory:'歷史紀錄',
+    subMain:'🦜 鳥兆', subEvents:'✨ 好事壞事', subAskmama:'🔮 問事', subHeart:'🕊️ 啾啾樹洞',
+    subPhoto:'📸 看兆頭', subLifeomen:'🍀 生活預兆', subHistory:'歷史',
+    // about
+    aboutTitle:'🔮 楊媽媽跟你說',
+    aboutBody:'來，囝仔，媽媽在這兒等你。<br>天上飛的鳥、停在欄杆的蝶，都不是白白飛的——那是宇宙派來「替你送信」的小信使。你看到哪隻就通報進來，媽媽掐指一算，馬上跟你說今天帶了什麼好消息、哪個時辰你最旺。<br>媽媽偏心，專挑好的跟你講；真遇上不順的，媽媽也輕輕替你接住、不嚇你。<br>放著心，有媽媽在——準的啦。',
+    // report tab
+    reportNew:'通報新目擊', birdSearch:'🔍 搜尋鳥種名稱...', searchEmpty:'找不到匹配，先按等級瀏覽吧 ↓',
+    selectBird:'— 選擇鳥種 —', reportBtn:'通報！', noteOpt:'備註（選填）',
+    sightLoc:'目擊地點', locBalcony:'🏠 陽台', locPark:'🌳 公園', locStreet:'🚶 路上', locRiver:'🌊 河邊', locRoof:'🏗 屋頂', locOther:'📍 其他',
+    todayIntel:'今日情報', clearToday:'清除今日',
+    statToday:'今日目擊', statTotal:'累計目擊', statFortune:'今日運勢', statAccuracy:'準確率',
+    // events tab
+    eventLogOne:'🍀 記一件事',
+    eventDesc:'好事壞事都記這裡。記下後楊媽媽會立刻用你的命盤＋鳥兆回你一句——好事道喜，壞事溫柔接住。',
+    eventWhat:'— 發生什麼事? —', eventLogBtn:'記錄', eventNote:'描述一下（例：104 三封已讀不回 / Uber 來回省 400）',
+    eventRecord:'事件紀錄',
+    accGood:'🎯 鳥種預測準確率（好事）', accGoodSub:'好事發生前 3 天內出現的鳥種，視為「預測成功」',
+    accBad:'⚠️ 鳥種倒霉預警率', accBadSub:'倒霉事發生前 3 天內出現的鳥種，視為「預警成功」',
+    // history
+    historyIntel:'歷史情報紀錄', clearAll:'清除全部', noHistory:'尚無歷史紀錄',
+    // askmama
+    askmamaTitle:'🔮 問楊媽媽',
+    askmamaDesc:'先設定一次生日，楊媽媽幫你排好八字、紫微命盤；之後問她任何事，她都會用你的命盤＋最近的鳥兆來回。生日會幫你記住。',
+    hourUnknown:'出生時間(不確定也可)', genderF:'女', genderM:'男',
+    askInput:'問楊媽媽一件事（例：這週適合投履歷嗎？）', askBtn:'問楊媽媽',
+    reportFull:'🪷 幫我出一份完整命理報告',
+    chartTitle:'📜 你的命盤概要', chartCopy:'📋 複製', chartHint:'複製後可貼到任何 AI(像 ChatGPT）請它幫你解讀',
+    // heart
+    heartTitle:'🕊️ 啾啾樹洞',
+    heartDesc:'有什麼心事，寫下來託小鳥帶去給楊媽媽。媽媽不會跟別人說，只會好好聽你說。',
+    heartInput:'今天心裡裝著什麼?都可以跟媽媽說…', heartBtn:'🕊️ 請小鳥帶去',
+    heartReviewTitle:'🗓️ 樹洞回顧', heartReviewDesc:'你跟媽媽說過的心事都收在這裡，想回頭看看就翻翻，不想留著就刪掉。',
+    heartEmpty:'還沒有心事紀錄。寫下第一則，媽媽在聽。', heartDel:'刪除這則',
+    // photo
+    photoTitle:'📸 拍照看兆頭',
+    photoDesc:'拍張照(雲、貓、彩虹、街角…什麼都行)，楊媽媽看這張照片今天帶來的氛圍與兆頭。',
+    photoPick:'📷 拍照 / 選照片', photoGo:'看兆頭',
+    // lifeomen
+    lifeTitle:'🍀 生活預兆',
+    lifeDesc:'眼皮跳、打噴嚏、打破碗…生活裡的小預兆都有話要說。選一個(或自己描述)，楊媽媽依民俗與時辰幫你解。',
+    omenPick:'— 選一個預兆 —', omenNote:'補充描述(可留空,選「其他」時請寫)', omenGo:'🍀 問楊媽媽這是什麼兆',
+    // toasts
+    tSelBird:'請先選擇鳥種！', tSelGood:'請選擇好事類型！', tSelBad:'請選擇倒霉類型！',
+    tLoginFirst:'先登入才能記錄喔', tBirthFirst:'先填你的生日喔', tHeartFirst:'先寫點心事再請小鳥帶去喔',
+    tAskFirst:'先打一個想問的問題吧', tPhotoFirst:'先拍一張或選一張照片喔', tMingliFirst:'先登入才能算自己的命理喔',
+    tEventFirst:'先選發生了什麼事', tOmenFirst:'先選一個預兆，或自己描述一下喔',
+    tDeleted:'已刪除', tCleared:'已清除', tCopied:'已複製命盤，貼到你的 AI 就能解讀',
+    tPhotoFail:'照片讀取失敗，換一張試試', tNoChart:'還沒有命盤可複製',
+    // loading / fallback
+    loadCalc:'楊媽媽正在掐指一算…', loadChart:'楊媽媽正在替你排盤、掐指一算…',
+    loadHeart:'🕊️ 小鳥正帶著你的心事飛去給楊媽媽…', loadOmen:'🍀 楊媽媽正在翻民俗的本子…',
+    loadPhoto:'楊媽媽正在看這張照片的兆頭…',
+    fbHeart:'媽媽有聽到了。今天訊號有點輕，等等再請小鳥送一次，媽媽都在，放著心。',
+    fbGeneric:'楊媽媽今天訊號有點輕，等等再試一次，放著心。',
+    delConfirmHeart:'刪掉這則心事?媽媽就當沒聽過。', delConfirmGood:'刪除這筆好事？',
+  },
+  en: {
+    title:'Bird Omen Reports', subtitle:"Mama Yang's Psychic Institute x Cosmic Intelligence", ver:'v6.0 — Multi-user',
+    login:'🔒 Sign in', logout:'Sign out', booting:'Starting up...',
+    welcome:'Welcome to Bird Omen Reports', welcomeSub:'Sign in with Google to start tracking your bird fortune',
+    googleLogin:'Sign in with Google', guestBtn:'🦜 Guest mode — report now!',
+    statusGuest:'🧪 Guest mode (not saved to cloud)', statusIn:'☁️ Signed in', statusWait:'Waiting for sign-in...',
+    tabReport:'Report', tabMama:'Ask Mama', tabVision:'Photo', tabHistory:'History',
+    subMain:'🦜 Bird Omen', subEvents:'✨ Good & Bad', subAskmama:'🔮 Ask', subHeart:'🕊️ Whisper Hollow',
+    subPhoto:'📸 Read Photo', subLifeomen:'🍀 Daily Signs', subHistory:'History',
+    aboutTitle:'🔮 A word from Mama Yang',
+    aboutBody:"Come here, sweetie, Mama's been waiting for you.<br>Every bird in the sky, every butterfly on the railing — none of them fly by for nothing. They're little messengers the universe sent to bring you news. Report whichever you spot, and Mama will read it right away — what good news it brings today, and when your luck runs strongest.<br>Mama plays favorites; she'll always pick out the good for you. And if something's off, Mama catches it gently, never scares you.<br>Rest easy now — Mama's here. Trust me, it's a sure thing.",
+    reportNew:'Report a new sighting', birdSearch:'🔍 Search bird name...', searchEmpty:'No match — browse by tier below ↓',
+    selectBird:'— Select a bird —', reportBtn:'Report!', noteOpt:'Note (optional)',
+    sightLoc:'Where did you see it?', locBalcony:'🏠 Balcony', locPark:'🌳 Park', locStreet:'🚶 Street', locRiver:'🌊 Riverside', locRoof:'🏗 Rooftop', locOther:'📍 Other',
+    todayIntel:"Today's intel", clearToday:'Clear today',
+    statToday:'Today', statTotal:'Total', statFortune:"Today's fortune", statAccuracy:'Accuracy',
+    eventLogOne:'🍀 Log an event',
+    eventDesc:"Log good and bad things here. Mama replies right away using your chart and bird omens — celebrating the good, gently holding the bad.",
+    eventWhat:'— What happened? —', eventLogBtn:'Log', eventNote:'Describe it (e.g. 3 emails left on read / saved $13 on Uber)',
+    eventRecord:'Event log',
+    accGood:'🎯 Bird prediction accuracy (good)', accGoodSub:'Birds seen within 3 days before good news count as a "hit"',
+    accBad:'⚠️ Bird warning rate (bad)', accBadSub:'Birds seen within 3 days before misfortune count as a "warning"',
+    historyIntel:'History log', clearAll:'Clear all', noHistory:'No history yet',
+    askmamaTitle:'🔮 Ask Mama Yang',
+    askmamaDesc:"Set your birthday once and Mama charts your BaZi & Zi Wei; after that, ask her anything and she'll answer with your chart plus recent bird omens. Your birthday is remembered.",
+    hourUnknown:'Birth time (optional)', genderF:'Female', genderM:'Male',
+    askInput:'Ask Mama anything (e.g. Is this a good week to apply for jobs?)', askBtn:'Ask Mama',
+    reportFull:'🪷 Give me a full astrology report',
+    chartTitle:'📜 Your chart summary', chartCopy:'📋 Copy', chartHint:'Paste it into any AI (like ChatGPT) for a deeper reading',
+    heartTitle:'🕊️ Whisper Hollow',
+    heartDesc:"Whatever's on your heart, write it down and let a little bird carry it to Mama. She won't tell a soul — she just listens.",
+    heartInput:"What's on your heart today? You can tell Mama anything…", heartBtn:'🕊️ Send it with a bird',
+    heartReviewTitle:'🗓️ Hollow review', heartReviewDesc:"Everything you've told Mama is kept here. Look back whenever you like, or delete what you'd rather not keep.",
+    heartEmpty:"No entries yet. Write your first — Mama's listening.", heartDel:'Delete',
+    photoTitle:'📸 Read a photo',
+    photoDesc:"Snap a photo (clouds, a cat, a rainbow, a street corner — anything). Mama reads the mood and omen it carries today.",
+    photoPick:'📷 Take / choose a photo', photoGo:'Read it',
+    lifeTitle:'🍀 Daily signs',
+    lifeDesc:"Eye twitches, sneezes, a broken bowl… little daily signs all have something to say. Pick one (or describe your own) and Mama reads it by folklore and the hour.",
+    omenPick:'— Pick a sign —', omenNote:'Add detail (optional; required if "Other")', omenGo:'🍀 Ask Mama what it means',
+    tSelBird:'Please select a bird first!', tSelGood:'Please pick a good-event type!', tSelBad:'Please pick a bad-event type!',
+    tLoginFirst:'Sign in first to log events', tBirthFirst:'Enter your birthday first', tHeartFirst:'Write something first, then send it off',
+    tAskFirst:'Type a question first', tPhotoFirst:'Take or choose a photo first', tMingliFirst:'Sign in first to chart your own astrology',
+    tEventFirst:'Pick what happened first', tOmenFirst:'Pick a sign, or describe your own',
+    tDeleted:'Deleted', tCleared:'Cleared', tCopied:'Chart copied — paste it into your AI for a reading',
+    tPhotoFail:'Couldn’t read the photo, try another', tNoChart:'No chart to copy yet',
+    loadCalc:'Mama is reading the signs…', loadChart:'Mama is charting and reading the signs…',
+    loadHeart:'🕊️ A little bird is carrying your heart to Mama…', loadOmen:'🍀 Mama is flipping through the folklore book…',
+    loadPhoto:'Mama is reading the omen in this photo…',
+    fbHeart:"Mama heard you. The signal's a little soft today — send a bird again in a bit. Mama's always here. Rest easy now.",
+    fbGeneric:"Mama's signal is a little soft today — try again in a bit. Rest easy now.",
+    delConfirmHeart:"Delete this entry? Mama will pretend she never heard it.", delConfirmGood:'Delete this good event?',
+  }
+};
+
+// 鳥種英文名(依 birds.js 的 key)
+export const BIRD_EN = {
+  bfspoonbill:'Black-faced Spoonbill', hawk_eagle:'Mountain Hawk-Eagle', eagle:'Black Kite (Eagle)',
+  goshawk:'Crested Goshawk', magpie:'Eurasian Magpie', mountain_hawk:'Black Eagle',
+  blackkite:'Black-winged Kite', falcon:'Peregrine Falcon', osprey:'Osprey', oriole:'Black-naped Oriole',
+  heron:'Malayan Night Heron', fivecolor:'Taiwan Barbet', grass_owl:'Eastern Grass Owl',
+  swinhoe:"Swinhoe's Pheasant", bulbul:'Light-vented Bulbul', mandarin:'Mandarin Duck',
+  red_oriole:'Maroon Oriole', dove:'Spotted Dove', pheasant_jacana:'Pheasant-tailed Jacana',
+  swallow:'Barn Swallow', pitta:'Fairy Pitta', crested_serpent:'Crested Serpent Eagle',
+  greenbird:"Swinhoe's White-eye", littleegret:'Little Egret', whiskered_bulbul:'Black Bulbul',
+  egret:'Great Egret', cattle_egret:'Cattle Egret', painted_snipe:'Greater Painted-snipe',
+  nightheron:'Black-crowned Night Heron', tree_pie:'Grey Treepie', sparrow:'Eurasian Tree Sparrow',
+  myna:'Crested Myna', pigeon:'Rock Dove', ibis:'African Sacred Ibis', crow:'Carrion Crow'
+};
+
+// 等級標籤
+export const RANK_LABEL = {
+  zh:{'SSS':'SSS 頂級吉兆','SS':'SS 強力吉兆','S':'S 吉祥','A+':'A+ 上等好運','A':'A 好運','B':'B 中性偏吉','C':'C 普通','D':'D 注意'},
+  en:{'SSS':'SSS — Supreme Omen','SS':'SS — Powerful','S':'S — Auspicious','A+':'A+ — Great Luck','A':'A — Good Luck','B':'B — Mild','C':'C — Common','D':'D — Caution'}
+};
