@@ -63,6 +63,19 @@ export const I18N = {
     fbHeart:'媽媽有聽到了。今天訊號有點輕，等等再請小鳥送一次，媽媽都在，放著心。',
     fbGeneric:'楊媽媽今天訊號有點輕，等等再試一次，放著心。',
     delConfirmHeart:'刪掉這則心事?媽媽就當沒聽過。', delConfirmGood:'刪除這筆好事？',
+    delConfirmBad:'刪除這筆倒霉事？',
+    emptyToday:'今日尚無目擊紀錄<br>快去陽台看看！🦜',
+    histMeta:'{n} 筆，運勢 {f}',
+    verifyQ:'這天有好事嗎？', vYes:'準了 ✔', vNo:'沒準 ✘', vDid:'準了！', vMissed:'沒準', vTomorrow:'明天再來驗證',
+    vToastYes:'準了！✅', vToastNo:'沒準 😅',
+    confirmDelete:'確定要刪除？', confirmClearToday:'清除今日？', confirmClearAll:'清除全部？無法復原。',
+    tReported:'已通報！', tLogged:'已記下', seen3d:'🦜 前3天出現：',
+    tagGood:'好事', tagBad:'倒霉', grpGood:'好事 ✨', grpBad:'倒霉事 💠',
+    evEmpty:'尚無紀錄<br>好事壞事發生時,記得來記一筆！',
+    accTimes:'次', accNeedMore:'累積更多資料後才能計算', accNoBad:'沒有倒霉事 = 最好的結果', accNone:'尚無資料',
+    syncOK:'已同步', syncOff:'離線', syncDone:'雲端同步完成', syncCheck:'檢查舊資料...', syncMig:'資料遷移完成', syncFail:'讀取失敗，請重新整理',
+    locPrompt:'請輸入地點：', fbEvent:'楊媽媽收到了，放著心。',
+    copyPreamble:'請不要讀取過去的記憶,你是命理大師,請依照以下訊息幫我詳細解釋。\n\n',
   },
   en: {
     title:'Bird Omen Reports', subtitle:"Mama Yang's Psychic Institute x Cosmic Intelligence", ver:'v6.0 — Multi-user',
@@ -116,6 +129,19 @@ export const I18N = {
     fbHeart:"Mama heard you. The signal's a little soft today — send a bird again in a bit. Mama's always here. Rest easy now.",
     fbGeneric:"Mama's signal is a little soft today — try again in a bit. Rest easy now.",
     delConfirmHeart:"Delete this entry? Mama will pretend she never heard it.", delConfirmGood:'Delete this good event?',
+    delConfirmBad:'Delete this misfortune entry?',
+    emptyToday:'No sightings yet today<br>Go check the balcony! 🦜',
+    histMeta:'{n} reports · fortune {f}',
+    verifyQ:'Did good things happen this day?', vYes:'Came true ✔', vNo:'Nope ✘', vDid:'Came true!', vMissed:'Missed', vTomorrow:'Come back tomorrow to verify',
+    vToastYes:'Came true! ✅', vToastNo:'Missed 😅',
+    confirmDelete:'Delete this?', confirmClearToday:"Clear today's records?", confirmClearAll:'Clear everything? This cannot be undone.',
+    tReported:'reported!', tLogged:'logged', seen3d:'🦜 Seen within 3 days before: ',
+    tagGood:'Good', tagBad:'Bad', grpGood:'Good ✨', grpBad:'Bad 💠',
+    evEmpty:'No entries yet<br>When something good or bad happens, log it here!',
+    accTimes:'×', accNeedMore:'Need more data to calculate', accNoBad:'No misfortunes = the best result', accNone:'No data yet',
+    syncOK:'Synced', syncOff:'Offline', syncDone:'Cloud sync complete', syncCheck:'Checking old data...', syncMig:'Migration complete', syncFail:'Load failed — please refresh',
+    locPrompt:'Enter a location:', fbEvent:'Mama got it. Rest easy now.',
+    copyPreamble:'You are a master astrologer. Please ignore prior memory and interpret the following chart for me in detail.\n\n',
   }
 };
 
@@ -139,3 +165,76 @@ export const RANK_LABEL = {
   zh:{'SSS':'SSS 頂級吉兆','SS':'SS 強力吉兆','S':'S 吉祥','A+':'A+ 上等好運','A':'A 好運','B':'B 中性偏吉','C':'C 普通','D':'D 注意'},
   en:{'SSS':'SSS — Supreme Omen','SS':'SS — Powerful','S':'S — Auspicious','A+':'A+ — Great Luck','A':'A — Good Luck','B':'B — Mild','C':'C — Common','D':'D — Caution'}
 };
+
+// ── 鳥卡英文內容(desc/lore/mama,依 birds.js 的 key) ──
+export const BIRD_INFO_EN = {
+eagle:{desc:"A rare, top-tier omen — a major breakthrough is on its way. Time to get your interview outfit ready.",lore:"Ancient texts call the eagle the bird of valor and far sight. Emperors hunted with eagles as a symbol of power, and folk belief says an eagle passing over your roof means a promotion is coming.",mama:"Mama's reading: Heaven-sized luck — get ready to start that job!"},
+heron:{desc:"A rare large bird has appeared — double luck buff. Its presence alone is a strong positive signal.",lore:"Nicknamed the “big silly bird” for its slow, fearless manner. In feng shui, the tamer the bird, the higher its spirit. A rare bird showing itself means the energy here is thriving.",mama:"Mama's reading: Good luck is coming! (Loud version)"},
+bulbul:{desc:"An auspicious bird of lifelong love and a flourishing home — certified by the classics.",lore:"Named for its white crown, this bulbul has long symbolized longevity and devotion — “white-haired together till old age” comes from this bird. Qing-era texts praise it as a fine garden companion.",mama:"Mama's reading: A happy event is near!"},
+dove:{desc:"The emperor-certified bird of fortune! Deep bonds, natural luck, lasting prosperity.",lore:"Since the Han dynasty, emperors gifted “dove staffs” to elders as a blessing of long life — the classics call the dove “the bird that never chokes.” A dove nesting means a settled home; an egg means new beginnings.",mama:"Mama's reading: Lasting prosperity — your lucky star has arrived!"},
+swallow:{desc:"A classic sign of luck. Swallows never enter an unhappy home — being chosen IS the certification.",lore:"Folk sayings: “swallows never enter a worried household” and “a swallow brings fortune to the door.” Swallows are extremely picky, nesting only where harmony lives. Their spring return means luck is turning.",mama:"Mama's reading: Good news is on its way!"},
+greenbird:{desc:"One of the urban trio — a symbol of vitality and prosperity.",lore:"Known for its white eye-ring and exquisitely woven nest, the white-eye stands for fine craft and care — especially lucky for designers. A visit means your home is full of life.",mama:"Mama's reading: A little happiness is coming!"},
+egret:{desc:"Neutral-to-lucky. Maybe check your spam folder.",lore:"Tang poets sang of its snow-white elegance. In feng shui an egret means your surroundings are clean and clear — but the news you want may be hiding where you have not looked.",mama:"Mama's reading: ...go check your email"},
+sparrow:{desc:"An everyday bird. An ordinary day. At least it is not a crow.",lore:"Small but complete, the sparrow is the people's bird. Plenty of sparrows means a lively, well-fed neighborhood. No special omen, but with sparrows you are never lonely.",mama:"Mama's reading: Hmm, just an ordinary day"},
+pigeon:{desc:"Common in the city; limited mystical value. The feng shui is not bad, though.",lore:"Doves mean peace in the West and stay fairly neutral in the East. Messenger pigeons carry news, but city flocks are mostly here for snacks — at least food is never scarce around your home.",mama:"Mama's reading: Hmm... check back tomorrow"},
+magpie:{desc:"THE bird of glad tidings! Since ancient times “the magpie announces joy” — good news is at the door.",lore:"Tang-era records say households rejoiced at a magpie's call, taking it as a sign of joy. A magpie on a plum branch means “joy up to your brows”; a pair means “double happiness at the door.” The most revered news-bearing bird of all.",mama:"Mama's reading: GREAT joy is coming!!!"},
+blackkite:{desc:"A raptor appears — powerful aura! Vision, ambition, career lift-off.",lore:"A familiar plains raptor in Taiwan famous for hovering in place, nicknamed the “kite bird.” A raptor's presence marks the gathering of apex energy — a very strong yang sign in feng shui.",mama:"Mama's reading: Big-picture luck has arrived!"},
+osprey:{desc:"The waterborne hunter with surgical precision. Clear goals, flowing wealth.",lore:"Some say the bird that opens the Book of Songs is the osprey. Its flawless strike stands for total focus — one dive, one catch. Seen near water, it is a sign of wealth.",mama:"Mama's reading: Luck just got caught like a fish in your hands!"},
+goshawk:{desc:"A protected raptor — king of the city! An extremely rare omen of authority and rising status.",lore:"The Crested Goshawk is a protected raptor that hunts from city parks and bridges. In feng shui, where a raptor stands guard is dragon-vein treasure ground. Seeing one is a once-in-a-century supreme omen.",mama:"Mama's reading: This is a heaven-sized omen!"},
+fivecolor:{desc:"The forest monk in five colors. Many talents, creative explosion.",lore:"Named for its red, yellow, blue, green and black plumage, its call sounds like a wooden temple block — hence “the flower monk.” Five colors match the five elements: complete energy. For creatives, inspiration is incoming.",mama:"Mama's reading: Your talent is about to be seen!"},
+nightheron:{desc:"The night bird. Helpers are working for you in the dark.",lore:"Called the “dark-light bird,” it hides by day and moves by night — the power of unseen places. Sometimes the people helping you never let you know.",mama:"Mama's reading: A quiet benefactor is helping you"},
+cattle_egret:{desc:"Often beside cattle — diligence brings harvest.",lore:"The cattle egret feeds alongside oxen, a feng shui symbol that honest work always pays. In breeding season its head turns golden — extra prosperity.",mama:"Mama's reading: Your hard work will bear fruit"},
+littleegret:{desc:"An elegant white bird by the water — purity and calm.",lore:"Graceful with fine breeding plumes, immortalized in Tang poetry: “a line of egrets rising into the blue sky.” A symbol of open roads ahead and a clear mind.",mama:"Mama's reading: Good news is quietly on its way"},
+myna:{desc:"Can mimic human speech. Neutral — at least more responsive than HR.",lore:"Mynas imitate human words and were beloved pets of old. Folk wisdom says their “messages” are sometimes right, sometimes not — like certain news sources. But at least it talks back, which beats being left on read.",mama:"Mama's reading: A message is coming — contents unclear"},
+ibis:{desc:"An invasive species with big ecological impact. Watch how things develop.",lore:"In ancient Egypt the sacred ibis embodied Thoth, god of wisdom; in Taiwan it is an invasive species. Feng shui translation: an opportunity from outside may not suit you — evaluate carefully.",mama:"Mama's reading: Hmm... let's wait and see"},
+crow:{desc:"Traditionally inauspicious — though some say it is the most filial of birds. Keep it low-key today.",lore:"In Chinese culture crows often signal caution, yet the Bencao Gangmu praises them for feeding their aged parents — the filial bird. In Japan the crow is divine. Feng shui advice: keep a low profile today; no need to panic.",mama:"Mama's reading: Stay close to home today!"},
+bfspoonbill:{desc:"A national-treasure endangered bird! Only a few thousand left worldwide — basically a lottery-jackpot omen.",lore:"A Class-I endangered species in Taiwan. It winters here each year from the Korean peninsula, mainly around Tainan and Chiayi, with occasional stopovers at New Taipei estuaries. Its long spoon-shaped bill sweeps the water with perfect elegance — birders treat it as royalty.",mama:"Mama's reading: A national treasure has descended! Take this luck straight to the lottery counter!"},
+hawk_eagle:{desc:"King of the mountains! Sacred bird of indigenous chiefs — a supremely rare omen of major transformation.",lore:"A Class-I endangered species and Taiwan's largest forest raptor, dwelling in mid-elevation old-growth forest. The Rukai and Paiwan peoples reserve its feathers for chiefs and heroes — the highest honor there is.",mama:"Mama's reading: The mountain god stamped it himself — that interview is YOURS!"},
+mountain_hawk:{desc:"A rare great black raptor, circling above the canopy like black lightning.",lore:"A Class-I endangered species, near-black all over with a wingspan up to 170 cm, gliding above old broadleaf forests. Every sighting is precious.",mama:"Mama's reading: Black lightning has landed — it carried your bad luck away!"},
+falcon:{desc:"The fastest animal on Earth — 300+ km/h dives. Speed and decisiveness.",lore:"A Class-I endangered species and the fastest diving bird in the world, folding its wings to plummet from the sky. Persian and Mongol nobles flew falcons as the bird of the brave.",mama:"Mama's reading: The stars are aligned — whatever you need to do, do it NOW!"},
+oriole:{desc:"The golden scholar bird of classical poetry. A poetic omen.",lore:"A Class-I endangered species, brilliant yellow with black wings and a flute-like song — the very bird in Du Fu's “two orioles sing in the green willows.” A symbol of literary fortune and good omen combined.",mama:"Mama's reading: Inspiration incoming! Exams, writing, proposals — all will flow!"},
+grass_owl:{desc:"The mysterious heart-faced owl. A nocturnal omen — hidden benefactors.",lore:"A Class-I endangered species with a striking heart-shaped face, living in lowland grasslands. Eastern tradition is split on owls; Mama Yang's school follows the “bird of wisdom” reading.",mama:"Mama's reading: Someone is watching over you through the night — sleep well."},
+swinhoe:{desc:"A magnificent pheasant found only in Taiwan! A former candidate for national bird.",lore:"A Class-II protected species endemic to Taiwan. The male gleams metallic indigo with a scarlet face and white crest — one of Taiwan's most iconic birds, once shortlisted for national bird.",mama:"Mama's reading: Homegrown luck off the charts — Taiwan kids are blessed!"},
+mandarin:{desc:"THE bird of devoted love! Singles: romance incoming. Couples: the spark reignites.",lore:"A Class-II protected species. The male's orange sail-shaped feathers are iconic. Ancients saw them always in pairs and made them the eternal symbol of devoted couples, woven through centuries of poetry and wedding customs.",mama:"Mama's reading: Romance is blooming! Singles, get out there; couples, plan a date!"},
+red_oriole:{desc:"The crimson lucky bird! Red feathers mean celebration — folklore certified.",lore:"A Class-II protected species. The male's scarlet belly against black head and wings is as striking as opera face paint. In Eastern folklore red means joy: weddings, openings, promotions all welcome.",mama:"Mama's reading: A red-letter celebration is coming — prepare the red envelopes!"},
+pheasant_jacana:{desc:"The water fairy! It strides across lily pads like stepping on lotus blossoms.",lore:"A Class-II protected species whose long toes let it walk on floating leaves — “the fairy who walks on ripples.” The males incubate the eggs and raise the chicks, a rare role-reversal species.",mama:"Mama's reading: Expect an unexpectedly graceful moment today!"},
+pitta:{desc:"The rainbow sprite! The most dazzling summer visitor — even its name sounds lucky.",lore:"The Fairy Pitta, a Class-II protected species, wears green, blue, red, yellow, black, white, chestnut and cream — eight colors in all. In folklore “eight” sounds like “prosper,” so it carries luck in its very name.",mama:"Mama's reading: Fortune from all eight directions — benefactors everywhere!"},
+crested_serpent:{desc:"Taiwan's most familiar raptor! Its far-carrying cry over the valleys is a good omen.",lore:"A Class-II protected species, easily seen circling the foothills with a clear “hu-liu~ hu-liu~” call. It feeds on snakes — hence “serpent eagle” — and is the easiest resident raptor to spot in Taiwan.",mama:"Mama's reading: Bad energy has been driven off — hike with ease today."},
+whiskered_bulbul:{desc:"Jet black with red bill and feet — the fire-bringing hero of indigenous legend.",lore:"A common resident, all black with bright red bill and legs. In Bunun and Atayal legend, the Black Bulbul carried fire to the people across the mountains — its bill and feet scorched red forever.",mama:"Mama's reading: One little spark brings the breakthrough — be brave today!"},
+painted_snipe:{desc:"A wonder where the female outshines the male. Role reversal — a great story.",lore:"A Class-II protected species with reversed roles: the female is the showy one while the male incubates and raises the chicks. The poster bird for breaking stereotypes.",mama:"Mama's reading: Unconventional moves go smoothly today — do the thing YOU want."},
+tree_pie:{desc:"The magpie's cousin — long tail, grey-brown coat, distinctive call.",lore:"A common resident of the crow family, cousin to magpies and crows alike. Its raspy “ga~ ga~” echoes through foothill neighborhoods. Not as lucky as a magpie, not as dire as a crow — the neutral middle child.",mama:"Mama's reading: An ordinary day — but better than a crow."},
+};
+
+// ── 事件類型雙語標籤 ──
+export const EVENT_LABELS = {
+zh:{good:{interview:'收到面試通知',interview_good:'面試順利',offer:'收到 offer',money:'省到錢 / 賺到錢',health:'健康好事',social:'人際好事',luck:'意外好運',other:'其他好事'},
+bad:{no_reply:'履歷已讀不回',interview_fail:'面試沒過',money_loss:'多花錢 / 被扣款',sick:'身體不舒服',fight:'跟人吵架',crow_spotted:'烏鴉飛過去',other_bad:'其他倒霉事'}},
+en:{good:{interview:'Got an interview invite',interview_good:'Interview went well',offer:'Got an offer',money:'Saved / earned money',health:'Health win',social:'Social win',luck:'Unexpected luck',other:'Other good news'},
+bad:{no_reply:'Application left on read',interview_fail:'Failed an interview',money_loss:'Unexpected expense',sick:'Feeling unwell',fight:'Had an argument',crow_spotted:'A crow flew by',other_bad:'Other misfortune'}}
+};
+
+// ── 生活預兆清單(value 一律存中文原文,顯示依語言) ──
+export const OMEN_LIST = [
+{g:['身體的訊號','Body signals'],items:[['左眼皮跳','Left eyelid twitching'],['右眼皮跳','Right eyelid twitching'],['打噴嚏','Sneezing'],['耳朵發熱','Burning ears'],['臉突然發燙','Face suddenly flushing'],['打嗝停不下來','Hiccups that will not stop'],['手心發癢','Itchy palms']]},
+{g:['生活物品','Household things'],items:[['打破碗或杯子','Broke a bowl or cup'],['筷子掉到地上','Dropped chopsticks'],['撿到錢','Found money'],['東西一直找不到','Cannot find something'],['燈泡突然壞掉','A light bulb suddenly died']]},
+{g:['動物與自然','Animals & nature'],items:[['貓主動來親近','A cat came up to me'],['狗對著我叫','A dog barked at me'],['蜘蛛垂到面前','A spider dropped in front of me'],['燕子來築巢','Swallows are nesting'],['看到彩虹','Saw a rainbow'],['花突然開了','A flower suddenly bloomed']]},
+{g:['夢境','Dreams'],items:[['夢到掉牙齒','Dreamed of losing teeth'],['夢到水','Dreamed of water'],['夢到過世的親人','Dreamed of a departed loved one'],['夢到蛇','Dreamed of snakes']]}
+];
+export const OMEN_OTHER = ['其他(下面自己描述)','Other (describe below)'];
+
+// ── 楊媽媽英文語錄 ──
+export const QUOTES_EN = [
+'"Look — the birds have arrived." — Mama Yang',
+'"Told you so. The birds already said it; you just did not believe." — Mama Yang',
+'"Good luck is coming!" — Mama Yang (daily line)',
+'"At the end of science lies metaphysics." — Mama Yang x The Universe',
+'"A bird flying by means good things. Do not ask why." — Mama Yang',
+'"Your good luck is not missing — it is in line." — Mama Yang',
+'"The birds choose YOUR balcony. If HR does not choose you, that is on them." — Mama Yang',
+'"No good news yet? The bird is still on its way." — Mama Yang',
+'"Look up at the sky, down at the road, and sideways at the birds." — Mama Yang, life philosophy',
+'"Every passing bird is the universe cheering you on." — Mama Yang',
+'"Did not see a bird today? Then BE one. Fly higher." — Mama Yang',
+'"Skill is the foundation, metaphysics is the booster, and birds are the certification." — Mama Yang, business philosophy',
+'"Rest easy — Mama\'s birds never lie." — Mama Yang'
+];
