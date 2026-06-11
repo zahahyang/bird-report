@@ -164,8 +164,9 @@ body{font-family:'Huninn','Noto Sans TC','Zen Maru Gothic',-apple-system,sans-se
 .heart-entry .he-time{font-size:11px;color:var(--ink-faint,#999);margin-bottom:4px}
 .heart-entry .he-text{font-size:14px;color:var(--text,#3a3a32);line-height:1.8;white-space:pre-wrap}
 .heart-entry .he-reply{font-size:13px;color:var(--text-soft,#6b6b5e);line-height:1.8;margin-top:6px;padding:8px 10px;background:var(--warm-50,#FBF7EF);border-radius:10px;white-space:pre-wrap}
-.heart-entry .he-del{font-size:11px;color:var(--ink-faint,#999);background:none;border:none;font-family:inherit;cursor:pointer;padding:2px 8px;margin-top:4px;border-radius:10px}
-.heart-entry .he-del:hover{color:#c0392b}
+.heart-entry{padding-right:38px}
+.heart-entry .he-del{position:absolute;top:8px;right:6px;font-size:14px;line-height:1;color:var(--ink-faint,#999);background:none;border:none;cursor:pointer;padding:6px;border-radius:10px;opacity:.55;transition:opacity .15s}
+.heart-entry .he-del:hover{opacity:1}
 </style>
 </head>
 <body>
@@ -498,7 +499,7 @@ function saveHeartLocal(){try{localStorage.setItem('heart-log',JSON.stringify(he
 function renderHeartLog(){const box=document.getElementById('heart-log');if(!box)return;if(!heartLog.length){box.innerHTML='<div style="font-size:13px;color:var(--ink-faint,#999);padding:8px 2px">還沒有心事紀錄。寫下第一則,媽媽在聽。</div>';return}
 const sorted=heartLog.slice().sort((a,b)=>(b.ts||'').localeCompare(a.ts||''));let h='',last=null;
 sorted.forEach(e=>{if(e.date!==last){if(last!==null)h+='</div>';h+='<div class="heart-day"><div class="heart-day-head"><span>\u{1F4C5} '+heartDayLabel(e.date)+'</span><span class="hd-line"></span></div>';last=e.date;}
-h+='<div class="heart-entry"><div class="he-time">'+escH(e.time||'')+'</div><div class="he-text">'+escH(e.text||'')+'</div>'+(e.reply?'<div class="he-reply">\u{1F54A}\uFE0F '+escH(e.reply)+'</div>':'')+'<button class="he-del" onclick="deleteHeart(\''+e.id+'\')">刪除這則</button></div>';});
+h+='<div class="heart-entry"><div class="he-time">'+escH(e.time||'')+'</div><div class="he-text">'+escH(e.text||'')+'</div>'+(e.reply?'<div class="he-reply">\u{1F54A}\uFE0F '+escH(e.reply)+'</div>':'')+'<button class="he-del" onclick="deleteHeart(\''+e.id+'\')" title="刪除這則" aria-label="刪除這則">\u{1F5D1}\uFE0F</button></div>';});
 if(last!==null)h+='</div>';box.innerHTML=h;}
 async function deleteHeart(id){if(!confirm('刪掉這則心事?媽媽就當沒聽過。'))return;const entry=heartLog.find(x=>x.id===id);heartLog=heartLog.filter(x=>x.id!==id);renderHeartLog();showToast('已刪除');if(guestMode){saveHeartLocal();return}try{if(entry&&entry.fireId)await deleteDoc(doc(db,'hearts',entry.fireId))}catch(e){}}
 async function sendHeart(){const input=document.getElementById('heart-input'),text=(input.value||'').trim();if(!text){showToast('先寫點心事再請小鳥帶去喔');return}const btn=document.getElementById('heart-go'),panel=document.getElementById('heart-panel'),out=document.getElementById('heart-out');btn.disabled=true;panel.classList.add('show');out.textContent='\u{1F426} 小鳥正帶著你的心事飛去給楊媽媽…';out.style.opacity='0.6';const recentBirds=allSightings.slice(-5).reverse().map(s=>birdData[s.bird]?birdData[s.bird].name:'').filter(Boolean);const payload=attachProfile({heart:text,recent_birds:recentBirds,recent_events:mamaRecentEvents()});let reply='';try{const r=await fetch(JUDGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await r.json();reply=mamaSays(data);out.textContent=reply||'媽媽有聽到了。今天訊號有點輕,等等再請小鳥送一次,媽媽都在,放著心。';}catch(e){out.textContent='媽媽有聽到了。今天訊號有點輕,等等再請小鳥送一次,媽媽都在,放著心。';}
