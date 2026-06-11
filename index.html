@@ -8,6 +8,9 @@
 <meta name="apple-mobile-web-app-title" content="鳥類通報">
 <meta name="theme-color" content="#7A9E7E">
 <title>鳥類通報系統 — 楊媽媽通靈研究所</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%237A9E7E'/%3E%3Cg transform='translate(6,8)'%3E%3Cellipse cx='10' cy='10' rx='8' ry='6' fill='white'/%3E%3Ccircle cx='16' cy='6' r='4' fill='white'/%3E%3Ccircle cx='17.5' cy='5' r='1' fill='%233D5940'/%3E%3Cpolygon points='20,6 23,5.5 20,7' fill='%23D4A855'/%3E%3Cellipse cx='8' cy='9' rx='5' ry='3.5' fill='%23B8D4BA' transform='rotate(-15,8,9)'/%3E%3Cpolygon points='2,10 -2,6 -1,12' fill='%23B8D4BA'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%237A9E7E'/%3E%3Cg transform='translate(30,40)'%3E%3Cellipse cx='60' cy='60' rx='48' ry='36' fill='white'/%3E%3Ccircle cx='96' cy='36' r='24' fill='white'/%3E%3Ccircle cx='105' cy='30' r='6' fill='%233D5940'/%3E%3Cpolygon points='120,36 138,33 120,42' fill='%23D4A855'/%3E%3Cellipse cx='48' cy='54' rx='30' ry='21' fill='%23B8D4BA' transform='rotate(-15,48,54)'/%3E%3Cpolygon points='12,60 -12,36 -6,72' fill='%23B8D4BA'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +19,7 @@
 :root{--cloud:#F4F1EC;--cloud-light:#FAF9F6;--cloud-white:#FFFFFF;--warm-50:#F9F6F1;--warm-100:#F0EBE3;--warm-200:#E2DAD0;--warm-300:#C8BFB3;--sage:#7A9E7E;--sage-light:#E8F0E9;--sage-dark:#5B7E5F;--sage-deep:#3D5940;--terracotta:#C08B6E;--terracotta-light:#F5EBE4;--terracotta-dark:#8B5E44;--ink:#3A3632;--ink-light:#6B6560;--ink-lighter:#9E9890;--ink-faint:#C8C3BC;--gold-50:#FDF6E8;--gold-400:#D4A855;--gold-800:#7A5C1F;--rose-50:#FBF0F0;--rose-400:#C87B7B;--rose-800:#7A3D3D;--sky-50:#EEF4FA;--sky-400:#6B9DC7;--sky-800:#2E5470;--red-50:#FBF0EE;--red-600:#B85450;--red-800:#6B2E2C;--bg:var(--cloud);--card-bg:var(--cloud-white);--text:var(--ink);--text-secondary:var(--ink-light);--text-tertiary:var(--ink-lighter);--border:rgba(58,54,50,0.08);--radius:16px;--radius-sm:10px;--shadow-sm:0 1px 3px rgba(58,54,50,0.04),0 1px 2px rgba(58,54,50,0.03);--shadow-md:0 4px 12px rgba(58,54,50,0.06),0 1px 4px rgba(58,54,50,0.04)}
 @media(prefers-color-scheme:dark){:root{--cloud:#1C1B19;--cloud-light:#232220;--cloud-white:#2A2927;--warm-50:#252321;--warm-100:#302E2B;--warm-200:#3D3A36;--warm-300:#5A5650;--sage:#7A9E7E;--sage-light:#1E2E20;--sage-dark:#9ECBA2;--sage-deep:#C8E5CA;--terracotta:#D4A080;--terracotta-light:#2E2420;--terracotta-dark:#E8C0A8;--ink:#E8E4DE;--ink-light:#B8B2AA;--ink-lighter:#888078;--ink-faint:#504B46;--gold-50:#2E2818;--gold-800:#F0D090;--rose-50:#2E2020;--rose-800:#F0C0C0;--sky-50:#1A2430;--sky-800:#B8D8F0;--red-50:#2E1E1C;--red-600:#E08080;--red-800:#F0B0AE;--bg:var(--cloud);--card-bg:var(--cloud-white);--text:var(--ink);--text-secondary:var(--ink-light);--text-tertiary:var(--ink-lighter);--border:rgba(232,228,222,0.08);--shadow-sm:0 1px 3px rgba(0,0,0,0.12);--shadow-md:0 4px 12px rgba(0,0,0,0.16)}}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{font-family:'Noto Sans TC','Zen Maru Gothic',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;min-height:100dvh}
+body{font-family:'Huninn','Noto Sans TC','Zen Maru Gothic',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;min-height:100dvh}
 .container{max-width:480px;margin:0 auto;padding:0 16px 80px}
 .header{text-align:center;padding:32px 0 20px;position:relative}
 .header-icon{font-size:36px;margin-bottom:8px;filter:drop-shadow(0 2px 4px rgba(122,158,126,0.2))}
@@ -153,6 +156,16 @@ body{font-family:'Noto Sans TC','Zen Maru Gothic',-apple-system,sans-serif;backg
 #subnav{display:flex;gap:6px;margin:-6px 0 16px;flex-wrap:wrap}
 .subtab{padding:5px 12px;border-radius:14px;border:1px solid var(--sage,#cdd6c5);background:#fff;color:var(--ink-faint,#9a9a8e);font-size:13px;cursor:pointer;font-family:inherit;transition:all .15s}
 .subtab.active{background:var(--sage,#8a9a7b);color:#fff;border-color:var(--sage,#8a9a7b)}
+.heart-day{margin-bottom:18px}
+.heart-day-head{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--sage-dark,#5C7A3A);margin-bottom:8px}
+.heart-day-head .hd-line{flex:1;height:1px;background:var(--warm-200,#E7DCC8)}
+.heart-entry{position:relative;margin-left:10px;padding:10px 12px 10px 18px;border-left:2px solid var(--warm-200,#E7DCC8)}
+.heart-entry:before{content:'';position:absolute;left:-6px;top:16px;width:10px;height:10px;border-radius:50%;background:var(--sage,#7A9E7E);border:2px solid var(--card-bg,#fff)}
+.heart-entry .he-time{font-size:11px;color:var(--ink-faint,#999);margin-bottom:4px}
+.heart-entry .he-text{font-size:14px;color:var(--text,#3a3a32);line-height:1.8;white-space:pre-wrap}
+.heart-entry .he-reply{font-size:13px;color:var(--text-soft,#6b6b5e);line-height:1.8;margin-top:6px;padding:8px 10px;background:var(--warm-50,#FBF7EF);border-radius:10px;white-space:pre-wrap}
+.heart-entry .he-del{font-size:11px;color:var(--ink-faint,#999);background:none;border:none;font-family:inherit;cursor:pointer;padding:2px 8px;margin-top:4px;border-radius:10px}
+.heart-entry .he-del:hover{color:#c0392b}
 </style>
 </head>
 <body>
@@ -308,6 +321,9 @@ body{font-family:'Noto Sans TC','Zen Maru Gothic',-apple-system,sans-serif;backg
 <div class="result-panel" id="heart-panel" style="margin-top:16px">
 <div class="result-mama" id="heart-out" style="border-top:none;margin-top:0;padding-top:0;white-space:pre-wrap;line-height:1.9"></div>
 </div>
+<div class="section-label" style="margin-top:26px">&#x1F5D3;&#xFE0F; 樹洞回顧</div>
+<p style="color:var(--text-soft);font-size:13px;margin:0 0 10px;line-height:1.6">你跟媽媽說過的心事都收在這裡,想回頭看看就翻翻,不想留著就刪掉。</p>
+<div id="heart-log"></div>
 </div>
 <div class="tab-content" id="tab-photo">
 <div class="section-label">&#x1F4F8; 拍照看兆頭</div>
@@ -397,7 +413,7 @@ function updateSyncStatus(type,msg){const el=document.getElementById('sync-statu
 
 // Auth
 let guestMode=false;
-function enterGuest(){guestMode=true;const p=document.getElementById('login-prompt');const c=document.getElementById('main-content');const st=document.getElementById('status-text');if(p)p.style.display='none';if(c)c.style.display='block';if(st)st.textContent='\u{1F9EA} \u8A2A\u5BA2\u6A21\u5F0F\uFF08\u4E0D\u6703\u96F2\u7AEF\u5132\u5B58\uFF09';try{const x=localStorage.getItem('mingli-profile');if(x&&!myProfile){myProfile=JSON.parse(x);fillMingliForm();}}catch(e){}}
+function enterGuest(){try{heartLog=JSON.parse(localStorage.getItem('heart-log')||'[]')}catch(e){heartLog=[]}renderHeartLog();guestMode=true;const p=document.getElementById('login-prompt');const c=document.getElementById('main-content');const st=document.getElementById('status-text');if(p)p.style.display='none';if(c)c.style.display='block';if(st)st.textContent='\u{1F9EA} \u8A2A\u5BA2\u6A21\u5F0F\uFF08\u4E0D\u6703\u96F2\u7AEF\u5132\u5B58\uFF09';try{const x=localStorage.getItem('mingli-profile');if(x&&!myProfile){myProfile=JSON.parse(x);fillMingliForm();}}catch(e){}}
 function handleAuth(){if(currentUser){signOut(auth)}else{signInWithPopup(auth,new GoogleAuthProvider()).catch(()=>showToast('\u767B\u5165\u5931\u6557'))}}
 onAuthStateChanged(auth,user=>{
 currentUser=user;
@@ -457,6 +473,7 @@ if(migrated>0){showToast('\u5DF2\u9077\u79FB '+migrated+' \u7B46\u820A\u8CC7\u65
 const sq=query(collection(db,'sightings'),where('userId','==',uid));const ss=await getDocs(sq);allSightings=[];ss.forEach(d=>{const data=d.data();data.fireId=d.id;allSightings.push(data)});allSightings.sort((a,b)=>(a.ts||'').localeCompare(b.ts||''));
 const vq2=query(collection(db,'verifications_v2'),where('userId','==',uid));const vr=await getDocs(vq2);verifyData={};vr.forEach(d=>{const data=d.data();verifyData[data.date]=data.result});
 const gq=query(collection(db,'goodnews'),where('userId','==',uid));const gr=await getDocs(gq);goodNews=[];gr.forEach(d=>{const data=d.data();data.fireId=d.id;goodNews.push(data)});goodNews.sort((a,b)=>(a.ts||'').localeCompare(b.ts||''));
+const hq=query(collection(db,'hearts'),where('userId','==',uid));const hr=await getDocs(hq);heartLog=[];hr.forEach(d=>{const data=d.data();data.fireId=d.id;heartLog.push(data)});
 const bq=query(collection(db,'badnews'),where('userId','==',uid));const br=await getDocs(bq);badNews=[];br.forEach(d=>{const data=d.data();data.fireId=d.id;badNews.push(data)});badNews.sort((a,b)=>(a.ts||'').localeCompare(b.ts||''));
 try{const pSnap=await getDoc(doc(db,'profiles',uid));if(pSnap.exists()){myProfile=pSnap.data();fillMingliForm();}}catch(e){}
 updateSyncStatus('ok','\u96F2\u7AEF\u540C\u6B65\u5B8C\u6210');
@@ -474,7 +491,20 @@ function saveMingliProfile(){const dEl=document.getElementById('mingli-date'),hE
 
 function attachProfile(payload){if(myProfile&&myProfile.birthday){payload.birthday=myProfile.birthday;payload.gender=myProfile.gender;if(myProfile.hour!=='')payload.hour=parseInt(myProfile.hour,10);}if(currentUser&&currentUser.displayName)payload.name=currentUser.displayName;return payload;}
 
-async function sendHeart(){const input=document.getElementById('heart-input'),text=(input.value||'').trim();if(!text){showToast('先寫點心事再請小鳥帶去喔');return}const btn=document.getElementById('heart-go'),panel=document.getElementById('heart-panel'),out=document.getElementById('heart-out');btn.disabled=true;panel.classList.add('show');out.textContent='\u{1F426} 小鳥正帶著你的心事飛去給楊媽媽…';out.style.opacity='0.6';const recentBirds=allSightings.slice(-5).reverse().map(s=>birdData[s.bird]?birdData[s.bird].name:'').filter(Boolean);const payload=attachProfile({heart:text,recent_birds:recentBirds,recent_events:mamaRecentEvents()});try{const r=await fetch(JUDGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await r.json();const t=mamaSays(data);out.textContent=t||'媽媽有聽到了。今天訊號有點輕,等等再請小鳥送一次,媽媽都在,放著心。';}catch(e){out.textContent='媽媽有聽到了。今天訊號有點輕,等等再請小鳥送一次,媽媽都在,放著心。';}out.style.opacity='1';btn.disabled=false;}
+let heartLog=[];
+function escH(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function heartDayLabel(ds){const d=new Date(ds+'T00:00:00');if(isNaN(d.getTime()))return ds;const w=['日','一','二','三','四','五','六'][d.getDay()];return (d.getMonth()+1)+'月'+d.getDate()+'日（週'+w+'）'}
+function saveHeartLocal(){try{localStorage.setItem('heart-log',JSON.stringify(heartLog.slice(-200)))}catch(e){}}
+function renderHeartLog(){const box=document.getElementById('heart-log');if(!box)return;if(!heartLog.length){box.innerHTML='<div style="font-size:13px;color:var(--ink-faint,#999);padding:8px 2px">還沒有心事紀錄。寫下第一則,媽媽在聽。</div>';return}
+const sorted=heartLog.slice().sort((a,b)=>(b.ts||'').localeCompare(a.ts||''));let h='',last=null;
+sorted.forEach(e=>{if(e.date!==last){if(last!==null)h+='</div>';h+='<div class="heart-day"><div class="heart-day-head"><span>\u{1F4C5} '+heartDayLabel(e.date)+'</span><span class="hd-line"></span></div>';last=e.date;}
+h+='<div class="heart-entry"><div class="he-time">'+escH(e.time||'')+'</div><div class="he-text">'+escH(e.text||'')+'</div>'+(e.reply?'<div class="he-reply">\u{1F54A}\uFE0F '+escH(e.reply)+'</div>':'')+'<button class="he-del" onclick="deleteHeart(\''+e.id+'\')">刪除這則</button></div>';});
+if(last!==null)h+='</div>';box.innerHTML=h;}
+async function deleteHeart(id){if(!confirm('刪掉這則心事?媽媽就當沒聽過。'))return;const entry=heartLog.find(x=>x.id===id);heartLog=heartLog.filter(x=>x.id!==id);renderHeartLog();showToast('已刪除');if(guestMode){saveHeartLocal();return}try{if(entry&&entry.fireId)await deleteDoc(doc(db,'hearts',entry.fireId))}catch(e){}}
+async function sendHeart(){const input=document.getElementById('heart-input'),text=(input.value||'').trim();if(!text){showToast('先寫點心事再請小鳥帶去喔');return}const btn=document.getElementById('heart-go'),panel=document.getElementById('heart-panel'),out=document.getElementById('heart-out');btn.disabled=true;panel.classList.add('show');out.textContent='\u{1F426} 小鳥正帶著你的心事飛去給楊媽媽…';out.style.opacity='0.6';const recentBirds=allSightings.slice(-5).reverse().map(s=>birdData[s.bird]?birdData[s.bird].name:'').filter(Boolean);const payload=attachProfile({heart:text,recent_birds:recentBirds,recent_events:mamaRecentEvents()});let reply='';try{const r=await fetch(JUDGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await r.json();reply=mamaSays(data);out.textContent=reply||'媽媽有聽到了。今天訊號有點輕,等等再請小鳥送一次,媽媽都在,放著心。';}catch(e){out.textContent='媽媽有聽到了。今天訊號有點輕,等等再請小鳥送一次,媽媽都在,放著心。';}
+const now=new Date();const entry={id:Date.now().toString(),date:getToday(),time:String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0'),text:text,reply:reply||'',ts:now.toISOString(),userId:(currentUser?currentUser.uid:'guest')};heartLog.push(entry);input.value='';renderHeartLog();
+if(guestMode){saveHeartLocal();}else{try{const ref=await addDoc(collection(db,'hearts'),entry);entry.fireId=ref.id;}catch(e){}}
+out.style.opacity='1';btn.disabled=false;}
 const SHICHEN=['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
 async function sendLifeOmen(){const sel=document.getElementById('omen-type'),note=(document.getElementById('omen-note').value||'').trim();let type=sel.value;if(type==='other')type='';if(!type&&!note){showToast('先選一個預兆,或自己描述一下喔');return}const btn=document.getElementById('omen-go'),panel=document.getElementById('omen-panel'),out=document.getElementById('omen-out');btn.disabled=true;panel.classList.add('show');out.textContent='\u{1F340} 楊媽媽正在翻民俗的本子…';out.style.opacity='0.6';const h=new Date().getHours();const recentBirds=allSightings.slice(-5).reverse().map(s=>birdData[s.bird]?birdData[s.bird].name:'').filter(Boolean);const payload=attachProfile({lifeomen:{type:type||note,note:type?note:'',hour:h,time_slot:SHICHEN[Math.floor(((h+1)%24)/2)],weekday:mamaWeekday(),time_of_day:mamaTimeOfDay()},recent_birds:recentBirds,recent_events:mamaRecentEvents()});try{const r=await fetch(JUDGE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await r.json();const t=mamaSays(data);out.textContent=t||'楊媽媽今天訊號有點輕,等等再問一次,放著心。';}catch(e){out.textContent='楊媽媽今天訊號有點輕,等等再問一次,放著心。';}out.style.opacity='1';btn.disabled=false;}
 function mamaSays(data){let t=(data&&(data.judgment||data.report))||'';t=String(t).trim();if(!t||t==='...'||/溫暖口語|3[~～]4句|繁體中文|judgment|^[\{\[]/.test(t))return '';return t;}
@@ -525,7 +555,7 @@ async function deleteBadNews(id){if(!confirm('\u522A\u9664\u9019\u7B46\u5012\u97
 
 function getBirdsBeforeDate(date,days){const d=new Date(date);const birds=new Set();for(let i=0;i<=days;i++){const dd=new Date(d);dd.setDate(dd.getDate()-i);const ds=dd.getFullYear()+'-'+String(dd.getMonth()+1).padStart(2,'0')+'-'+String(dd.getDate()).padStart(2,'0');allSightings.filter(s=>s.date===ds).forEach(s=>birds.add(s.bird))}return birds}
 
-function renderAll(){renderTodayLog();renderHistory();renderStats();renderEvents()}
+function renderAll(){renderTodayLog();renderHistory();renderStats();renderEvents();renderHeartLog()}
 
 function renderTodayLog(){const c=document.getElementById('today-log'),today=getTodaySightings();if(!today.length){c.innerHTML='<div class="empty-log">\u4ECA\u65E5\u5C1A\u7121\u76EE\u64CA\u7D00\u9304<br>\u5FEB\u53BB\u967D\u53F0\u770B\u770B\uFF01\u{1F426}</div>';return}let h='';today.slice().reverse().forEach(s=>{const b=birdData[s.bird];if(!b)return;h+='<div class="log-entry"><div class="log-time">'+s.time+'</div><div class="log-content"><span class="log-bird">'+b.emoji+' '+b.name+'</span>';if(s.loc)h+='<span class="log-loc">'+s.loc+'</span>';if(s.note)h+='<br><span class="log-note">'+s.note+'</span>';h+='<br><span class="log-verdict">'+b.mama+'</span></div><button class="log-delete" onclick="deleteSighting(\''+s.id+'\')">&#x2715;</button></div>'});c.innerHTML=h}
 
@@ -607,7 +637,7 @@ window.filterBirdSelect=filterBirdSelect;
 
 // 通報後清空搜尋框
 const _origAddSighting2=window.addSighting;
-window.addSighting=addSighting;window.deleteSighting=deleteSighting;window.clearToday=clearToday;window.clearAll=clearAll;window.verifyDay=verifyDay;window.showBirdDetail=showBirdDetail;window.switchTab=switchTab;window.askMama=askMama;window.genReport=genReport;window.setLoc=setLoc;window.addGoodNews=addGoodNews;window.deleteGoodNews=deleteGoodNews;window.addBadNews=addBadNews;window.deleteBadNews=deleteBadNews;window.handleAuth=handleAuth;window.addEvent=addEvent;window.onVisionFile=onVisionFile;window.runVision=runVision;window.openGroup=openGroup;window.showSub=showSub;window.sendHeart=sendHeart;window.sendLifeOmen=sendLifeOmen;window.copyChart=copyChart;window.enterGuest=enterGuest;
+window.addSighting=addSighting;window.deleteSighting=deleteSighting;window.clearToday=clearToday;window.clearAll=clearAll;window.verifyDay=verifyDay;window.showBirdDetail=showBirdDetail;window.switchTab=switchTab;window.askMama=askMama;window.genReport=genReport;window.setLoc=setLoc;window.addGoodNews=addGoodNews;window.deleteGoodNews=deleteGoodNews;window.addBadNews=addBadNews;window.deleteBadNews=deleteBadNews;window.handleAuth=handleAuth;window.addEvent=addEvent;window.onVisionFile=onVisionFile;window.runVision=runVision;window.openGroup=openGroup;window.showSub=showSub;window.sendHeart=sendHeart;window.deleteHeart=deleteHeart;window.sendLifeOmen=sendLifeOmen;window.copyChart=copyChart;window.enterGuest=enterGuest;
 initMingli();initEvents();buildBirdSelect();openGroup('report');
 try{if(localStorage.getItem('about-dismissed')==='1'){const c=document.getElementById('about-card');if(c)c.style.display='none';}}catch(e){}
 window.dismissAbout=dismissAbout;
