@@ -33,6 +33,7 @@ export const I18N = {
     askmamaDesc:'什麼都可以跟媽媽說——問運勢、生活上卡卡的事（最近睡不好、好焦慮）、或只是想找人聊聊，媽媽都會接住你。想算得更準可以填生日（選填），媽媽會幫你記住。',
     hourUnknown:'出生時間(不確定也可)', genderF:'女', genderM:'男',
     askInput:'跟媽媽說一句話（例：這週適合投履歷嗎？／最近睡不好…）', askBtn:'跟媽媽說',
+    bdayToggle:'\u{1F382} 設定生日（選填，媽媽會更懂你）', bdaySet:'\u{1F382} 生日已設定（點開可修改）', bdayHint:'填了媽媽會偷偷參考你的命盤，講話更貼你；不填也完全沒關係。', bdaySave:'存起來', bdaySaved:'生日記下了，媽媽會放在心上 \u{1F382}',
     reportFull:'🪷 幫我出一份完整命理報告',
     chartTitle:'📜 你的命盤概要', chartCopy:'📋 複製', chartHint:'複製後可貼到任何 AI(像 ChatGPT）請它幫你解讀',
     // heart
@@ -104,6 +105,7 @@ export const I18N = {
     askmamaDesc:"Tell Mama anything - ask about your luck, share a struggle (trouble sleeping, feeling anxious), or just talk. She'll catch you. Add your birthday for a sharper reading (optional); Mama remembers it.",
     hourUnknown:'Birth time (optional)', genderF:'Female', genderM:'Male',
     askInput:'Say something to Mama (e.g. Good week to apply for jobs? / trouble sleeping lately…)', askBtn:'Talk to Mama',
+    bdayToggle:'\u{1F382} Add your birthday (optional — Mama gets you better)', bdaySet:'\u{1F382} Birthday saved (tap to edit)', bdayHint:'Add it and Mama quietly factors in your chart so she fits you better. Totally fine to skip.', bdaySave:'Save', bdaySaved:'Got your birthday — Mama will keep it in mind \u{1F382}',
     reportFull:'🪷 Give me a full astrology report',
     chartTitle:'📜 Your chart summary', chartCopy:'📋 Copy', chartHint:'Paste it into any AI (like ChatGPT) for a deeper reading',
     heartTitle:'🕊️ Whisper Hollow',
