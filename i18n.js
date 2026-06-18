@@ -8,7 +8,7 @@ export const I18N = {
     statusGuest:'🧪 訪客模式（不會雲端儲存）', statusIn:'☁️ 已登入', statusWait:'等待登入...',
     // tabs
     tabReport:'通報', tabMama:'問楊媽媽', tabVision:'拍照', tabHistory:'歷史紀錄',
-    subMain:'🦜 鳥兆', subEvents:'✨ 好事壞事', subAskmama:'🔮 問事', subHeart:'🕊️ 啾啾樹洞',
+    subMain:'🦜 鳥兆', subEvents:'✨ 好事壞事', subAskmama:'🔮 說說話', subHeart:'🕊️ 啾啾樹洞',
     subPhoto:'📸 看兆頭', subLifeomen:'🍀 生活預兆', subHistory:'歷史',
     // about
     aboutTitle:'🔮 楊媽媽跟你說',
@@ -29,10 +29,10 @@ export const I18N = {
     // history
     historyIntel:'歷史情報紀錄', clearAll:'清除全部', noHistory:'尚無歷史紀錄',
     // askmama
-    askmamaTitle:'🔮 問楊媽媽',
-    askmamaDesc:'先設定一次生日，楊媽媽幫你排好八字、紫微命盤；之後問她任何事，她都會用你的命盤＋最近的鳥兆來回。生日會幫你記住。',
+    askmamaTitle:'🔮 跟媽媽說說話',
+    askmamaDesc:'什麼都可以跟媽媽說——問運勢、生活上卡卡的事（最近睡不好、好焦慮）、或只是想找人聊聊，媽媽都會接住你。想算得更準可以填生日（選填），媽媽會幫你記住。',
     hourUnknown:'出生時間(不確定也可)', genderF:'女', genderM:'男',
-    askInput:'問楊媽媽一件事（例：這週適合投履歷嗎？）', askBtn:'問楊媽媽',
+    askInput:'跟媽媽說一句話（例：這週適合投履歷嗎？／最近睡不好…）', askBtn:'跟媽媽說',
     reportFull:'🪷 幫我出一份完整命理報告',
     chartTitle:'📜 你的命盤概要', chartCopy:'📋 複製', chartHint:'複製後可貼到任何 AI(像 ChatGPT）請它幫你解讀',
     // heart
@@ -84,7 +84,7 @@ export const I18N = {
     googleLogin:'Sign in with Google', guestBtn:'🦜 Guest mode — report now!',
     statusGuest:'🧪 Guest mode (not saved to cloud)', statusIn:'☁️ Signed in', statusWait:'Waiting for sign-in...',
     tabReport:'Report', tabMama:'Ask Mama', tabVision:'Photo', tabHistory:'History',
-    subMain:'🦜 Bird Omen', subEvents:'✨ Good & Bad', subAskmama:'🔮 Ask', subHeart:'🕊️ Whisper Hollow',
+    subMain:'🦜 Bird Omen', subEvents:'✨ Good & Bad', subAskmama:'🔮 Talk', subHeart:'🕊️ Whisper Hollow',
     subPhoto:'📸 Read Photo', subLifeomen:'🍀 Daily Signs', subHistory:'History',
     aboutTitle:'🔮 A word from Mama Yang',
     aboutBody:"Come here, sweetie, Mama's been waiting for you.<br>Every bird in the sky, every butterfly on the railing — none of them fly by for nothing. They're little messengers the universe sent to bring you news. Report whichever you spot, and Mama will read it right away — what good news it brings today, and when your luck runs strongest.<br>Mama plays favorites; she'll always pick out the good for you. And if something's off, Mama catches it gently, never scares you.<br>Rest easy now — Mama's here. Trust me, it's a sure thing.",
@@ -100,10 +100,10 @@ export const I18N = {
     accGood:'🎯 Bird prediction accuracy (good)', accGoodSub:'Birds seen within 3 days before good news count as a "hit"',
     accBad:'⚠️ Bird warning rate (bad)', accBadSub:'Birds seen within 3 days before misfortune count as a "warning"',
     historyIntel:'History log', clearAll:'Clear all', noHistory:'No history yet',
-    askmamaTitle:'🔮 Ask Mama Yang',
-    askmamaDesc:"Set your birthday once and Mama charts your BaZi & Zi Wei; after that, ask her anything and she'll answer with your chart plus recent bird omens. Your birthday is remembered.",
+    askmamaTitle:'🔮 Talk to Mama Yang',
+    askmamaDesc:"Tell Mama anything - ask about your luck, share a struggle (trouble sleeping, feeling anxious), or just talk. She'll catch you. Add your birthday for a sharper reading (optional); Mama remembers it.",
     hourUnknown:'Birth time (optional)', genderF:'Female', genderM:'Male',
-    askInput:'Ask Mama anything (e.g. Is this a good week to apply for jobs?)', askBtn:'Ask Mama',
+    askInput:'Say something to Mama (e.g. Good week to apply for jobs? / trouble sleeping lately…)', askBtn:'Talk to Mama',
     reportFull:'🪷 Give me a full astrology report',
     chartTitle:'📜 Your chart summary', chartCopy:'📋 Copy', chartHint:'Paste it into any AI (like ChatGPT) for a deeper reading',
     heartTitle:'🕊️ Whisper Hollow',
