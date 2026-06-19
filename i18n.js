@@ -38,7 +38,7 @@ export const I18N = {
     chartTitle:'📜 你的命盤概要', chartCopy:'📋 複製', chartHint:'複製後可貼到任何 AI(像 ChatGPT）請它幫你解讀',
     // heart
     heartTitle:'🕊️ 啾啾樹洞',
-    hearTitle:'\u{1F442} 我聽到鳥', hearDesc:'聽到鳥叫卻沒看到牠？在楊媽媽的世界裡，鳴叫＝有消息在路上。跟媽媽說你在哪、那時候在想什麼或發生什麼，知道是哪種鳥再選（不知道也沒關係）。', hearBtn:'\u{1F442} 請媽媽聽聽這個聲音', hearLogTitle:'\u{1F442} 聽到紀錄', hearEmpty:'還沒有聽到紀錄。聽到鳥叫就來通報,媽媽幫你聽消息。', hearUnknownBird:'聽到鳥聲（沒看到）',
+    hearTitle:'\u{1F442} 我聽到鳥', hearDesc:'聽到鳥叫卻沒看到牠？在楊媽媽的世界裡，鳴叫＝有消息在路上。跟媽媽說你在哪、那時候在想什麼或發生什麼，知道是哪種鳥再選（不知道也沒關係）。', hearBtn:'\u{1F442} 請媽媽聽聽這個聲音', hearLogTitle:'\u{1F442} 聽到紀錄', statHearToday:'今日聽到', statHearTotal:'累計聽到', statHearTop:'最常聽到', statHearDays:'報信天數', hearUnknownShort:'未知', hearEmpty:'還沒有聽到紀錄。聽到鳥叫就來通報,媽媽幫你聽消息。', hearUnknownBird:'聽到鳥聲（沒看到）',
     heartDesc:'有什麼心事，寫下來託小鳥帶去給楊媽媽。媽媽不會跟別人說，只會好好聽你說。',
     heartInput:'今天心裡裝著什麼?都可以跟媽媽說…', heartBtn:'🕊️ 請小鳥帶去',
     heartReviewTitle:'🗓️ 樹洞回顧', heartReviewDesc:'你跟媽媽說過的心事都收在這裡，想回頭看看就翻翻，不想留著就刪掉。',
@@ -110,7 +110,7 @@ export const I18N = {
     reportFull:'🪷 Give me a full astrology report',
     chartTitle:'📜 Your chart summary', chartCopy:'📋 Copy', chartHint:'Paste it into any AI (like ChatGPT) for a deeper reading',
     heartTitle:'🕊️ Whisper Hollow',
-    hearTitle:'\u{1F442} I heard a bird', hearDesc:"Heard a bird call but didn't see it? In Mama Yang's world, a call means a message is on its way. Tell Mama where you were and what was happening or on your mind; pick the species if you know it (no worries if you don't).", hearBtn:'\u{1F442} Let Mama listen to this call', hearLogTitle:'\u{1F442} What you heard', hearEmpty:"No entries yet. Heard a bird call? Report it and Mama listens for the news.", hearUnknownBird:'Heard a call (not seen)',
+    hearTitle:'\u{1F442} I heard a bird', hearDesc:"Heard a bird call but didn't see it? In Mama Yang's world, a call means a message is on its way. Tell Mama where you were and what was happening or on your mind; pick the species if you know it (no worries if you don't).", hearBtn:'\u{1F442} Let Mama listen to this call', hearLogTitle:'\u{1F442} What you heard', statHearToday:'Heard today', statHearTotal:'Total heard', statHearTop:'Most heard', statHearDays:'News days', hearUnknownShort:'Unknown', hearEmpty:"No entries yet. Heard a bird call? Report it and Mama listens for the news.", hearUnknownBird:'Heard a call (not seen)',
     heartDesc:"Whatever's on your heart, write it down and let a little bird carry it to Mama. She won't tell a soul — she just listens.",
     heartInput:"What's on your heart today? You can tell Mama anything…", heartBtn:'🕊️ Send it with a bird',
     heartReviewTitle:'🗓️ Hollow review', heartReviewDesc:"Everything you've told Mama is kept here. Look back whenever you like, or delete what you'd rather not keep.",
